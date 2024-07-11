@@ -1,0 +1,92 @@
+.burger {
+  $size: 30px;
+
+  position: relative;
+  display: block;
+  width: $size;
+  height: $size;
+  z-index: 1;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: border-radius(m);
+
+  @include focus-outline-style() {
+    outline-offset: -1px;
+  }
+
+  @include breakpoint(lg) {
+    display: none;
+  }
+
+  &__link,
+  &__button {
+    @include focus-outline-style();
+
+    display: block;
+    width: $size;
+    height: $size;
+    background: transparent;
+    border: none;
+  }
+
+  &__link {
+    display: none;
+
+    body.no-js & {
+      display: block;
+    }
+  }
+
+  &__button {
+    body.no-js & {
+      display: none;
+    }
+  }
+
+  &__bars {
+    top: 50%;
+    transform: translateY(-1px);
+
+    &,
+    &::before,
+    &::after {
+      display: block;
+      width: $size;
+      height: 2px;
+      background: var(--neutral-900, #{$color-neutral-900});
+      border: 1px solid var(--neutral-900, #{$color-neutral-900});
+      position: absolute;
+      border-radius: 3px;
+      left: 50%;
+      margin-left: calc($size / 2 * -1);
+      transition: all 350ms ease-in-out;
+    }
+
+    &::before {
+      content: "";
+      margin-top: -10px;
+
+      .is-open & {
+        margin-top: 0;
+        transform: rotate(45deg);
+      }
+    }
+
+    &::after {
+      content: "";
+      margin-top: 8px;
+
+      .is-open & {
+        margin-top: 0;
+        transform: rotate(-45deg);
+      }
+    }
+
+    .is-open & {
+      background: transparent;
+      border-color: transparent;
+    }
+  }
+}

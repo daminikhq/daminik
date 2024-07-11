@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyClasses %}detail-view{% endblock %}
+
+{% block body %}
+    <div class="file-detail">
+        <div class="file-detail__viewer">
+            <img
+                class="file-detail__file"
+                src="{{ fileUrl ?? path('workspace_download_file', {filename: file.filename}) }}"
+                alt="{{ file.filename }}">
+        </div>
+        <div class="file-detail__info">
+            {% if app.session.flashbag.peekAll()|length > 0 %}
+                {% include 'partials/layout/_flashes.html.twig' %}
+            {% endif %}
+            <div class="file-detail__header">
+                <a href="{{ path('workspace_file_edit', {filename: file.filename}) }}" class="link">
+                    {% include 'icon-chevron-left.svg' %}
+                    <span>{{ 'base.back'|trans }}</span>
+                </a>
+            </div>
+            <div class="file-detail__body">
+                <div class="file-detail__info-body">
+                    <h1>{{ 'file.revisions'|trans }}</h1>
+                    <p>
+                        {{ 'feature.revisions.desc'|trans }}
+                    </p>
+
+                    {% if can_upload_asset() %}
+                        {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+                        {{ form_row(form.file) }}
+                        {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+                        {{ form_end(form) }}
+                    {% endif %}
+
+                    {% if can_edit_asset() %}
+                        {% if file.revisions.count > 1 %}
+                            <hr>
+                            <h3>{{ 'feature.revisions.olderVersions'|trans }}</h3>
+                            <p>
+                                {{ 'feature.revisions.olderVersionsDesc'|trans }}
+                            </p>
+                            <form method="post" action="{{ path('workspace_file_revisions_update', {filename: file.filename}) }}">
+                                <ul class="revisions">
+                                    {% for revision in file.revisions %}
+                                        <li>
+                                            <input type="radio" value="{{ revision.id }}" id="revision[{{ revision.id }}]" class="revision-checkbox"
+                                                   name="revision" {% if file.activeRevision.id is same as(revision.id) %} checked{% endif %}>
+                                            <label for="revision[{{ revision.id }}]">
+                                                <span class="thumbnail">
+                                                    <img class="thumbnail__image"
+                                                         src="{{ path(
+                                                             'workspace_download_revision_thumbnail',
+                                                             {filename: file.filename, revision: revision.counter}
+                                                         ) }}"
+                                                         alt="{{ file.filename }}">
+                                                </span>
+                                                <time>
+                                                    {{ revision.createdAt|format_datetime }}
+                                                </time>
+                                            </label>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <input type="hidden" name="token" value="{{ csrf_token('update_active_revision') }}"/>
+                                <fieldset class="has-buttons">
+                                    <button type="submit" class="button">{{ 'base.select'|trans }}</button>
+                                </fieldset>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

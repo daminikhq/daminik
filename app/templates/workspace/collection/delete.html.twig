@@ -1,0 +1,17 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    <a href="{{ path('workspace_collection_index') }}" class="button button--grey">
+        {% include 'icon-chevron-left.svg' %} {{ 'file.collections'|trans }}
+    </a>
+
+    <h2>
+       {{ 'collection.delete.title'|trans }}
+    </h2>
+
+    <p>{{ 'collection.delete.message'|trans({'title': collection.title|default('')}) }}</p>
+
+    {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+    {{ form_end(form) }}
+{% endblock %}
+

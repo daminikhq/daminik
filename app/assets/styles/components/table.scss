@@ -1,0 +1,91 @@
+.table {
+  width: 100%;
+  border: 1px solid var(--neutral-300, #{$color-neutral-300});
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: border-radius(m);
+
+  table {
+    border: 1px solid var(--neutral-300, #{$color-neutral-300});
+    border-radius: border-radius(m);
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  th,
+  td {
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid var(--neutral-300, #{$color-neutral-300});
+    border-left: 1px solid var(--neutral-300, #{$color-neutral-300});
+
+    @include breakpoint(md) {
+      padding: 0.8rem 1rem;
+    }
+
+    &:first-child {
+      border-left: 0;
+    }
+  }
+
+  th {
+    background-color: var(--neutral-50, #{$color-neutral-50});
+    color: var(--neutral-900, #{$color-neutral-900});
+    border-top: 0;
+    text-align: left;
+
+    &:first-child {
+      border-top-left-radius: border-radius(m);
+    }
+
+    &:last-child {
+      border-top-right-radius: border-radius(m);
+    }
+  }
+
+  td {
+    background-color: var(--neutral-100, #{$color-neutral-100});
+    color: var(--neutral-900, #{$color-neutral-900});
+  }
+
+  tr:hover {
+    td {
+      background-color: var(--neutral-50, #{$color-neutral-50});
+    }
+  }
+
+  tbody tr:last-child {
+    td:first-child {
+      border-bottom-left-radius: border-radius(m);
+    }
+
+    td:last-child {
+      border-bottom-right-radius: border-radius(m);
+    }
+  }
+
+  &.is-horizontal {
+    th, td {
+      border: 0;
+      border-right: 1px solid var(--neutral-300, #{$color-neutral-300});
+      border-bottom: 1px solid var(--neutral-300, #{$color-neutral-300});
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+
+    tr:last-child {
+      th {
+        border-bottom-left-radius: border-radius(m);
+      }
+
+      th, td {
+        border-bottom: 0;
+      }
+    }
+  }
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}

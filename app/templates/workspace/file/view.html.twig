@@ -1,0 +1,222 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'forms/_form-theme.html.twig' %}
+
+{% block bodyClasses %}detail-view{% endblock %}
+
+{% block body %}
+    <div class="file-detail" {{ stimulus_controller('assetview') }}
+         data-next-url="{{ file|nextFileUrl }}"
+         data-prev-url="{{ file|previousFileUrl }}">
+        <div class="file-detail__viewer">
+            <img
+                class="file-detail__file"
+                src="{{ fileUrl ?? path('workspace_download_file', {filename: file.filename}) }}"
+                alt="{{ file.filename }}">
+        </div>
+        <div class="file-detail__info">
+            {% if app.session.flashbag.peekAll()|length > 0 %}
+                {% include 'partials/layout/_flashes.html.twig' %}
+            {% endif %}
+            <div class="file-detail__header">
+                {{ component('AssetViewBackButton') }}
+
+                <div class="file-detail__header-right">
+                    <button class="file-detail__edit-button button button--ghost button--icon">
+                        {% include 'icon-pen.svg' %}
+                        <span>{{ 'base.edit'|trans }}</span>
+                    </button>
+
+                    {% set fileIsFavorite = file|fileIsFavorite %}
+                    {% set favFileText = 'file.fileFavorite'|trans %}
+                    {% set defavFileText = 'file.fileUnfavorite'|trans %}
+                    <favorite-button label="{{ fileIsFavorite ? defavFileText : favFileText }}"
+                                     pressed="{{ fileIsFavorite ? 'true' : 'false' }}"
+                                     data-unpressed-label="{{ favFileText }}"
+                                     data-pressed-label="{{ defavFileText }}"
+                                     data-filename="{{ file.filename }}" color="#000000"
+                                     class="file-detail__favorite"
+                                     hidden
+                        {{ stimulus_controller('favorite') }}></favorite-button>
+                </div>
+            </div>
+
+            {% if deleted and deleteForm %}
+                {{ form_start(deleteForm, {'attr': {'class': 'form', 'data-form-target': 'form'}}) }}
+                {{ form_widget(deleteForm.undelete) }}
+                {{ form_widget(deleteForm.delete) }}
+                {{ form_end(deleteForm) }}
+            {% else %}
+                <div class="file-detail__body form-wrapper" {{ stimulus_controller('form') }}>
+                    {{ form_start(form, {'attr': {'data-form-target': 'form'}}) }}
+                    <div class="file-detail__info-body">
+                        <fieldset>
+                            <div class="form__label-wrapper">
+                                <label for="edit[file-public-url]">{{ 'file.urlForEmbed'|trans }}</label>
+                                <a href="{{ path('workspace_file_rename', {'filename': file.filename}) }}"
+                                    {{ stimulus_action('assetview', 'openModal') }}
+                                    {{ stimulus_target('assetview', 'modalOpener') }}>{{ 'file.editFilename'|trans }}</a>
+                            </div>
+                            <div class="input-wrapper has-copy-button">
+                                <input type="text" id="edit[file-public-url]" class="rtl"
+                                       readonly{% if not file.public %} disabled{% else %} value="{{ file|publicUrl }}"{% endif %}>
+                                <copy-button for="edit[file-public-url]" class="button button--copy"
+                                             label="{{ 'base.copy'|trans }}"
+                                             pressedLabel="{{ 'base.copied'|trans }}"></copy-button>
+                            </div>
+                            <span class="help-text">{{ 'file.urlForEmbedDesc'|trans }}</span>
+                        </fieldset>
+
+                        {{ form_row(form.public, {'attr': {'class': 'switch', 'data-action': 'form#submit'}}) }}
+                    </div>
+
+                    <div class="tabs" {{ stimulus_controller('tabs') }} data-tabs-index="0"
+                         role="tablist" aria-label="{{ 'file.fileInformation'|trans }}">
+                        <ul class="tabs__nav">
+                            <li class="tabs__nav-item" {{ stimulus_target('tabs', 'tab') }}>
+                                <a href="#tabpanelgeneral" id="tab-general" class="tabs__nav-link" {{ stimulus_action('tabs', 'change') }}
+                                   role="tab" aria-controls="tabpanelgeneral">{{ 'file.tab.general'|trans }}</a>
+                            </li>
+                            <li class="tabs__nav-item" {{ stimulus_target('tabs', 'tab') }}>
+                                <a href="#tabpanelmeta" id="tab-meta" class="tabs__nav-link" {{ stimulus_action('tabs', 'change') }}
+                                   role="tab" aria-controls="tabpanelmeta">{{ 'file.tab.meta'|trans }}</a>
+                            </li>
+                        </ul>
+
+                        <div class="tabs__container">
+                            <div id="tabpanelgeneral" class="tabs__content" {{ stimulus_target('tabs', 'tabPanel') }}
+                                 role="tabpanel" aria-labelledby="tab-general">
+                                <div class="labels">
+                                    <span class="label">
+                                        <span class="visually-hidden">{{ 'file.filetype'|trans }}</span>
+                                        {{ file|fileTypeBadge }}
+                                    </span>
+                                    <span class="label">
+                                        <span class="visually-hidden">{{ 'file.filesize'|trans }}</span>
+                                        {{ file.activeRevision.fileSize|fileSize }}
+                                    </span>
+                                    {% if file.activeRevision.width|default and file.activeRevision.height|default %}
+                                        <span class="label">
+                                            <span class="visually-hidden">{{ 'file.resolution'|trans }}</span>
+                                            {{ file.activeRevision.width|default }}x{{ file.activeRevision.height|default }} px
+                                        </span>
+                                    {% endif %}
+                                </div>
+
+                                {{ form_row(form.title) }}
+                                {{ form_row(form.description) }}
+
+                                <fieldset>
+                                    <div class="form__label-wrapper">
+                                        {{ form_label(form.tags) }}
+                                        {% if can_edit_asset() and has_ai_tagging() %}
+                                            <a href="{{ path('workspace_ai_tags', {'filename': file.filename}) }}"
+                                                {{ stimulus_action('assetview', 'openModal') }}
+                                                {{ stimulus_target('assetview', 'modalOpener') }}>{{ 'feature.ai.tagging'|trans }}</a>
+                                        {% endif %}
+                                    </div>
+                                    {{ form_errors(form.tags) }}
+                                    {{ form_widget(form.tags) }}
+                                    {{ form_help(form.tags) }}
+                                </fieldset>
+
+                                <fieldset>
+                                    <div class="form__label-wrapper">
+                                        {{ form_label(form.category) }}
+                                        <a href="{{ path('workspace_file_new_folder', {'filename': file.filename}) }}"
+                                            {{ stimulus_action('assetview', 'openModal') }}
+                                            {{ stimulus_target('assetview', 'modalOpener') }}>{{ 'folder.new'|trans }}</a>
+                                    </div>
+                                    {{ form_errors(form.category) }}
+                                    {{ form_widget(form.category, {'attr': {'data-assetview-target': 'categorySelect'}}) }}
+                                    {{ form_help(form.category) }}
+                                </fieldset>
+
+                                {% if form.assetCollections  is defined %}
+                                    <fieldset>
+                                        <div class="form__label-wrapper">
+                                            {{ form_label(form.assetCollections) }}
+                                            <a href="{{ path('workspace_file_new_collection', {'filename': file.filename}) }}"
+                                                {{ stimulus_action('assetview', 'openModal') }}
+                                                {{ stimulus_target('assetview', 'modalOpener') }}>{{ 'collection.new'|trans }}</a>
+                                        </div>
+                                        {{ form_errors(form.assetCollections) }}
+                                        {{ form_widget(form.assetCollections, {'attr': {'class': 'multiselect', 'data-assetview-target': 'collectionSelect'}}) }}
+                                        {{ form_help(form.assetCollections) }}
+                                    </fieldset>
+                                {% endif %}
+
+                                {% include 'partials/_file-dates-table.html.twig' %}
+
+                                <div class="file-detail__info-footer">
+                                    {{ form_widget(form.submit) }}
+
+                                    <div class="context-menu is-dropup" {{ stimulus_controller('dropdown') }}>
+                                        <button type="button" class="context-menu__toggle button button--grey has-icon"
+                                                id="context-menu-toggle" aria-haspopup="menu" aria-controls="asset-nav"
+                                            {{ stimulus_target('dropdown', 'toggle') }} {{ stimulus_action('dropdown', 'toggle') }}>
+                                            {% include 'icon-dots.svg' %}
+                                            <span class="visually-hidden">{{ 'base.contextMenu'|trans }} {{ 'file.file'|trans }}</span>
+                                        </button>
+                                        <ul class="context-menu__menu" id="asset-nav" aria-labelledby="context-menu-toggle" {{ stimulus_target('dropdown', 'menu') }}>
+                                            <li class="context-menu__item">
+                                                <a href="{{ fileUrl ?? path('workspace_download_file', {filename: file.filename}) }}"
+                                                   download
+                                                   class="context-menu__link">
+                                                    {{ 'file.download'|trans }}
+                                                    {% include 'icon-download.svg' %}
+                                                </a>
+                                            </li>
+                                            <li class="context-menu__item" {{ stimulus_controller('share') }}>
+                                                <share-button class="context-menu__link" title="{{ 'collection.share'|trans }}"
+                                                      url="{{ app.request.uri }}" shareLabel="{{ 'base.share'|trans }}"
+                                                      label="{{ 'base.copy'|trans }}" pressedLabel="{{ 'base.copied'|trans }}">
+                                                    {{ 'base.share'|trans }}
+                                                </share-button>
+                                            </li>
+                                            <li class="context-menu__item">
+                                                <a href="{{ path('workspace_file_revisions', {filename: file.filename}) }}"
+                                                   class="context-menu__link">
+                                                    {{ 'file.revisions'|trans }}
+                                                    {% include 'icon-document.svg' %}
+                                                </a>
+                                            </li>
+                                            {% if is_granted(constant('App\\Security\\Voter\\FileVoter::DELETE'), file) %}
+                                                <li class="context-menu__item">
+                                                    <a href="{{ path('workspace_file_delete', {filename: file.filename}) }}"
+                                                       class="context-menu__link">
+                                                        {{ 'button.delete'|trans({}, 'form') }}
+                                                        {% include 'icon-trash.svg' %}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="tabpanelmeta" class="tabs__content" {{ stimulus_target('tabs', 'tabPanel') }}
+                                 role="tabpanel" aria-labelledby="tab-meta">
+                                {% if fileMetaData %}
+                                    <table class="table is-horizontal">
+                                        {% for key, value in fileMetaData %}
+                                            <tr>
+                                                <th scope="row">{{ ('file.exif.' ~ key)|trans }}</th>
+                                                <td>{{ value }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                {% else %}
+                                    {{ ('file.noMetaData')|trans }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            {% endif %}
+        </div>
+
+        {% include 'partials/layout/_page-modal.html.twig' %}
+    </div>
+{% endblock %}
+

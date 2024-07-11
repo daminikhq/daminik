@@ -1,0 +1,14 @@
+{% extends 'base_loggedout.html.twig' %}
+
+{% block body %}
+    <ul>
+        {% for membership in app.user.memberships %}
+            <li>
+                <a href="{{ path('workspace_index', {subdomain: membership.workspace.slug}) }}">
+                    {{ membership.workspace.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+

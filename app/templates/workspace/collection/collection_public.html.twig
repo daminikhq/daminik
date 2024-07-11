@@ -1,0 +1,53 @@
+{% extends 'base_external.html.twig' %}
+
+{% block title %}{{ collection.title }}{% endblock %}
+
+{% block body %}
+<section class="file-list">
+    <div class="file-list__header">
+        <div class="file-list__header-center text-align-center">
+            <strong>{{ collection.workspace.name|default('Daminik') }}</strong> hat eine Kollektion mit dir geteilt.
+        </div>
+    </div>
+
+    <div class="file-grid">
+        <div class="file-grid__wrapper">
+            {% for file in files.items %}
+                {% set width = file.width|default(1) %}
+                {% set height = file.height|default(1) %}
+                {% set aspectRatio = width and height ? width / height : 1 %}
+
+                <div class="file-grid-item" style="--thumbnail-aspect-ratio: {{ aspectRatio > 3 ? 1 : aspectRatio }};"
+                     data-full-width="{{ width }}"
+                     data-full-height="{{ height }}">
+                    <figure class="file-grid-item__figure">
+                        <img class="file-grid-item__image {{ aspectRatio > 3 ? 'is-contained' : '' }}"
+                             src="{{ file|publicThumbnailUrl }}"
+                             width="{{ width }}" height="{{ height }}"
+                             alt="{{ file.filename }}">
+                        {# download-url: file|publicUrl #}
+                        <figcaption class="file-grid-item__caption">
+                            <a class="file-grid-item__handle" href="{{ path('workspace_collection_collection_file', {slug: collection.slug, filename: file.filename}) }}">
+                                <span class="file-grid-item__title">{{ file.title|default(file.filename) }}</span>
+                            </a>
+                            <a href="{{ path('workspace_collection_collection_file', {slug: collection.slug, filename: file.filename}) }}"
+                               class="file-grid-item__view">{% include 'icon-search.svg' %}</a>
+                            <a href="{{ file|publicUrl }}" download="true"
+                               class="file-grid-item__download">
+                                {% include 'icon-share.svg' %}
+                            </a>
+                        </figcaption>
+                        <span class="file-grid-item__type"><span class="type-badge">{{ file|fileTypeBadge }}</span></span>
+                        {# Todo: {% if file.public %}&bull; Öffentlich{% endif %} wie laut Design anzeigen #}
+                    </figure>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {#
+    {{ dump(collection) }}
+    {{ dump(files) }}
+    #}
+{% endblock %}
+

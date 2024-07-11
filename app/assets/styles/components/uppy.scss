@@ -1,0 +1,91 @@
+.uppy-Dashboard-inner {
+  background-color: color-var(--white, #{$color-neutral-300});
+  border: 0;
+  border-radius: border-radius(l);
+
+  .uppy-Dashboard-AddFiles {
+    border: 1px dashed color-var(--neutral-300, #{$color-neutral-300});
+    border-radius: border-radius(m);
+    padding: 0.8125rem 1rem;
+  }
+
+  .uppy-Dashboard-AddFiles-title {
+    font-size: 1rem;
+    color: color-var(--neutral-500, #{$color-neutral-500});
+  }
+
+  .uppy-Dashboard-browse {
+    @include focus-outline-style();
+
+    color: color-var(--neutral-900, #{$color-neutral-900});
+    text-decoration: underline;
+    border-bottom: 0;
+
+    &:hover {
+      text-decoration: none;
+      border-bottom: 0;
+    }
+  }
+
+  .uppy-StatusBar-actionBtn,
+  .uppy-DashboardContent-back,
+  .uppy-DashboardContent-addMore {
+    @include focus-outline-style() {
+      background-color: transparent;
+    }
+
+    color: color-var(--neutral-900, #{$color-neutral-900});
+
+    &:hover {
+      color: color-var(--neutral-700, #{$color-neutral-700});
+    }
+  }
+
+  .uppy-DashboardContent-title {
+    color: color-var(--black, #{$color-black});
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  .uppy-StatusBar  .uppy-StatusBar-actionBtn--upload {
+    border-radius: border-radius(xl);
+    color: color-var(--white, #{$color-white});
+    background-color: color-var(--black, #{$color-black});
+
+    &:hover {
+      background-color: color-var(--neutral-700, #{$color-neutral-700});
+    }
+  }
+
+  .uppy-StatusBar-actionCircleBtn:focus,
+  .uppy-Dashboard-Item-action:focus,
+  .uppy-c-btn-primary:focus {
+    //box-shadow: 0 0 0 3px color-var(--neutral-500-a5, #{$color-neutral-500-a5});
+    box-shadow: none;
+  }
+
+  .uppy-StatusBar-actionCircleBtn,
+  .uppy-Dashboard-Item-action,
+  .uppy-c-btn-primary {
+    @include focus-outline-style();
+  }
+
+  .uppy-StatusBar-actionBtn--done:focus,
+  .uppy-DashboardContent-addMore:focus,
+  .uppy-DashboardContent-back:focus, .uppy-DashboardContent-save:focus {
+    //background-color: color-var(--neutral-500-a5, #{$color-neutral-500-a5});
+  }
+
+  .uppy-DashboardContent-bar {
+    background-color: transparent;
+    border-bottom: 1px dashed color-var(--neutral-300, #{$color-neutral-300});
+  }
+
+  .uppy-StatusBar-actions {
+    background-color: transparent;
+  }
+
+  .uppy-StatusBar-progress {
+    background-color: color-var(--neutral-700, #{$color-neutral-700});
+  }
+}

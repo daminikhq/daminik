@@ -1,0 +1,51 @@
+{% extends 'base_settings.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'invites.invite'|trans }}</h1>
+    <p>{{ 'invites.inviteInstruction'|trans }}</p>
+
+    {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.role) }}
+    {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+    {{ form_end(form) }}
+
+    {% if invitations|length > 0 %}
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            {{ 'invites.nameAndEmail'|trans }}
+                        </th>
+                        <th>
+                            {{ 'invites.date'|trans }}
+                        </th>
+                        <th>
+                            {{ 'invites.action'|trans }}
+                        </th>
+                    </tr>
+                </thead>
+                {% for invitation in invitations %}
+                    <tr>
+                        <td>
+                            {{ invitation.user.name|default }}
+                            ({{ invitation.user.userIdentifier }})
+                        </td>
+                        <td>{{ invitation.createdAt|format_datetime('short', 'short') }}</td>
+                        <td>
+                            {% if not invitation.inviteeEmail and not invitation.validUntil %}
+                                <a href="{{ url('home_invitation', {code: invitation.code}) }}">
+                                    {{ 'invites.inviteLink'|trans }}
+                                </a>
+                            {% else %}
+                                {{ 'invites.inviteSentMail'|trans({'{email}': invitation.inviteeEmail}) }}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}
+

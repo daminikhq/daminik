@@ -1,0 +1,87 @@
+label:
+    choose: Choose...
+    name: Name
+    username: Username
+    email: E-mail
+    password: Password
+    inviteCode: 'Invite Code'
+    slug: Subdomain
+    title: Title
+    description: Description
+    public: Public
+    tags: Tags
+    file: File
+    cdn: CDN
+    urlForEmbed: 'Embed URL'
+    select: Select
+    selectOption: 'Select option'
+    parentCategory: 'Parent folder'
+    category: Folder
+    locale: Language
+    folder: Folder
+    directory: Folder
+    collections: Collections
+    avatar: 'Profile picture'
+    role: Role
+    collection: Collection
+    files: Files
+    logo: Logo
+    filename: Filename
+    rename: Rename
+    emailAddress: 'Email address'
+    uploadedBy: 'Uploaded by'
+    uploadDate: 'Upload Date'
+    apiAccess: 'API access'
+    fileTypes: 'File types'
+button:
+    register: 'Register now'
+    invite: Invite
+    createWorkspace: 'Create workspace'
+    requestPassword: 'Request e-mail'
+    savePassword: 'Save password'
+    saveUpdate: 'Save update'
+    upload: Upload
+    delete: Delete
+    select: Select
+    login: Login
+    createCategory: 'Create folder'
+    deleteCategory: 'Delete folder'
+    createCollection: 'Create Collection'
+    deleteCollection: 'Delete Collection'
+    submit: Submit
+    resetAvatar: 'Reset avatar'
+    uploadLogo: 'Upload logo'
+    resendMail: 'Resend mail'
+    filter: Filter
+    resetLogo: 'Remove logo'
+    editUser: 'Edit user'
+constraint:
+    enterCode: 'Please enter the code.'
+    wrongCode: 'Sorry, this code is wrong.'
+    enterPassword: 'Please enter a password.'
+    passwordLength: 'Your password should consist of at least {{ limit }} characters.'
+    validFile: 'Please upload a valid file.'
+    slugWarning: 'Attention: You are changing the URL of this collection. The previous URL will become invalid.'
+placeholder:
+    draganddrop: 'Drag and drop or browse.'
+    title: 'Add title'
+    description: 'Add description'
+help:
+    username: 'The user name may only contain lower case letters, numbers, hyphens and dots.'
+    password: 'Your password must consist of at least 6 characters.'
+    emailAddress: 'You can not change your e-mail address once it has been registered. If this causes you problems, please contact <a href="mailto:{contact_email}">support</a>.'
+choice:
+    locale:
+        de: German
+        en: English
+    role:
+        user: User
+        viewer: Viewer
+        admin: Admin
+    status:
+        active: Active
+        inactive: Inaktive
+        blocked: Blocked
+role:
+    USER: User
+    SUPER_ADMIN: Admin

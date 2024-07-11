@@ -1,0 +1,22 @@
+.spinner {
+  &.is-active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2rem auto;
+    color: var(--neutral-700, #{$color-neutral-700});
+
+    &::after {
+      content: " ";
+      display: block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid;
+      border-color: var(--neutral-700, #{$color-neutral-700}) transparent var(--neutral-700, #{$color-neutral-700}) transparent;
+      animation: spinner 1.2s linear infinite;
+      margin: 0.5rem auto;
+    }
+  }
+}

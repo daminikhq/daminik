@@ -1,0 +1,207 @@
+@use "sass:math";
+
+.file-detail {
+  @include breakpoint(md) {
+    display: grid;
+    grid-template-columns: auto minmax(400px, 550px);
+    height: 100vh;
+  }
+
+  @include breakpoint(md-max) {
+    padding-top: 3rem;
+  }
+
+  &__viewer {
+    position: relative;
+    background-color: $color-black;
+    height: 50vh;
+
+    @include breakpoint(md) {
+      height: 100vh;
+    }
+  }
+
+  &__edit-button {
+    svg {
+      color: var(--white, $color-white);
+    }
+
+    &:hover svg {
+      color: var(--neutral-100, $color-neutral-100);
+    }
+
+    @include breakpoint(md) {
+      display: none;
+    }
+
+    span {
+      @include visually-hidden;
+    }
+  }
+
+  &__viewer-edit-button {
+    display: none;
+
+    @include breakpoint(md) {
+      display: inline-flex;
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+    }
+  }
+
+  &__file {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: calc(100% - 5rem);
+    max-height: calc(100% - 10rem);
+
+    @include breakpoint(md-max) {
+      max-width: calc(100% - 2rem);
+      max-height: calc(100% - 2rem);
+    }
+  }
+
+  &__info {
+    background-color: var(--white, #{$color-white});
+    display: grid;
+    grid-template-rows: min-content minmax(0, 1fr);
+    height: 100%;
+    overflow: hidden;
+
+    //@include breakpoint(md-max) {
+    //  body:not(.no-js) & {
+    //    position: absolute;
+    //    top: 100%;
+    //    left: 0;
+    //    right: 0;
+    //    height: 100vh;
+    //  }
+    //}
+  }
+
+  &__info-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__header {
+    padding: space(xs);
+    border-bottom: 1px solid var(--neutral-300, $color-neutral-300);
+    display: flex;
+    justify-content: space-between;
+
+    .link {
+      height: 100%;
+      padding: 0 0.75rem;
+    }
+
+    @include breakpoint(md-max) {
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3rem;
+      background: var(--neutral-900, $color-neutral-900);
+      color: var(--white, $color-white);
+      border: 0;
+
+      .link {
+        color: var(--white, $color-white);
+
+        &:hover {
+          color: var(--neutral-300, $color-neutral-300);
+        }
+      }
+    }
+  }
+
+  &__header-right {
+    display: flex;
+  }
+
+  &__body {
+    height: 100%;
+    overflow: auto;
+
+    form {
+      height: 100%;
+      display: grid;
+      grid-template-rows: min-content 1fr;
+    }
+  }
+
+  &__favorite {
+    --favorite-button-stroke-color: var(--black, $color-black);
+    --favorite-button-fill-color: transparent;
+    display: block;
+    height: 100%;
+    padding: 0 0.75rem;
+
+    &:hover {
+      --favorite-button-fill-color: #{color-var(--black-50a, $color-black-50a)};
+    }
+
+    &[pressed="true"] {
+      --favorite-button-fill-color: var(--black, #{$color-black});
+      --favorite-button-stroke-color: transparent;
+
+      &:hover {
+        --favorite-button-stroke-color: transparent;
+        --favorite-button-fill-color: #{color-var(--black-75a, $color-black-50a)};
+      }
+    }
+
+    @include breakpoint(md-max) {
+      &,
+      &:hover {
+        --favorite-button-stroke-color: var(--white, $color-white);
+        --favorite-button-fill-color: transparent;
+      }
+
+      &[pressed="true"] {
+        &,
+        &:hover {
+          --favorite-button-fill-color: var(--white, #{$color-white});
+          --favorite-button-stroke-color: transparent;
+        }
+      }
+    }
+  }
+
+  &__info-body {
+    @include flow(space(s));
+    padding: space(ml);
+  }
+
+  &__info-table {
+    font-size: font-size(s);
+
+    tr {
+      td {
+        padding: space(xs) 0;
+
+        &:first-child {
+          font-weight: font-weight(medium);
+          color: var(--neutral-700, #{$color-neutral-700});
+        }
+      }
+    }
+  }
+
+  &__history {
+    @include flow(math.div(space(xs), 2));
+
+    margin: space(ml) 0;
+    padding: space(xs) space(s);
+    border-radius: border-radius(m);
+    font-size: font-size(s);
+    color: var(--neutral-700, $color-neutral-700);
+    border: 1px solid var(--neutral-300, $color-neutral-300);
+    background: var(--neutral-100, $color-neutral-100);
+  }
+}

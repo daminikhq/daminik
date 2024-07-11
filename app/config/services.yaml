@@ -1,0 +1,96 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    app.domain: '%env(DOMAIN)%'
+    app.tld: '%env(TLD)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $projectDir: '%kernel.project_dir%'
+            $domain: '%app.domain%.%app.tld%'
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
+    App\Security\Voter\WorkspaceVoter:
+        arguments:
+            $maxUpload: '%env(MAX_UPLOAD)%'
+
+    App\Listener\ExceptionListener:
+        tags: [kernel.event_listener]
+
+    default_s3_client:
+        class: 'AsyncAws\SimpleS3\SimpleS3Client'
+        arguments:
+            - endpoint: '%env(DEFAULT_S3_ENDPOINT)%'
+              accessKeyId: '%env(DEFAULT_S3_KEY)%'
+              accessKeySecret: '%env(DEFAULT_S3_SECRET)%'
+              pathStyleEndpoint: true
+
+    App\Service\Filesystem\FilesystemRegistry:
+        arguments:
+            $defaultFileSystem: '%env(DEFAULT_FILESYSTEM)%'
+            $localStoragePath: '%kernel.project_dir%/var/storage/default'
+            $defaultS3Client: '@default_s3_client'
+            $defaultS3Type: '%env(DEFAULT_S3_TYPE)%'
+            $defaultS3BucketPrefix: '%env(DEFAULT_S3_BUCKET_PREFIX)%'
+            $defaultS3Bucket: '%env(DEFAULT_S3_BUCKET)%'
+            $defaultPrefix: '%env(DEFAULT_PREFIX)%'
+
+    App\Repository\WorkspaceRepository:
+        public: true
+        tags: ['container.hot_path']
+
+    App\Routing\WorkspaceSubdomainRouter:
+        decorates: 'router'
+        arguments: [ '@App\Routing\WorkspaceSubdomainRouter.inner' ]
+
+    App\Service\File\Helper\UrlHelper:
+        arguments:
+            $defaultPrefix: '%env(DEFAULT_PREFIX)%'
+
+    App\Service\Ai\Imagga\Client:
+        arguments:
+            $key: '%env(IMAGGA_KEY)%'
+            $secret: '%env(IMAGGA_SECRET)%'
+
+    Hashids\Hashids:
+        class: Hashids\Hashids
+        arguments:
+            $salt: '%env(APP_SECRET)%'
+            $minHashLength: 6
+
+    App\Service\User\RegistrationCodeHandler:
+        arguments:
+            $registrationSecret: '%env(REGISTRATION_SECRET)%'
+
+    App\Security\EmailVerifier:
+        arguments:
+            $registrationEmail: '%env(EMAIL_SENDER)%'
+            $registrationName: '%env(EMAIL_NAME)%'
+
+    App\Service\Workspace\Inviter:
+        arguments:
+            $invitationEmail: '%env(EMAIL_SENDER)%'
+            $invitationName: '%env(EMAIL_NAME)%'
+
+    App\GraphQL\Resolver\Resolver:
+        tags:
+            - { name: overblog_graphql.resolver_map, schema: default }
+

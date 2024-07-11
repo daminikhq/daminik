@@ -1,0 +1,10 @@
+twig:
+    default_path: '%kernel.project_dir%/templates'
+    paths: ['%kernel.project_dir%/templates', '%kernel.project_dir%/public/images/icons', '%kernel.project_dir%/public/images/logos']
+    file_name_pattern: ['*.twig', '*.svg']
+    form_themes: ['forms/_form-theme.html.twig']
+    globals:
+        contact_email: '%env(EMAIL_SENDER)%'
+when@test:
+    twig:
+        strict_variables: true

@@ -1,0 +1,29 @@
+@mixin focus-style {
+  &:focus {
+    @content;
+  }
+
+  &:focus-visible {
+    @content;
+  }
+
+  &:focus-within {
+    @content;
+  }
+}
+
+@mixin focus-styles($outline-color: var(--blue-700)) {
+  outline-offset: 0;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-color: $outline-color;
+}
+
+@mixin focus-outline-style($outline-color: var(--blue-700)) {
+  @include focus-style {
+    @include focus-styles($outline-color);
+
+    /* stylelint-disable-next-line order/order */
+    @content;
+  }
+}

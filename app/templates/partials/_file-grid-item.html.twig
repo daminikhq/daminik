@@ -1,0 +1,45 @@
+{% set width = file.width|default(1) %}
+{% set height = file.height|default(1) %}
+{% set aspectRatio = width and height ? width / height : 1 %}
+
+<div class="file-grid-item" style="--thumbnail-aspect-ratio: {{ aspectRatio > 3 ? 1 : aspectRatio }};"
+     data-full-width="{{ width }}"
+     data-full-height="{{ height }}"
+>
+    <figure class="file-grid-item__figure">
+        <img class="file-grid-item__image {{ aspectRatio > 3 ? 'is-contained' : '' }}"
+             src="{{ file|thumbnailUrl }}"
+             width="{{ width }}" height="{{ height }}"
+             alt="{{ file.filename }}">
+        {% if can_edit_asset() %}
+        <input class="file-grid-item__select" id="file-grid-item-{{ file.filenameSlug }}"
+               name="fileNames[]" value="{{ file.filename }}" type="checkbox"
+                {{ stimulus_target('multiactions', 'item') }}>
+        {% endif %}
+        <figcaption class="file-grid-item__caption">
+            <a class="file-grid-item__handle" href="{{ path('workspace_file_edit', {filename: file.filename}) }}">
+                <span class="file-grid-item__title">{{ file.title|default(file.filename) }}</span>
+            </a>
+            {% set fileIsFavorite = file|fileIsFavorite %}
+            {% set favFileText = 'file.fileFavorite'|trans %}
+            {% set defavFileText = 'file.fileUnfavorite'|trans %}
+            <favorite-button label="{{ fileIsFavorite ? defavFileText : favFileText }}"
+                             data-unpressed-label="{{ favFileText }}"
+                             data-pressed-label="{{ defavFileText }}"
+                             pressed="{{ fileIsFavorite ? 'true' : 'false' }}"
+                             data-filename="{{ file.filename }}" color="#FFFFFF" class="file-grid-item__favorite"
+                             hidden
+                             {{ stimulus_controller('favorite') }}></favorite-button>
+            {% if can_edit_asset() %}
+                <label class="file-grid-item__select-label" for="file-grid-item-{{ file.filenameSlug }}">
+                    {% include 'icon-checkbox-file-grid-item.svg' %}
+                    <span class="visually-hidden">
+                        {{ 'file.selectFile'|trans({'filename': file.title|default(file.filename)}) }}
+                    </span>
+                </label>
+            {% endif %}
+        </figcaption>
+        <span class="file-grid-item__type"><span class="type-badge">{{ file|fileTypeBadge }}</span></span>
+        {# Todo: {% if file.public %}&bull; Öffentlich{% endif %} wie laut Design anzeigen #}
+    </figure>
+</div>

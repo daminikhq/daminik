@@ -1,0 +1,8 @@
+<div class="file-detail__history">
+    {% if file.updatedAt and file.updatedAt is not null and file.updatedBy and file.updatedBy is not null %}
+        <p>{{ 'file.history.editedBy'|trans}} {{ file.updatedBy.username }} {{ 'file.history.on'|trans}} {{ file.updatedAt|format_date('long') }}.</p>
+    {% endif %}
+    {% if file.createdAt and file.createdAt is not null and file.uploader and file.uploader is not null %}
+        <p>{{ 'file.history.uploadedBy'|trans}} {{ file.uploader.username }} {{ 'file.history.on'|trans}} {{ file.createdAt|format_date('long') }}.</p>
+    {% endif %}
+</div>

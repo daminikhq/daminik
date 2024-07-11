@@ -1,0 +1,21 @@
+{% if this.items %}
+    <div{{ attributes }}>
+        <ul class="breadcrumb">
+            {% for item in this.items %}
+                <li class="breadcrumb__item">
+                    {% if loop.last %}
+                        <span class="breadcrumb__current" title="{{ item.title }}">{{ item.title }}</span>
+                    {% elseif item.url is defined %}
+                        <a href="{{ item.url }}"
+                           class="breadcrumb__link" title="{{ item.title }}">
+                            {{ item.title }}
+                        </a>
+                    {% else %}
+                        {{ item.title }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+

@@ -1,0 +1,40 @@
+.breadcrumb {
+  @include list-reset;
+  display: flex;
+  align-items: center;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    font-weight: font-weight(bold);
+
+    &:not(:first-child)::before {
+      display: block;
+      width: 1.5rem;
+      height: 1.5rem;
+      content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M9.23964 16.7688C8.92012 16.4605 8.92012 15.9606 9.23964 15.6523L13.0247 12L9.23964 8.34772C8.92012 8.03941 8.92012 7.53954 9.23964 7.23123C9.55916 6.92292 10.0772 6.92292 10.3967 7.23123L14.7604 11.4418C15.0799 11.7501 15.0799 12.2499 14.7604 12.5582L10.3967 16.7688C10.0772 17.0771 9.55916 17.0771 9.23964 16.7688Z" fill="%23737373"/></svg>');
+    }
+
+    .count-badge {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__link {
+    display: block;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: font-weight(normal);
+    color: var(--neutral-500, #{$color-neutral-500});
+  }
+
+  &__current {
+    display: block;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

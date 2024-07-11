@@ -1,0 +1,11 @@
+body:not(.no-js) {
+  .is-js-hidden {
+    display: none;
+  }
+}
+
+body.no-js {
+  .is-no-js-hidden {
+    display: none;
+  }
+}

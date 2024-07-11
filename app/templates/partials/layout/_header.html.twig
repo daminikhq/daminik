@@ -1,0 +1,23 @@
+{% if filterForm is not defined %}
+    {% set filterForm = null %}
+{% endif %}
+<div class="workspace__header-left">
+    <button type="button" class="button button--ghost"
+            {% if filterForm is null %}disabled{% endif %}
+            {{ stimulus_action('layout', 'toggleSubsidebar') }}>
+        {% include 'icon-filter.svg' %} {{ 'file.filter'|trans }}
+    </button>
+    {{ component('SearchForm', {filterForm: filterForm}) }}
+</div>
+{% if can_upload_asset() and not (path('workspace_upload_index')
+    == path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) %}
+    <div class="workspace__header-right" {{ stimulus_controller('uppy') }}>
+        <a class="button" id="upload-trigger" {{ stimulus_target('uppy', 'trigger') }}
+           data-url="{{ path('workspace_upload_xhr') }}"
+           data-homeurl="{{ uploadHomeUrl() }}"
+           data-uploadcontext="{{ uploadContext() }}"
+           href="{{ path('workspace_upload_index') }}">
+            {{ 'file.upload'|trans }}
+        </a>
+    </div>
+{% endif %}

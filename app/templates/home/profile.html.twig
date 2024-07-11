@@ -1,0 +1,46 @@
+{% extends 'base_settings.html.twig' %}
+
+{% block title  %}{{ user.name|default }}'s Profil{% endblock %}
+
+{% block body %}
+    <h1>{{ 'base.profile'|trans }}</h1>
+    <div class="form-wrapper">
+        {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+        <fieldset>
+            <label for="email">{{ 'label.emailAddress'|trans }}</label>
+            <input id="email" disabled readonly type="text" value="{{ user.email }}">
+            <div class="help-text">{{ 'help.emailAddress'|trans({'contact_email': contact_email})|raw }}</div>
+        </fieldset>
+        {{ form_row(form.name) }}
+        {{ form_row(form.username) }}
+        {{ form_row(form.locale) }}
+
+        {% if avatar.url %}
+            <fieldset>
+                <div class="avatar">
+                    <img src="{{ avatar.url }}" alt="{{ app.user.name|default }}" class="avatar__image">
+                    <div class="avatar__trash-action">
+                        {% if form.resetAvatar is defined %}
+                            {{ form_widget(form.resetAvatar, {
+                                'label': '',
+                                'attr': {'class': 'trash-button', 'aria-label': 'base.resetAvatar'|trans}
+                            }) }}
+                        {% endif %}
+                    </div>
+                </div>
+                {% if avatar.gravatar  %}
+                    <div class="help-text">{{ 'base.gravatarDesc'|trans|raw }}</div>
+                {% endif %}
+            </fieldset>
+        {% endif %}
+        {% if form.avatar is defined %}
+            {{ form_row(form.avatar) }}
+        {% endif %}
+        {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+        <div class="form__footer text-align-right">
+            <a href="{{ path('logout') }}">{{ 'base.logout'|trans }}</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

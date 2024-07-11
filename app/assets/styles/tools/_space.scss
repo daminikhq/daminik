@@ -1,0 +1,3 @@
+@function space($key) {
+  @return map-get($space, $key);
+}

@@ -1,0 +1,8 @@
+{% trans_default_domain 'email' %}
+{% extends 'base_email.html.twig' %}
+
+{% block body %}
+    <h3>{{ 'invites.invitationAccepted'|trans }}</h3>
+
+    <p>{{ 'invites.invitationAcceptedEmailBody'|trans({'email': invitee.email}) }}</p>
+{% endblock %}

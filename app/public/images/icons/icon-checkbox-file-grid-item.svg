@@ -1,0 +1,4 @@
+<svg width="20" height="20" viewBox="0 0 20 20" class="file-grid-item__checkbox" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="10" cy="10" r="9.5" fill="none" stroke="white" class="file-grid-item__checkbox-circle" />
+    <path d="M14 7.25L8.5 12.75L6 10.25" stroke="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="file-grid-item__checkbox-check" />
+</svg>

@@ -1,0 +1,94 @@
+label:
+    choose: Auswählen...
+    name: Name
+    username: Nutzername
+    email: E-Mail
+    password: Passwort
+    inviteCode: Einladungscode
+    slug: Subdomain
+    title: Titel
+    description: Beschreibung
+    cdn: CDN
+    public: Öffentlich
+    tags: Tags
+    file: Datei
+    urlForEmbed: 'URL zum Einbetten'
+    select: Auswählen
+    selectOption: 'Option auswählen'
+    parentCategory: Überordner
+    folder: Ordner
+    directory: Ordner
+    locale: Sprache
+    collections: Kollektionen
+    avatar: Profilbild
+    role: Rolle
+    collection: Kollektion
+    files: Dateien
+    fileTypes: Dateityp
+    logo: Logo
+    filename: Dateiname
+    rename: Umbenennen
+    emailAddress: 'E-Mail Adresse'
+    uploadedBy: 'Hochgeladen von'
+    uploadDate: Uploaddatum
+    status: Status
+    adminNotice: Notiz
+    apiAccess: API-Zugang
+button:
+    register: 'Jetzt registrieren'
+    invite: Einladen
+    createWorkspace: 'Workspace anlegen'
+    editWorkspace: 'Workspace bearbeiten'
+    requestPassword: 'E-Mail anfordern'
+    savePassword: 'Passwort speichern'
+    saveUpdate: 'Änderungen übernehmen'
+    upload: Upload
+    delete: Löschen
+    undelete: Wiederherstellen
+    select: Auswählen
+    login: Einloggen
+    createCategory: 'Ordner erstellen'
+    deleteCategory: 'Ordner löschen'
+    createCollection: 'Kollektion erstellen'
+    deleteCollection: 'Kollektion löschen'
+    submit: Absenden
+    resetAvatar: 'Profilbild zurücksetzen'
+    uploadLogo: 'Logo hochladen'
+    resendMail: 'E-Mail erneut anfordern'
+    filter: Filtern
+    resetLogo: 'Logo entfernen'
+    editUser: 'Benutzer bearbeiten'
+constraint:
+    enterCode: 'Bitte gib den Einladungscode ein.'
+    wrongCode: 'Der eingegebene Code ist leider ungültig.'
+    enterPassword: 'Bitte gib ein Passwort ein.'
+    passwordLength: 'Dein Passwort muss mindestens {{ limit }} Zeichen enthalten.'
+    validFile: 'Bitte lade eine valide Datei hoch.'
+    slugWarning: 'Achtung: Du änderst die URL dieser Kollektion. Die bisherige URL wird damit ungültig.'
+placeholder:
+    draganddrop: 'Drag and Drop oder klicken, um eine Datei auszuwählen.'
+    title: 'Titel hinzufügen...'
+    description: 'Beschreibung hinzufügen...'
+help:
+    username: 'Der Benutzername darf lediglich Kleinbuchstaben, Zahlen, Bindestriche und Punkte enthalten.'
+    password: 'Dein Passwort muss aus mindestens 6 Zeichen bestehen.'
+    emailAddress: 'Die E-Mail Adresse kann nicht nachträglich geändert werden. Bei Problemen wende dich bitte an unseren Support unter <a href="mailto:{contact_email}">{contact_email}</a>.'
+choice:
+    locale:
+        de: Deutsch
+        en: Englisch
+    role:
+        user: Benutzer
+        viewer: Betrachter
+        admin: Administrator
+        owner: Besitzer
+    status:
+        active: Aktiv
+        inactive: Inaktiv
+        blocked: Blockiert
+error:
+    csrf: 'Fehler beim Abschicken des Formulars'
+    invalid: 'Fehler beim Abschicken des Formulars'
+role:
+    ROLE_USER: Benutzer
+    ROLE_SUPER_ADMIN: Admin

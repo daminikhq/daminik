@@ -1,0 +1,23 @@
+<div class="multiactions is-js-hidden" {{ stimulus_target('multiactions', 'container') }}>
+    <span class="multiactions__current-selection"
+        {{ stimulus_target('multiactions', 'currentSelection') }}
+          data-selected-text="{{ 'multiaction.assetsSelectedShort'|trans }}"></span>
+    <div class="multiactions__dropup">
+        <span id="multiactions__multiaction" class="visually-hidden">{{ 'multiaction.instructionsMultiaction'|trans }}</span>
+        <label for="multiaction" class="visually-hidden"></label>
+        <select name="multiaction" id="multiaction" class="multiactions__select"
+                aria-describedby="multiactions__multiaction" {{ stimulus_target('multiactions', 'multiaction') }}>
+            <option disabled selected value="">{{ 'multiaction.chooseAction'|trans }}</option>
+            {% for contextAction in get_context_actions() %}
+                <option value="{{ contextAction.action }}">{{ contextAction.label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% if collection is defined and collection %}
+        <input type="hidden" name="collection" value="{{ collection.slug }}">
+    {% endif %}
+    <button type="submit" class="multiactions__submit" {{ stimulus_target('multiactions', 'submit') }}>
+        <span class="visually-hidden">{{ 'base.apply'|trans }}</span>
+        {% include 'icon-chevron-right.svg' %}
+    </button>
+</div>

@@ -1,0 +1,15 @@
+{# templates/bundles/NelmioApiDocBundle/SwaggerUi/index.html.twig #}
+
+{#
+To avoid a "reached nested level" error an exclamation mark `!` has to be added
+See https://symfony.com/blog/new-in-symfony-3-4-improved-the-overriding-of-templates
+#}
+{% extends '@!NelmioApiDoc/SwaggerUi/index.html.twig' %}
+
+
+{# Import your own script #}
+{% block header %}
+    <a id="logo" href="{{ path('home_index') }}">
+        <svg width="30" height="33" title="Daminik - Digital Asset Manager" viewBox="0 0 30 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.777771 26.1359H7.58437V32.9999H12.1374C17.1044 32.9999 21.1976 31.4593 24.4169 28.3782C27.6362 25.297 29.2459 21.4989 29.2459 16.9839C29.2459 12.1944 27.6516 8.33526 24.4629 5.40662C21.3049 2.44747 17.1964 0.967896 12.1374 0.967896H0.777771V7.00884H7.58437L12.1834 7.00822C15.0655 7.00822 17.4417 7.89292 19.3119 9.6623C21.1822 11.4317 22.1174 13.8722 22.1174 16.9839C22.1174 20.0956 21.1822 21.7124 19.3119 23.4818C17.4417 25.2512 15.0655 26.1359 12.1834 26.1359H7.58437V13.8755H0.777771V26.1359Z" fill="#ffffff"/></svg>
+    </a>
+{% endblock header %}

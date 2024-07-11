@@ -1,0 +1,345 @@
+.layout {
+  .scrolllock > & {
+    overflow: hidden;
+  }
+}
+
+.external {
+  padding-bottom: 6rem;
+
+  &__meta {
+    position: relative;
+    z-index: 10;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    @include breakpoint(md) {
+      height: 100px;
+    }
+  }
+
+  &__nav {
+    position: relative;
+    z-index: 10;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    height: 80px;
+
+    @include breakpoint(md) {
+      height: 100px;
+    }
+
+    .logo {
+      padding: 0.5rem 0 0.5rem 0.5rem;
+
+      @include breakpoint(md) {
+        padding: 1rem 0 1rem 2rem;
+      }
+    }
+  }
+}
+
+.workspace {
+  $this: &;
+
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: max-content auto;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+      "header"
+      "content";
+
+  body:not(.no-js) & {
+    @include breakpoint(navigation-max) {
+      padding-top: $headbar-height-mobile;
+    }
+  }
+
+  @include breakpoint(navigation) {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    padding-top: 0;
+    grid-template-rows: max-content minmax(0, 1fr);
+    grid-template-columns: $desktop-sidebar-width 0 minmax(0, 1fr);
+    grid-template-areas:
+      "sidebar subsidebar header"
+      "sidebar subsidebar content";
+    transition: 200ms;
+  }
+
+  body.no-js &:not(.has-subsidebar) {
+    grid-template-rows: $headbar-height-mobile max-content auto max-content;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "headbar"
+      "header"
+      "content"
+      "sidebar";
+
+    @include breakpoint(navigation) {
+      grid-template-rows: max-content minmax(0, 1fr);
+      grid-template-columns: $desktop-sidebar-width 0 minmax(0, 1fr);
+      grid-template-areas:
+      "sidebar subsidebar header"
+      "sidebar subsidebar content";
+    }
+  }
+
+  &.has-subsidebar {
+    grid-template-areas:
+      "sidebar"
+      "subsidebar"
+      "header"
+      "content";
+
+    @include breakpoint(navigation) {
+      grid-template-rows: max-content minmax(0, 1fr);
+      grid-template-columns: 5rem 17rem minmax(0, 1fr);
+      grid-template-areas:
+      "sidebar subsidebar header"
+      "sidebar subsidebar content";
+    }
+  }
+
+  &__subsidebar {
+    grid-area: subsidebar;
+    width: 0;
+    overflow: hidden;
+    padding: 0;
+
+    @include breakpoint(navigation) {
+      padding: 1rem 0;
+      transition: 200ms;
+    }
+
+    #{$this}.has-subsidebar & {
+      @include breakpoint(navigation) {
+        width: 17rem;
+        overflow: visible;
+        padding: 1rem 0 1rem 1rem;
+        display: grid;
+      }
+
+      @include breakpoint(navigation-max) {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: z-index(subsidebar);
+      }
+    }
+  }
+
+  &__sidebar {
+    grid-area: sidebar;
+    z-index: 100;
+
+    @include breakpoint(navigation) {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: auto;
+      background-color: transparent;
+      padding: 1rem 0 1rem 1rem;
+    }
+
+    body:not(.no-js) & {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      @include breakpoint(navigation) {
+        height: 100%;
+      }
+    }
+
+    #{$this}.has-menu & {
+      height: 100%;
+    }
+  }
+
+  &__headbar {
+    grid-area: headbar;
+    display: none;
+
+    body.no-js & {
+      @include breakpoint(navigation-max) {
+        display: block;
+      }
+    }
+  }
+
+  &__main {
+    @include flow(space(m));
+
+    grid-area: content;
+    padding: space(sm);
+
+    @include breakpoint(navigation) {
+      padding: 1.5rem 2rem;
+      overflow-y: auto;
+    }
+  }
+
+  &__header {
+    grid-area: header;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include breakpoint(navigation) {
+      padding: 1.5rem 2rem;
+    }
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  &__header-right {
+    display: none;
+    align-items: center;
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+
+    @include breakpoint(navigation) {
+      display: flex;
+    }
+  }
+
+  &.detail-view {
+    display: block;
+
+    #{$this}__header,
+    #{$this}__sidebar {
+      display: none;
+    }
+
+    #{$this}__main {
+      padding: 0;
+    }
+  }
+}
+
+.loginpage {
+  font-size: font-size(s);
+
+  @include breakpoint(lg) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+  }
+
+  &__visual {
+    position: relative;
+  }
+
+  &__visual-headline {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    max-width: calc(100% - 2rem);
+    z-index: 10;
+    color: var(--white, $color-white);
+    transform: translate(-50%, -50%);
+    font-size: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 0;
+
+    @include breakpoint(md) {
+      font-size: 2.75rem;
+    }
+
+    @include breakpoint(lg) {
+      font-size: 3.75rem;
+      width: 100%;
+      max-width: 450px;
+    }
+
+    strong {
+      position: relative;
+      white-space: nowrap;
+
+      svg {
+        position: absolute;
+        bottom: 0;
+        left: -10%;
+        width: 120%;
+        height: auto;
+        z-index: -1;
+        color: var(--neutral-500, $color-neutral-500)
+      }
+    }
+  }
+
+  &__visual-picture {
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 200px;
+
+    @include breakpoint(md) {
+      min-height: 300px;
+    }
+
+    @include breakpoint(lg) {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    @include breakpoint(md) {
+      padding: 2rem;
+    }
+  }
+
+  &__content {
+    max-width: 25rem;
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,20 @@
+base:
+    address: ''
+    phone: ''
+    impressum1: ''
+    impressum2: ''
+confirmEmail:
+    hi: 'Hi! Please confirm your email!'
+    intro: 'Please confirm your email address by clicking the following link:'
+    link: 'Confirm my Email'
+    expire: 'This link will expire in {time}. If your e-mail is not confirmed in time, repeat the process.'
+    salutation: Cheers!
+passwordResetEmail:
+    hi: 'Hi, you want to reset your password? No problem!'
+    intro: 'Please click the following link to reset your password:'
+    link: 'Reset password'
+    expire: 'This link will expire in {time}. If your password is not reset in time, repeat the process. If you have not requested this e-mail, please ignore it.'
+    salutation: Cheers!
+invites:
+    invitationAccepted: 'Your invitation has been accepted'
+    invitationAcceptedEmailBody: 'Your invitation has been accepted'

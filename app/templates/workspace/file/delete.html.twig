@@ -1,0 +1,11 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    <p>
+        {{ 'file.deleteFileConfirmation'|trans({'filename': file.filename}) }}
+    </p>
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+    {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+    {{ form_end(form) }}
+{% endblock %}
+

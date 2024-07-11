@@ -1,0 +1,60 @@
+{% set nearbyPagesLimit = 2 %}
+{% set path = app.request.attributes.get('_route') %}
+{% if pages > 1 %}
+    <div class="file-list__pagination">
+        <div class="text-align-center is-no-js-hidden">
+            {% if pages > page and not classicPagination|default(false) %}
+                <button class="button"
+                    {{ stimulus_target('pagination', 'loadMoreButton') }}
+                    {{ stimulus_action('pagination', 'loadMore') }}
+                        data-url="{{ path(path, app.request.attributes.get('_route_params')|merge({ 'page': page + 1, 'paginator': 1 }), false, true) }}">
+                    {{ 'base.loadMore'|trans }}
+                </button>
+            {% endif %}
+        </div>
+        <div class="text-align-center">
+            <ul class="pagination" {{ stimulus_target('pagination', 'classicPagination') }}>
+                <li class="pagination__item{% if page == 1 %} is-disabled{% endif %}">
+                    <a href="{{ path(path, app.request.attributes.get('_route_params')|merge({ 'page': page - 1 }), false, true) }}" class="pagination__link">
+                        {% include 'icon-chevron-left.svg' %}
+                        <span class="visually-hidden">{{ 'base.previousPage'|trans }}</span>
+                    </a>
+                </li>
+                <li class="pagination__item{% if page == 1 %} is-active{% endif %}">
+                    <a href="{{ path(path, app.request.attributes.get('_route_params')|merge({ 'page': 1 }), false, true) }}" class="pagination__link">
+                        1
+                    </a>
+                </li>
+
+                {% if pages > 2 %}
+                    {% for i in 2..(pages - 1) %}
+                        {% if 0 == (page - nearbyPagesLimit) - i %}
+                            <li class="pagination__item">...</li>
+                        {% elseif 0 == (page + nearbyPagesLimit) - i %}
+                            <li class="pagination__item">...</li>
+                        {% elseif 0 < (page - nearbyPagesLimit) - i %}
+                        {% elseif 0 > (page + nearbyPagesLimit) - i %}
+                        {% else %}
+                            <li  class="pagination__item{% if page == i  %} is-active{% endif %}">
+                                <a href="{{ path(path, app.request.attributes.get('_route_params')|merge({ 'page': i }), false, true) }}" class="pagination__link">{{ i }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <li class="pagination__item{% if page == pages %} is-active{% endif %}">
+                    <a href="{{ path(path, app.request.attributes.get('_route_params')|merge({ 'page': pages }), false, true) }}" class="pagination__link">
+                        {{ pages }}
+                    </a>
+                </li>
+
+                <li class="pagination__item{% if page == pages %} is-disabled{% endif %}">
+                    <a href="{{ path(path, app.request.attributes.get('_route_params')|merge({ 'page': page + 1 }), false, true) }}" class="pagination__link">
+                        {% include 'icon-chevron-right.svg' %}
+                        <span class="visually-hidden">{{ 'base.nextPage'|trans }}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endif %}

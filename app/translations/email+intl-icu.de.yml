@@ -1,0 +1,20 @@
+base:
+    address: ''
+    phone: ''
+    impressum1: ''
+    impressum2: ''
+confirmEmail:
+    hi: 'Hi! Bitte bestätige deine E-Mail-Adresse.'
+    intro: 'Dies kannst du tun, indem du folgendem Link folgst:'
+    link: 'E-Mail bestätigen'
+    expire: 'Dieser Link verliert in {time} seine Gültigkeit. Falls die Bestätigung deiner E-Mail nicht rechtzeitig erfolgt, wiederhole den Vorgang.'
+    salutation: Tschö!
+passwordResetEmail:
+    hi: 'Hi! Du möchtest dein Passwort zurücksetzen? Kein Problem!'
+    intro: 'Folge dazu einfach folgendem Link:'
+    link: 'Passwort zurücksetzen'
+    expire: 'Dieser Link verliert in {time} seine Gültigkeit. Falls die Änderung deines Passworts nicht rechtzeitig erfolgt, wiederhole den Vorgang. Solltest du diese E-Mail nicht angefordert haben, kannst du sie ignorieren.'
+    salutation: Tschö!
+invites:
+    invitationAccepted: 'Die Einladung wurde akzeptiert'
+    invitationAcceptedEmailBody: 'Die Einladung wurde akzeptiert'

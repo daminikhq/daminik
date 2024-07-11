@@ -1,0 +1,64 @@
+.multiactions {
+  border-radius: border-radius(xl);
+  background: var(--neutral-900, $color-neutral-900);
+  color: var(--white, $color-white);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.25rem 0.5rem;
+  bottom: 2rem;
+
+  &__current-selection {
+    display: none;
+
+    @include breakpoint(sm) {
+      display: block;
+      padding-left: 1rem;
+    }
+  }
+
+  &__select {
+    @include focus-outline-style();
+
+    border: 0;
+    color: var(--white, $color-white);
+    padding-right: 2.5rem;
+    max-width: 150px;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    background: transparent url("data:image/svg+xml,%3Csvg fill='none' height='6' viewBox='0 0 10 6' width='10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m1 1 4 4 4-4' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat calc(100% - 1rem) 50% !important;
+
+    &:disabled {
+      opacity: 0.3;
+    }
+  }
+
+  &__submit {
+    @include focus-outline-style();
+
+    border: 0;
+    background-color: transparent;
+    color: var(--white, $color-white);
+    padding: 0;
+    cursor: pointer;
+    border-radius: border-radius(medium);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      color: var(--blue-500, $color-blue-500);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+    }
+
+    svg {
+      display: block;
+    }
+  }
+}

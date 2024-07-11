@@ -1,0 +1,14 @@
+{% if form %}
+    {% form_theme form 'forms/_form-theme.html.twig' %}
+    {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+    {{ form_end(form) }}
+{% else %}
+    <div {{ stimulus_controller('ai-tags') }}
+        data-formurl="{{ path('workspace_ai_tags', {'filename': file.filename}) }}"
+        data-statusurl="{{ path('workspace_ai_tags_status', {filename: file.filename}) }}">
+        {{ 'feature.ai.loading'|trans }}
+        <span class="spinner" {{ stimulus_target('ai-tags', 'status') }}
+              data-ajax-text="{{ 'base.wait'|trans }}" data-manual-text="{{ 'base.refreshPage'|trans }}"></span>
+        <noscript>{{ 'base.refreshPage'|trans }}</noscript>
+    </div>
+{% endif %}

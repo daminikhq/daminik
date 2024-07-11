@@ -1,0 +1,22 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    <h1>{{ ('multiaction.' ~ multiAction.action.value)|trans }}</h1>
+    {% if multiAction.action.value == 'collection-add' %}
+        <p>{{ 'multiaction.collectionAddText'|trans }}</p>
+    {% elseif multiAction.action.value == 'delete' %}
+        <p>{{ 'multiaction.deleteText'|trans }}</p>
+    {% endif %}
+
+    {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+    {{ form_row(form.files) }}
+    {% if form.collection is defined %}
+        {{ form_row(form.collection) }}
+    {% endif %}
+    {% if form.category is defined %}
+        {{ form_row(form.category) }}
+    {% endif %}
+    {{ form_row(form.submit) }}
+    {{ form_end(form) }}
+
+{% endblock %}

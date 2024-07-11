@@ -1,0 +1,85 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    {{ component('Breadcrumb', {category: category}) }}
+
+    <section class="file-list" {{ stimulus_controller('fileselection')|stimulus_controller('filelist')|stimulus_controller('pagination') }}>
+        <div class="file-list__header">
+            <div class="file-list__header-left">
+                <h1>{{ category.title|default('file.folder'|trans) }}
+                    {% if files %}<span class="count-badge">{{ files.total }}</span>{% endif %}
+                </h1>
+            </div>
+            <div class="file-list__header-right">
+                {% if category %}
+                    {{ component('FileSelectionButtons') }}
+                {% endif %}
+
+                {% if form and can_create_categories() %}
+                    <button class="button button--function" {{ stimulus_action('filelist', 'newFolder') }}>
+                        {{ 'folder.create'|trans }}
+                        {% include 'icon-plus.svg' %}
+                    </button>
+                {% endif %}
+
+                {{ component('FileSortingMenu') }}
+
+                {% if can_delete_category(category) or can_edit_category(category) %}
+                <div class="context-menu" {{ stimulus_controller('dropdown') }}>
+                    <button class="context-menu__toggle button button--function has-icon"
+                            id="context-menu-toggle" aria-haspopup="menu" aria-controls="collections-nav"
+                        {{ stimulus_target('dropdown', 'toggle') }} {{ stimulus_action('dropdown', 'toggle') }}>
+                        {% include 'icon-dots.svg' %}
+                        <span class="visually-hidden">{{ 'base.contextMenu'|trans }} {{ 'file.folder'|trans }}</span>
+                    </button>
+                    <ul class="context-menu__menu" id="collections-nav"
+                        aria-labelledby="context-menu-toggle"
+                        {{ stimulus_target('dropdown', 'menu') }}>
+                        {% if can_delete_category(category) %}
+                            <li class="context-menu__item">
+                                <a class="context-menu__link"
+                                   href="{{ path('workspace_folder_delete', {slug: category.slug}) }}">
+                                    {{ 'folder.delete'|trans }} {% include 'icon-trash.svg' %}
+                                </a>
+                            </li>
+                        {% endif %}
+                        {% if can_edit_category(category) %}
+                            <li class="context-menu__item">
+                                <a class="context-menu__link"
+                                   href="{{ path('workspace_folder_edit', {slug: category.slug}) }}">
+                                    {{ 'folder.edit'|trans }} {% include 'icon-pen.svg' %}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if form and can_create_categories() %}
+                    {% component Modal with {
+                        title: 'folder.new'|trans,
+                        id: 'modal-new-folder',
+                        size: 'small',
+                        'data-filelist-target': 'modalnewfolder'
+                    } %}
+                        {% block content %}
+                            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                            {{ form_row(form.title) }}
+                            {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+                            {{ form_end(form) }}
+                        {% endblock %}
+                    {% endcomponent %}
+                {% endif %}
+            </div>
+        </div>
+
+        {% if subCategories %}
+            {% include 'partials/_folder-grid.html.twig' with {'folders': subCategories} %}
+        {% endif %}
+
+        {% if files and files.total > 0 %}
+            {% include 'partials/_file-grid.html.twig' with {'files': files} %}
+            {% include 'partials/_pagination.html.twig' with {'pages': files.pages, 'page': page} %}
+        {% endif %}
+    </section>
+{% endblock %}

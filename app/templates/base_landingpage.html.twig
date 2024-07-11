@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="{{ app.locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{{ 'base.pageTitle'|trans }}{% endblock %}</title>
+        <meta name="description" content="{{ 'base.pageDesc'|trans }}">
+        <meta name="view-transition" content="same-origin">
+        {% block og %}
+            <meta property="og:image" content="https://cdn.daminik.com/dam-2024-91b1f1b/daminik/og-i/og-image.png" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:type" content="website" />
+            <meta property="og:description" content="{{ 'base.pageDesc'|trans }}" />
+            <meta property="og:locale" content="{{ app.locale == 'de' ? 'de_DE' : 'en_GB' }}" />
+        {% endblock %}
+
+        {% include 'partials/_icons.html.twig' %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body class="no-js landingpage
+        {% if app.session.flashbag.peekAll()|length > 0 %} has-flashes{% endif %}"
+            {{ stimulus_target('body', 'body') }}
+            {{ stimulus_controller('body')|stimulus_controller('flashes') }}>
+        <div class="skip-link">
+            <a href="#main">{{ 'base.skipToContent'|trans }}</a>
+        </div>
+
+        {% include 'partials/layout/_flashes.html.twig' %}
+        <div class="layout external {% block layoutClasses %}{% endblock %}">
+            <nav class="external__meta">
+                {% include 'partials/layout/_meta-menu.html.twig' %}
+            </nav>
+            <div class="landingpage__container container container--wide">
+                <header class="logo-header">
+                    <a href="{{ path('home_index') }}" class="logo logo--round logo--alpha">
+                        {% include 'D-round.svg' %}
+                    </a>
+                </header>
+                <main id="main" class="landingpage__main">
+                    {% block body %}{% endblock %}
+                </main>
+                <footer class="landingpage__footer">
+                    {% set screen = app.locale == 'de' ? 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/desk/desktop-de-1.png' : 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/desk/desktop-en-1.png' %}
+                    {% set screenWebp = app.locale == 'de' ? 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/desk/desktop-de.webp' : 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/desk/desktop-en.webp' %}
+                    {% set screenMobile = app.locale == 'de' ? 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/mobi/mobile-de-1.png' : 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/mobi/mobile-en-1.png' %}
+                    {% set screenMobileWebp = app.locale == 'de' ? 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/mobi/mobile-de.webp' : 'https://cdn.daminik.com/dam-2024-91b1f1b/daminik/mobi/mobile-en.webp' %}
+                    <picture class="landingpage__screenshot">
+                        <source
+                            type="image/webp"
+                            media="(orientation: landscape)"
+                            srcset="{{ screenWebp }}">
+                        <source
+                            media="(orientation: landscape)"
+                            srcset="{{ screen }}">
+                        <source
+                            type="image/webp"
+                            media="(orientation: portrait)"
+                            srcset="{{ screenMobileWebp }}">
+                        <source
+                            media="(orientation: portrait)"
+                            srcset="{{ screenMobile }}">
+                        <img src="{{ screen }}" alt="Screenshot Daminik" />
+                    </picture>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>

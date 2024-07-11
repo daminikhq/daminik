@@ -1,0 +1,5 @@
+type Category {
+    slug: String!
+    title: String!
+    parent: Category
+}

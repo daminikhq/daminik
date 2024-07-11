@@ -1,0 +1,34 @@
+{% extends 'base_settings.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'base.settings'|trans }}</h1>
+
+    {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+    {{ form_row(form.name) }}
+    {{ form_row(form.locale) }}
+    {{ form_row(form.logo) }}
+    {% if icon %}
+        <div class="workspace-logo">
+            <img src="{{ icon|thumbnailUrl }}" alt="{{ icon.filename }}">
+            {% if form.resetLogo is defined %}
+                <div class="avatar__trash-action">
+                    {{ form_widget(form.resetLogo, {
+                        'label': '',
+                        'attr': {'class': 'trash-button', 'aria-label': 'base.resetLogo'|trans, 'title': 'base.resetLogo'|trans}
+                    }) }}
+                </div>
+            {% endif %}
+        </div>
+    {% endif %}
+    {{ form_row(form.apiAccess) }}
+    {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+    {{ form_end(form) }}
+    {% if apikey %}
+        <fieldset>
+            <label for="apikey" class="required">{{ 'label.apikey.readonly'|trans }}</label>
+            <input type="text" id="apikey" readonly value="{{ apikey }}">
+        </fieldset>
+    {% endif %}
+{% endblock %}
+
+

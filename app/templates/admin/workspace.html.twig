@@ -1,0 +1,34 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+    <h1>{{ workspace.name }}</h1>
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+    {% if memberships.total > 0 %}
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{ 'admin.user.emailadress'|trans }}</th>
+                    <th>{{ 'admin.user.name'|trans }}</th>
+                    <th>{{ 'admin.user.username'|trans }}</th>
+                    <th>{{ 'admin.user.role'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for membership in memberships.items %}
+                    <tr>
+                        <td><a href="{{ path('admin_user_index', {'userToEdit': membership.user.id}) }}">{{ membership.user.email|default }}</a></td>
+                        <td>{{ membership.user.name|default }}</td>
+                        <td>{{ membership.user.username|default }}</td>
+                        <td>{{ membership|workspaceRole }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'partials/_pagination.html.twig' with {'pages': memberships.pages, 'page': memberships.page} %}
+    {% endif %}
+
+{% endblock %}
+

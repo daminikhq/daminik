@@ -1,0 +1,21 @@
+<ul class="meta-menu">
+    <li>
+        <a href="{{ path('static_legal') }}">Legal / Imprint</a>
+    </li>
+    <li>
+        <span class="divider"></span>
+    </li>
+    {% if not app.user %}
+        <li>
+            <a href="{{ path('login') }}" class="is-bold">
+                {{ 'base.login'|trans }}
+            </a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{{ path('logout') }}" class="is-bold">
+                {{ 'base.logout'|trans }}
+            </a>
+        </li>
+    {% endif %}
+</ul>

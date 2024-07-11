@@ -1,0 +1,93 @@
+.checkbox {
+  $width: 20px;
+  $height: 20px;
+
+  display: inline-block;
+
+  &__input {
+    @include visually-hidden;
+  }
+
+  &__label {
+    display: flex;
+    gap: 0.5rem;
+    grid-gap: 0.5rem;
+    color: var(--neutral-500, #{$color-neutral-500});
+    line-height: 1.2;
+    font-weight: font-weight(normal);
+    cursor: pointer;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &__wrapper {
+    position: relative;
+    flex: 0 0 $width;
+    display: block;
+    width: $width;
+    height: $height;
+    border: 1px solid var(--neutral-300, #{$color-neutral-300});
+    cursor: pointer;
+    border-radius: border-radius(s);
+    overflow: hidden;
+    transition: border-color 0.2s ease-out;
+  }
+
+  &__icon {
+    display: block;
+    width: $width;
+    height: $height;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+  }
+
+  &__rect {
+    fill: var(--white, #{$color-white});
+    transition: fill 0.2s ease-out;
+  }
+
+  &__check {
+    stroke: var(--white, #{$color-white});
+  }
+
+  &__input:checked + &__label &__wrapper {
+    border-color: var(--black, #{$color-black});
+  }
+
+  &__input:hover + &__label &__wrapper {
+    border-color: var(--neutral-400, #{$color-neutral-400});
+  }
+
+  &__input:checked:hover + &__label &__wrapper {
+    border-color: var(--neutral-800, #{$color-neutral-800});
+  }
+
+  &__input:checked + &__label &__rect {
+    fill: var(--neutral-900, #{$color-neutral-900});
+  }
+
+  &__input:checked:hover + &__label &__rect {
+    fill: var(--neutral-700, #{$color-neutral-700});
+  }
+}
+
+.tag {
+  &__input {
+    display: none;
+  }
+
+  &__label {
+    cursor: pointer;
+    border: 1px solid color-var(--neutral-200, $color-neutral-200);
+    background-color: transparent;
+    border-radius: border-radius(m);
+    padding: 0.5rem 1rem;
+    color: color-var(--neutral-900, $color-neutral-900);
+    transition: background-color 0.2s ease-out;
+  }
+
+  &__input:checked + &__label {
+    background-color: color-var(--neutral-200, $color-neutral-200);
+  }
+}

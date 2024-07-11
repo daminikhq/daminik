@@ -1,0 +1,26 @@
+.workspace-icon {
+  border-radius: border-radius(m);
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border: 1px solid var(--neutral-300, #{$color-neutral-300});
+  background-color: var(--white, #{$color-white});
+  color: var(--neutral-900, #{$color-neutral-900});
+  font-size: font-size(xs);
+  font-weight: font-weight(bold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &--add {
+    border-color: var(--neutral-700, #{$color-neutral-700});
+    background-color: var(--neutral-700, #{$color-neutral-700});
+    color: var(--white, #{$color-white});
+
+    *:hover > & {
+      background-color: var(--neutral-600, #{$color-neutral-600});
+    }
+  }
+}

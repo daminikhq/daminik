@@ -1,0 +1,20 @@
+{% extends 'base_external.html.twig' %}
+
+{% block body %}
+    <div class="m-flow">
+        <h1>Legal / Imprint</h1>
+        <p>Add the legal content here</p>
+
+        <h2>Terms</h2>
+        {% include 'partials/_terms.html.twig' %}
+
+
+        <h2>Privacy</h2>
+        {% include 'partials/_privacy.html.twig' %}
+    </div>
+{% endblock %}
+
+{% block title %}
+    Daminik - {{ 'base.imprint'|trans }}
+{% endblock %}
+

@@ -1,0 +1,18 @@
+{% trans_default_domain 'email' %}
+{% extends 'base_email.html.twig' %}
+
+{% block body %}
+    <h3>{{ 'confirmEmail.hi'|trans({},'email', locale) }}</h3>
+
+    <p>
+        {{ 'confirmEmail.intro'|trans({},'email', locale) }}
+    </p>
+
+    <p>
+        <a href="{{ signedUrl|raw }}">{{ 'confirmEmail.link'|trans({},'email', locale) }}</a>
+    </p>
+
+    <p>
+        {{ 'confirmEmail.expire'|trans({'time': expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle', locale)},'email', locale) }}
+    </p>
+{% endblock %}

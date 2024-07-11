@@ -1,0 +1,7 @@
+input CreateCharacter {
+    name: String!
+}
+
+type Mutation {
+    createCharacter(character: CreateCharacter!): Asset!
+}

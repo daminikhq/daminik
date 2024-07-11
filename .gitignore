@@ -1,0 +1,24 @@
+# General
+.DS_Store
+/.idea/
+
+# Node
+app/node_modules/*
+!app/node_modules/.gitkeep
+app/yarn-error.log
+
+# Composer
+app/vendor/*
+!app/vendor/.gitkeep
+
+# Symfony
+app/var/*
+!app/var/.gitkeep
+app/.env.local
+
+# Projekt
+app/dist/*
+!app/dist/.gitkeep
+.php-cs-fixer.cache
+app/tools/php-cs-fixer/vendor
+app/config/pesdk_html5_license

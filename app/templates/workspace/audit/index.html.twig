@@ -1,0 +1,59 @@
+{% extends 'base_settings.html.twig' %}
+
+{% block body %}
+    <h1>{{ workspace.name }} Logs</h1>
+    {% if entries.items|length > 0 %}
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>{{ 'base.date'|trans }}</th>
+                        <th>{{ 'base.user'|trans }}</th>
+                        <th>{{ 'base.action'|trans }}</th>
+                        <th>{{ 'base.object'|trans }}</th>
+                        <th>{{ 'base.additionalData'|trans }}</th>
+                    </tr>
+                </thead>
+                {% for entry in entries.items %}
+                    <tr>
+                        <td>{{ entry.createdAt|date('d.m.Y H:i:s') }}</td>
+                        <td>{{ entry.userName }}</td>
+                        <td>{{ ('logAction.' ~ entry.logAction)|trans }}</td>
+                        <td>
+                            {% if entry.entityData %}
+                                {{ entry.entityData.title }}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if entry.metaData %}
+                                {{ entry.metaData.title }}
+                                {% if entry.metaData.hasChanges %}
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th>{{ 'base.field'|trans }}</th>
+                                            <th>{{ 'base.old'|trans }}</th>
+                                            <th>{{ 'base.new'|trans }}</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for change in entry.metaData.changes %}
+                                            <tr>
+                                                <td>{{ change.field }}</td>
+                                                <td>{{ change.oldValue }}</td>
+                                                <td>{{ change.newValue }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    {% endif %}
+
+    {% include 'partials/_pagination.html.twig' with {'pages': entries.pages, 'page': entries.page, 'classicPagination': true} %}
+{% endblock %}

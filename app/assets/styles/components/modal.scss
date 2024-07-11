@@ -1,0 +1,110 @@
+.modal {
+  width: 100%;
+  outline: 0;
+  background-color: transparent;
+  border: 0;
+  margin-block-start: auto!important;
+
+  &[open] {
+    display: block;
+  }
+
+  .scrolllock & {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &__dialog {
+    position: relative;
+    width: auto;
+    margin: 0;
+    // allow clicks to pass through for custom click handling to close modal
+    pointer-events: none;
+    display: flex;
+    align-items: stretch;
+    min-height: 100%;
+    z-index: z-index(modal);
+
+    @include breakpoint(sm) {
+      align-items: center;
+      margin: 2rem auto;
+      max-width: 45rem;
+      min-height: calc(100% - 4rem);
+    }
+
+    .is-smol > & {
+      max-width: 25rem;
+    }
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    // counteract the pointer-events: none; in the .modal-dialog
+    pointer-events: auto;
+    background-color: var(--white, #{$color-white});
+    background-clip: padding-box;
+    outline: 0;
+    min-height: 100%;
+    @include border-radius(m);
+
+    @include breakpoint(sm) {
+      min-height: auto;
+      max-height: 500px;
+    }
+  }
+
+  &__backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: z-index(modal-backdrop);
+  }
+
+  &::backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    //z-index: z-index(modal-backdrop);
+    background-color: var(--black-20a, #{$color-black-20a});
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: space(s);
+    @include border-top-radius(m);
+  }
+
+  &__title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.2;
+    font-size: font-size(l);
+  }
+
+  &__body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 0 space(s);
+    margin: space(s) 0;
+    overflow: auto;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: space(s);
+
+    > :not(:first-child) { margin-left: .25rem; }
+    > :not(:last-child) { margin-right: .25rem; }
+  }
+}

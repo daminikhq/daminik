@@ -1,0 +1,14 @@
+{% extends 'base_external.html.twig' %}
+
+{% block body %}
+    <div class="m-flow">
+        <h1 class="text-align-center">{{ 'base.createWorkspace'|trans }}</h1>
+        {{ form_start(form, {'attr': {'class': 'form'}}) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.slug) }}
+        {{ form_row(form.locale) }}
+        {{ form_row(form.submit, {'row_attr': {'class': 'has-button'}}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+

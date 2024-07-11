@@ -1,0 +1,8 @@
+.form-errors {
+  @include list-reset;
+
+  font-size: font-size(xs);
+  color: color-var(--red-700, $color-red-700);
+  line-height: 1.2;
+  text-align: left;
+}

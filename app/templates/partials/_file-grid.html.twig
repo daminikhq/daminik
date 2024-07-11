@@ -1,0 +1,21 @@
+{% if can_edit_asset() and files.items|length %}
+    <form class="file-grid" method="get" action="{{ path('workspace_multiaction') }}"
+        {{ stimulus_controller('multiactions') }}
+        {{ stimulus_target('pagination', 'multiactions') }}>
+        <input type="hidden" name="token" value="{{ csrf_token('multiaction') }}">
+{% else %}
+    <div class="file-grid">
+{% endif %}
+        <div class="file-grid__wrapper" {{ stimulus_target('pagination', 'fileGridWrapper') }}>
+            {% for file in files.items %}
+                {% include 'partials/_file-grid-item.html.twig' with {'file': file} %}
+            {% endfor %}
+        </div>
+{% if can_edit_asset() and files.items|length %}
+        <div class="file-grid__actions">
+            {% include 'partials/_multi-actions.html.twig' %}
+        </div>
+    </form>
+{% else %}
+    </div>
+{% endif %}

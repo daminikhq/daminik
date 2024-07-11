@@ -1,0 +1,18 @@
+{% extends 'base_landingpage.html.twig' %}
+
+{% block body %}
+    <span class="claim">
+        {{ 'base.claim'|trans|raw }}
+    </span>
+    <span class="subclaim">
+        {{ 'base.subclaim'|trans|raw }}
+    </span>
+    <div>
+        <a href="{{ path('register') }}" class="button landingpage__cta">
+            {{ 'base.landingpageCta'|trans }}
+        </a>
+        <a href="https://github.com/daminikhq/daminik" target="_blank" class="button button--white landingpage__subcta">
+            {{ 'base.landingpageGithub'|trans }}
+        </a>
+    </div>
+{% endblock %}

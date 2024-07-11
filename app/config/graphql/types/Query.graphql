@@ -1,0 +1,8 @@
+type Query {
+    asset(slug: String!): Asset
+    assets: [Asset!]!
+    tag(slug: String!): Tag
+    tags: [Tag!]!
+    category(slug: String!): Category
+    categories: [Category!]!
+}

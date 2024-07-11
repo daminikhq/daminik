@@ -1,0 +1,11 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}New RegistrationCode{% endblock %}
+
+{% block body %}
+    <h1>Create new RegistrationCode</h1>
+
+    {{ include('admin/registration_code/_form.html.twig') }}
+
+    <a href="{{ path('admin_registrationcode_index') }}">back to list</a>
+{% endblock %}

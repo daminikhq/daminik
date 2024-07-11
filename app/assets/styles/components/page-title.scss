@@ -1,0 +1,16 @@
+.page-title {
+  display: flex;
+  align-items: center;
+
+  &__headline {
+    margin-right: 0.25rem;
+  }
+
+  &__button {
+    padding: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: block;
+    min-height: 0;
+  }
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ app.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Daminik{% endblock %}</title>
+    <meta name="view-transition" content="same-origin">
+    {% include 'partials/_icons.html.twig' %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body class="no-js
+    {% if app.session.flashbag.peekAll()|length > 0 %} has-flashes{% endif %}"
+        {{ stimulus_target('body', 'body') }}
+        {{ stimulus_controller('body')|stimulus_controller('flashes') }}>
+<div class="skip-link">
+    {{ 'base.skipToSearchOrContent'|trans|raw }}
+</div>
+{% include 'partials/layout/_flashes.html.twig' %}
+<div class="layout asset {% block layoutClasses %}{% endblock %}">
+    <main id="main" class="asset__main">
+        {% block body %}{% endblock %}
+    </main>
+</div>
+</body>
+</html>

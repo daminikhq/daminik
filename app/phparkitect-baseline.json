@@ -1,0 +1,35 @@
+{
+    "violations": [
+        {
+            "fqcn": "App\\Controller\\Admin\\RegistrationCodeController",
+            "line": 21,
+            "error": "depends on App\\Repository\\RegistrationCodeRepository, but should not depend on these namespaces: App\\Repository\\* because of component architecture"
+        },
+        {
+            "fqcn": "App\\Controller\\Workspace\\Admin\\AdminController",
+            "line": 152,
+            "error": "depends on App\\Repository\\UserRepository, but should not depend on these namespaces: App\\Repository\\* because of component architecture"
+        },
+        {
+            "fqcn": "App\\Controller\\Workspace\\Admin\\AdminController",
+            "line": 193,
+            "error": "depends on App\\Repository\\UserRepository, but should not depend on these namespaces: App\\Repository\\* because of component architecture"
+        },
+        {
+            "fqcn": "App\\Controller\\Workspace\\Admin\\AdminController",
+            "line": 256,
+            "error": "depends on App\\Repository\\UserRepository, but should not depend on these namespaces: App\\Repository\\* because of component architecture"
+        },
+        {
+            "fqcn": "App\\Controller\\Workspace\\DownloadController",
+            "line": 84,
+            "error": "depends on App\\Repository\\WorkspaceRepository, but should not depend on these namespaces: App\\Repository\\* because of component architecture"
+        },
+        {
+            "fqcn": "App\\Repository\\FileRepository",
+            "line": 53,
+            "error": "depends on App\\Service\\File\\Filter\\AbstractFileFilter, but should not depend on these namespaces: App\\Controller\\*, App\\Service\\* because of component architecture"
+        }
+    ],
+    "stopOnFailure": false
+}

@@ -1,0 +1,17 @@
+{% set searchForm = this.searchForm %}
+{% set filterForm = this.filterForm %}
+{% form_theme searchForm 'forms/_form-theme.html.twig' %}
+<div class="form-wrapper" {{ attributes }}>
+    {% if filterForm is not defined or filterForm is null %}
+        {{ form_start(searchForm, { 'attr' : { 'class': 'search-form' } }) }}
+        {{ form_widget(searchForm.s) }}
+        {% if searchForm.slug is defined %}
+            {{ form_row(searchForm.slug) }}
+        {% endif %}
+        {{ form_end(searchForm) }}
+    {% else %}
+        <div class="search-form">
+        {{ form_widget(searchForm.s, {'attr': {'form': 'filters-form'}}) }}
+        </div>
+    {% endif %}
+</div>

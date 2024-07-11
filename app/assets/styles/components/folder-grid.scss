@@ -1,0 +1,57 @@
+.folder-grid {
+  &__list {
+    @include list-reset();
+    display: grid;
+    grid-gap: space(sm);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  &__item {
+    border-radius: border-radius(m);
+    border: 1px solid var(--neutral-300, #{$color-neutral-300});
+    background-color: var(--neutral-100, #{$color-neutral-100});
+    padding: 0.25rem;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+
+    @include breakpoint(sm) {
+      padding: 0.75rem;
+      gap: 0.75rem;
+    }
+
+    &::before {
+      display: flex;
+      align-items: center;
+      content: "";
+      width: 1.5rem;
+      height: 1.5rem;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none"><path d="M18.2 14H22.3332C23.5004 14 24.0839 14 24.6073 14.1882C24.9269 14.3031 25.2272 14.4684 25.4975 14.6782C25.94 15.0217 26.2637 15.5211 26.9111 16.52C27.3427 17.1859 27.5585 17.5189 27.8535 17.7479C28.0337 17.8878 28.2339 17.998 28.447 18.0746C28.7959 18.2 29.1849 18.2 29.963 18.2H37.8C40.8798 18.2 42.4198 18.2 43.3765 19.1841C44.3333 20.1682 44.3333 21.7522 44.3333 24.92V35.28C44.3333 38.4478 44.3333 40.0318 43.3765 41.0159C42.4198 42 40.8798 42 37.8 42H18.2C15.1201 42 13.5802 42 12.6234 41.0159C11.6667 40.0318 11.6667 38.4478 11.6667 35.28V20.72C11.6667 17.5522 11.6667 15.9682 12.6234 14.9841C13.5802 14 15.1201 14 18.2 14Z" fill="%23737373"/></svg>');
+      background-size: 1.5rem 1.5rem;
+      background-repeat: no-repeat;
+
+      @include breakpoint(sm) {
+        content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56" fill="none"><path d="M18.2 14H22.3332C23.5004 14 24.0839 14 24.6073 14.1882C24.9269 14.3031 25.2272 14.4684 25.4975 14.6782C25.94 15.0217 26.2637 15.5211 26.9111 16.52C27.3427 17.1859 27.5585 17.5189 27.8535 17.7479C28.0337 17.8878 28.2339 17.998 28.447 18.0746C28.7959 18.2 29.1849 18.2 29.963 18.2H37.8C40.8798 18.2 42.4198 18.2 43.3765 19.1841C44.3333 20.1682 44.3333 21.7522 44.3333 24.92V35.28C44.3333 38.4478 44.3333 40.0318 43.3765 41.0159C42.4198 42 40.8798 42 37.8 42H18.2C15.1201 42 13.5802 42 12.6234 41.0159C11.6667 40.0318 11.6667 38.4478 11.6667 35.28V20.72C11.6667 17.5522 11.6667 15.9682 12.6234 14.9841C13.5802 14 15.1201 14 18.2 14Z" fill="%23737373"/></svg>');
+        width: auto;
+        height: auto;
+        background: none;
+      }
+    }
+  }
+
+  &__title {
+    font-weight: font-weight(bold);
+
+    @include breakpoint(sm) {
+      display: block;
+    }
+  }
+
+  &__total {
+    color: var(--neutral-500, #{$color-neutral-500});
+
+    @include breakpoint(sm) {
+      display: block;
+    }
+  }
+}

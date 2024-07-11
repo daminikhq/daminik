@@ -1,0 +1,15 @@
+{% if folders %}
+    <div class="folder-grid">
+        <ul class="folder-grid__list">
+            {% for folder in folders %}
+                <li class="folder-grid__item">
+                    <a href="{{ path('workspace_folder_index', {slug: folder.slug}) }}" class="folder-grid__link">
+                        <span class="folder-grid__title">{{ folder.title }}</span>
+{#                        Todo: Translation#}
+                        <span class="folder-grid__total">{{ folder.assetCount|default(0) }} Assets</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}

@@ -1,0 +1,42 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'base.admin'|trans }}</h1>
+    <h2>{{ 'base.users'|trans }}</h2>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>{{ 'admin.user.id'|trans }}</th>
+                <th>{{ 'admin.user.name'|trans }}</th>
+                <th>{{ 'admin.user.workspace'|trans }}</th>
+                <th>{{ 'admin.user.role'|trans }}</th>
+                <th>{{ 'admin.user.registeredAt'|trans }}</th>
+                <th>{{ 'admin.user.status'|trans }}</th>
+                <th>{{ 'admin.user.notice'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users.items %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td><a href="{{ path('admin_user_index', {'userToEdit': user.id}) }}">{{ user.name }} ({{ user.username }} / {{ user.email }})</a></td>
+                    <td>
+                        {% if user.lastUsedWorkspace %}
+                            <a href="{{ path('admin_workspace_index', {'workspace': user.lastUsedWorkspace.id}) }}">
+                                {{ user.lastUsedWorkspace.slug }} / {{ user.lastUsedWorkspace.name }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td>{{ user|daminikRole }}</td>
+                    <td>{{ user.createdAt|format_datetime('short', 'none') }}</td>
+                    <td>{{ user.status }}</td>
+                    <td>{{ user.adminNotice }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+

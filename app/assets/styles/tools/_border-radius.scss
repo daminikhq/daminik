@@ -1,0 +1,17 @@
+@function border-radius($key) {
+  @return map-get($border-radius, $key);
+}
+
+@mixin border-radius($key) {
+  border-radius: border-radius($key);
+}
+
+@mixin border-top-radius($key) {
+  border-top-left-radius: border-radius($key);
+  border-top-right-radius: border-radius($key);
+}
+
+@mixin border-bottom-radius($key) {
+  border-bottom-left-radius: border-radius($key);
+  border-bottom-right-radius: border-radius($key);
+}

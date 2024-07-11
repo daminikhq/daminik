@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block bodyClasses %}detail-view{% endblock %}
+
+{% block body %}
+    <div class="file-detail">
+        <div class="file-detail__viewer">
+            <img
+                class="file-detail__file"
+                src="{{ fileUrl ?? path('workspace_download_file', {filename: file.filename}) }}"
+                alt="{{ file.filename }}">
+        </div>
+        <div class="file-detail__info">
+            {% if app.session.flashbag.peekAll()|length > 0 %}
+                {% include 'partials/layout/_flashes.html.twig' %}
+            {% endif %}
+            <div class="file-detail__header">
+                <a href="{{ path('workspace_file_edit', {filename: file.filename}) }}" class="link">
+                    {% include 'icon-chevron-left.svg' %}
+                    <span>{{ 'base.back'|trans }}</span>
+                </a>
+            </div>
+            <div class="file-detail__body">
+            <div class="file-detail__info-body">
+                {% include 'forms/collection-create-form.html.twig' %}
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

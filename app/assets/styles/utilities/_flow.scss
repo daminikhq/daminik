@@ -1,0 +1,11 @@
+.s-flow {
+  @include flow(space(s));
+}
+
+.m-flow {
+  @include flow(space(m));
+}
+
+.l-flow {
+  @include flow(space(l));
+}

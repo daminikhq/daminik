@@ -1,0 +1,30 @@
+<div class="file-list__sorting">
+    <div class="context-menu" {{ stimulus_controller('dropdown') }}>
+        <button class="context-menu__toggle button button--function has-icon"
+                id="context-menu-toggle" aria-haspopup="menu" aria-controls="sorting-nav"
+            {{ stimulus_target('dropdown', 'toggle') }} {{ stimulus_action('dropdown', 'toggle') }}>
+            {% include 'icon-sort.svg' %}
+            <span class="visually-hidden">{{ 'base.contextMenu'|trans }} {{ 'base.sorting'|trans }}</span>
+        </button>
+        <ul class="context-menu__menu" id="sorting-nav" aria-labelledby="context-menu-toggle" {{ stimulus_target('dropdown', 'menu') }}>
+            <li class="context-menu__item">
+                <a class="context-menu__link"
+                   href="{{ path(
+                       app.request.attributes.get('_route'),
+                       app.request.attributes.get('_route_params')|merge({'sort': 'uploaded_desc'}), true, true
+                   ) }}">
+                    {{ 'file.orderNewestFirst'|trans }}
+                </a>
+            </li>
+            <li class="context-menu__item">
+                <a class="context-menu__link"
+                   href="{{ path(
+                    app.request.attributes.get('_route'),
+                    app.request.attributes.get('_route_params')|merge({'sort': 'uploaded_asc'}), true, true
+                ) }}">
+                    {{ 'file.orderOldestFirst'|trans }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<dialog class="modal{% if this.size == 'small' %} is-smol{% endif %}"
+    tabindex="-1" id="{{ this.id }}"
+    {{ stimulus_controller('modal') }} {{ attributes }}>
+    <div class="modal__backdrop" {{ stimulus_target('modal', 'backdrop') }}></div>
+    <div class="modal__dialog" role="document">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h5 class="modal__title">{{ this.title }}</h5>
+                <button type="button" class="modal__close button button--small has-icon"
+                    data-dismiss="modal" {{ stimulus_action('modal', 'close') }}>
+                    {% include 'icon-x.svg' %}
+                    <span class="visually-hidden">{{ 'base.closeModal'|trans }}</span>
+                </button>
+            </div>
+            <div class="modal__body">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="modal__footer">
+                {% block footer %}{% endblock %}
+            </div>
+        </div>
+    </div>
+</dialog>

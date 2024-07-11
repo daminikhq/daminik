@@ -1,0 +1,14 @@
+<div class="flashes" {{ stimulus_target('flashes', 'container') }}>
+    {% for type, flashes in app.flashes() %}
+        {% for flash in flashes %}
+            <p class="flashes__message is-{{ type }}" {{ type == 'error' ? ' data-permanent="true"' : '' }} {{ stimulus_target('flashes',  'flash') }}>
+                {{ flash }}
+
+                <button class="flashes__message-close button button--icon" type="button" {{ stimulus_action('flashes',  'closeFlash') }}>{% include 'icon-x.svg' %}</button>
+            </p>
+        {% endfor %}
+    {% endfor %}
+    <template id="flash-message">
+        <p class="flashes__message is-temporary"></p>
+    </template>
+</div>

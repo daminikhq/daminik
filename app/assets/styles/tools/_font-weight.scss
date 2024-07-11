@@ -1,0 +1,7 @@
+@function font-weight($key) {
+  @return map-get($font-weight, $key);
+}
+
+@mixin font-weight($key) {
+  font-weight: font-weight($key);
+}

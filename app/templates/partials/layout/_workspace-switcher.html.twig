@@ -1,0 +1,60 @@
+    <div class="workspace-dropdown" {{ stimulus_controller('dropdown') }}>
+        <button
+            type="button"
+            class="workspace-dropdown__title"
+            aria-controls="sidebar-workspace-switcher"
+            aria-label="{{ 'base.switchWorkspace'|trans }}"
+            aria-haspopup="menu"
+            title="{{ workspace.name }}"
+            {{ stimulus_target('dropdown', 'toggle') }}
+            {{ stimulus_action('dropdown', 'toggle') }}>
+            <span class="workspace-dropdown__current">
+                {% set currentImg = workspaceicon(workspace) %}
+
+                {% if currentImg %}
+                    {{ currentImg|raw }}
+                {% else %}
+                    <span class="workspace-icon" title="{{ workspace.name }}">{{ workspace.name|first }}</span>
+                {% endif %}
+
+                <strong>{{ workspace.name }}</strong>
+            </span>
+            <span class="workspace-dropdown__chevron">
+                {% include 'icon-chevron-up-down.svg' %}
+            </span>
+        </button>
+        <ul class="workspace-dropdown__menu" id="sidebar-workspace-switcher" {{ stimulus_target('dropdown', 'menu') }}>
+            {% for membership in app.user.memberships %}
+                {% if not membership.workspace.name is same as(workspace.name) %}
+                    <li class="workspace-dropdown__item">
+                        <a href="{{ path('workspace_index', {subdomain: membership.workspace.slug}) }}"
+                           class="workspace-dropdown__option" title="{{ membership.workspace.name }}">
+                            {% set img = workspaceicon(membership.workspace) %}
+                            {% if img %}
+                                {{ img|raw }}
+                            {% else %}
+                                <span class="workspace-icon">{{ membership.workspace.name|first }}</span>
+                            {% endif %}
+                            <span class="workspace-dropdown__name">{{ membership.workspace.name }}</span>
+                        </a>
+                    </li>
+                {% else %}
+                {% endif %}
+            {% endfor %}
+            <li class="workspace-dropdown__item">
+                <a href="{{ path('home_new_workspace') }}" class="workspace-dropdown__option">
+                    <span class="workspace-icon workspace-icon--add">{% include 'icon-plus-small.svg' %}</span>
+                    <span class="workspace-dropdown__name">{{ 'base.new'|trans }}</span>
+                </a>
+            </li>
+            {% if can_view_log() %}
+                <li class="workspace-dropdown__divider"></li>
+                <li class="workspace-dropdown__item">
+                    <a href="{{ path('workspace_admin_index') }}" class="workspace-dropdown__setting">
+                        {{ 'base.settings'|trans }}
+                        {% include 'icon-settings.svg' %}
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>

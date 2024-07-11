@@ -1,0 +1,31 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'base.admin'|trans }}</h1>
+    <h2>{{ 'base.workspaces'|trans }}</h2>
+    <div class="table-wrapper">
+        <table class="table">
+            <tr>
+                <th colspan="2">Workspace</th>
+                <th>Status</th>
+                <th>Notiz</th>
+            </tr>
+            <tbody>
+            {% for workspace in workspaces.items %}
+                <tr>
+                    <td>{{ workspace.id }}</td>
+                    <td>
+                        <a href="{{ path('admin_workspace_index', {'workspace': workspace.id}) }}">
+                            {{ workspace.slug }} / {{ workspace.name }}
+                        </a>
+                    </td>
+                    <td>{{ workspace.status }}</td>
+                    <td>{{ workspace.adminNotice }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+

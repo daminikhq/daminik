@@ -1,0 +1,51 @@
+.file-table {
+  $table: &;
+
+  &__table {
+    border-spacing: 0 0.5rem;
+    text-align: left;
+    width: 100%;
+  }
+
+  &__row {
+    overflow: hidden;
+    border-radius: border-radius(m);
+  }
+
+  &__head-col {
+    padding: 0.5rem 0.75rem;
+  }
+
+  &__col {
+    margin: 0.5rem 0;
+    padding: 0.5rem 0.75rem;
+    overflow: hidden;
+
+    &:first-child {
+      border-top-left-radius: border-radius(m);
+      border-bottom-left-radius: border-radius(m);
+    }
+
+    &:last-child {
+      border-top-right-radius: border-radius(m);
+      border-bottom-right-radius: border-radius(m);
+    }
+
+    #{$table}__row:hover & {
+      background-color: var(--neutral-100, #{$color-neutral-100});
+    }
+
+    #{$table}__row.is-checked &, /* Todo: Fallback for Firefox, where "has()" is not supported */
+    #{$table}__row:has(.checkbox__input:checked) & {
+      background-color: var(--blue-50, #{$color-blue-50});
+    }
+  }
+
+  &__favorite {
+    visibility: hidden;
+
+    #{$table}__row:hover & {
+      visibility: visible;
+    }
+  }
+}

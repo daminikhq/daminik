@@ -1,0 +1,45 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}RegistrationCode index{% endblock %}
+
+{% block body %}
+    <h1>RegistrationCode index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Ref</th>
+                <th>AdminNotice</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>ValidUntil</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for registration_code in registration_codes %}
+            <tr>
+                <td>{{ registration_code.id }}</td>
+                <td>{{ registration_code.code }}</td>
+                <td>{{ registration_code.ref|default }}</td>
+                <td>{{ registration_code.adminNotice|default }}</td>
+                <td>{{ registration_code.createdAt ? registration_code.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ registration_code.updatedAt ? registration_code.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ registration_code.validUntil ? registration_code.validUntil|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_registrationcode_show', {'id': registration_code.id}) }}">show</a>
+                    <a href="{{ path('admin_registrationcode_edit', {'id': registration_code.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_registrationcode_new') }}">Create new</a>
+{% endblock %}

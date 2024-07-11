@@ -1,0 +1,166 @@
+.sidebar {
+  $sidebar: &;
+
+  background-color: var(--white, #{$color-white});
+  padding: 0 space(sm);
+  height: auto;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  position: sticky;
+  top: 0;
+  border-bottom-left-radius: border-radius(ml);
+  border-bottom-right-radius: border-radius(ml);
+
+  @include breakpoint(navigation) {
+    border-radius: border-radius(ml);
+    position: relative;
+    top: auto;
+    height: 100%;
+    padding: 1.5rem space(sm);
+
+    .has-subsidebar & {
+      padding: 1.5rem space(xss);
+    }
+
+    & > * + * {
+      margin-top: space(ml);
+    }
+  }
+
+  body:not(.no-js) & {
+    @include breakpoint(navigation-max) {
+      height: 100%;
+    }
+  }
+
+  &__menu {
+    display: grid;
+    grid-template-rows: max-content minmax(0, 1fr) max-content;
+    grid-template-columns: minmax(0, 1fr);
+    grid-gap: 1.75rem;
+
+    body:not(.no-js) & {
+      @include breakpoint(navigation-max) {
+        display: none;
+        position: absolute;
+        top: $headbar-height-mobile;
+        left: 0;
+        width: 100%;
+        height: calc(100% - $headbar-height-mobile);
+        background: var(--white, #{$color-white});
+        z-index: 100;
+        padding: 0.5rem space(sm);
+
+        &.is-visible {
+          display: grid;
+        }
+      }
+    }
+  }
+
+  &__mobile {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    height: 3.5rem;
+
+    @include breakpoint(navigation) {
+      display: none;
+    }
+  }
+
+  &__logo {
+    display: block;
+  }
+
+  &__header {
+
+  }
+
+  &__navigation {
+    padding: 0.25rem 0; // kk: prevent cutting off focus style
+
+    @include breakpoint(lg) {
+      overflow: auto;
+    }
+  }
+
+  &__profile {
+    position: relative;
+    display: flex;
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+    align-items: center;
+    min-height: 2.625rem;
+
+    @include breakpoint(md) {
+      align-self: end;
+    }
+  }
+
+  &__profile-thumbnail {
+    flex: 0 0 auto;
+  }
+
+  &__profile-action {
+    flex: 0 0 auto;
+
+    .has-subsidebar & {
+      @include breakpoint(lg) {
+        display: none;
+      }
+    }
+  }
+
+  &__profile-info {
+    flex: 0 1 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--neutral-900, #{$color-neutral-900});
+
+    &:hover {
+      color: var(--neutral-700, #{$color-neutral-700});
+    }
+
+    .has-subsidebar & {
+      @include breakpoint(md) {
+        display: none;
+      }
+    }
+  }
+
+  &__profile-name {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: font-size(s);
+    line-height: 1.2;
+  }
+
+  &__profile-mail {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: font-size(xs);
+    color: var(--neutral-500, #{$color-neutral-500});
+    line-height: 1.2;
+  }
+
+  body.no-js & {
+    .logo,
+    .burger {
+      display: none;
+    }
+
+    .logo {
+      @include breakpoint(navigation) {
+        display: flex;
+      }
+    }
+  }
+}

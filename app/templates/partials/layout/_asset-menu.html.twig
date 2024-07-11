@@ -1,0 +1,27 @@
+<ul class="navigation">
+    <li class="navigation__item">
+        <a class="navigation__link{% if app.request.get('_route') == 'workspace_index' %} current{% endif %}" href="{{ path('workspace_index') }}">
+            <span class="navigation__icon">{% include 'icon-home.svg' %}</span> <span class="navigation__title">{{ 'file.allAssets'|trans }}</span>
+        </a>
+    </li>
+    <li class="navigation__item">
+        <a class="navigation__link{% if app.request.get('_route') == 'workspace_folder_index' %} current{% endif %}" href="{{ path('workspace_folder_index') }}">
+            <span class="navigation__icon">{% include 'icon-folder.svg' %}</span> <span class="navigation__title">{{ 'file.folders'|trans }}</span>
+        </a>
+    </li>
+    <li class="navigation__item">
+        <a class="navigation__link{% if app.request.get('_route') == 'workspace_collection_index' %} current{% endif %}" href="{{ path('workspace_collection_index') }}">
+            <span class="navigation__icon">{% include 'icon-collections.svg' %}</span> <span class="navigation__title">{{ 'file.collections'|trans }}</span>
+        </a>
+    </li>
+    <li class="navigation__item">
+        <a class="navigation__link{% if app.request.get('_route') == 'workspace_favorites' %} current{% endif %}" href="{{ path('workspace_favorites') }}">
+            <span class="navigation__icon">{% include 'icon-star-filled.svg' %}</span> <span class="navigation__title">{{ 'file.favorites'|trans }}</span>
+        </a>
+    </li>
+    <li class="navigation__item">
+        <a class="navigation__link{% if app.request.get('_route') == 'workspace_bin' %} current{% endif %}" href="{{ path('workspace_bin') }}">
+            <span class="navigation__icon">{% include 'icon-trash.svg' %}</span> <span class="navigation__title">{{ 'base.bin'|trans }}</span>
+        </a>
+    </li>
+</ul>

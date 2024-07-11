@@ -1,0 +1,27 @@
+<form method="post" class="form">
+    <fieldset>
+        <label for="username">{{ 'label.email'|trans({}, 'form') }}</label>
+        <input type="email" required id="username" name="_username"
+               value="{{ lastUsername|default }}">
+    </fieldset>
+
+    <fieldset>
+        <label for="password">
+            {{ 'label.password'|trans({}, 'form') }}
+            <a href="{{ path('request_reset_password') }}">
+                {{ 'registration.forgotPassword'|trans }}
+            </a>
+        </label>
+        <input type="password" required id="password" name="_password">
+    </fieldset>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    <fieldset class="has-button-fullwidth">
+        <button type="submit" class="button">
+            {{ 'button.login'|trans({}, 'form') }}
+        </button>
+    </fieldset>
+    <div class="form__footer">
+        {{ 'registration.noAccountYet'|trans({'{url}': path('register')})|raw }}
+    </div>
+</form>

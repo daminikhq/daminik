@@ -1,0 +1,57 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    <section class="file-list" {{ stimulus_controller('filelist')|stimulus_controller('pagination') }}>
+        <div class="file-list__header">
+            <div class="file-list__header-left">
+                <h1>{{ 'file.collections'|trans }} <span class="count-badge">{{ collections.items|length }}</span></h1>
+            </div>
+            <div class="file-list__header-right">
+                {% if form and can_create_collection() %}
+                    <button class="button button--function" {{ stimulus_action('filelist', 'newCollection') }}>
+                        {{ 'collection.create'|trans }}
+                        {% include 'icon-plus-small.svg' %}
+                    </button>
+                {% endif %}
+            </div>
+        </div>
+        <div class="collection-grid">
+            {% for collection in collections.items %}
+                <div class="collection-grid__item">
+                    <div class="collection-grid__thumbnail">
+                        <div class="collection-grid__thumbnail-items has-{{ collection.files|length|default('0') }}-items">
+                            {% for file in collection.files %}
+                                <div class="collection-grid__thumbnail-item">
+                                    <img src="{{ file|thumbnailUrl }}" alt="{{ file.title }}" class="collection-grid__thumbnail-image" />
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a href="{{ path('workspace_collection_collection', {slug: collection.slug}) }}" class="collection-grid__collection-link">{{ collection.title }}</a>
+                    {% if collection.public %}
+                        <span class="collection-grid__item-public">
+                            {% include 'icon-share.svg' %}
+                        </span>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {% if form and can_create_collection() %}
+            {% component Modal with {
+                title: 'collection.new'|trans,
+                id: 'modal-new-collection',
+                size: 'small',
+                'data-filelist-target': 'modalnewcollection'
+            } %}
+                {% block content %}
+                    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+                    {{ form_end(form) }}
+                {% endblock %}
+            {% endcomponent %}
+        {% endif %}
+    </section>
+    <!-- Pagination analog zu files: collections.page collections.pages collections.limit collections.items -->
+{% endblock %}
+

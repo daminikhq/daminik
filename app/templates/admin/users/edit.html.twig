@@ -1,0 +1,31 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block body %}
+    <h1>{{ userToEdit.username }}</h1>
+    {{ form_start(form) }}
+    {{ form_end(form) }}
+    <hr>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Workspace</th>
+            <th>Rolle</th>
+        </tr>
+        </thead>
+        <tbody>
+    {% for membership in userToEdit.memberships %}
+        <tr>
+            <td>
+                <a href="{{ path('admin_workspace_index', {'workspace': membership.workspace.id}) }}">
+                    {{ membership.workspace.slug }} / {{ membership.workspace.name }}
+                </a>
+            </td>
+            <td>
+                {{ membership|highestRole }}
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

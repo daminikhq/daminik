@@ -1,0 +1,100 @@
+.navigation {
+  $this: &;
+
+  @include list-reset();
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+
+  &__divider {
+    width: 100%;
+    height: 0;
+    border-bottom: 2px dotted var(--neutral-300, #{$color-neutral-300});
+    margin: 1rem 0;
+  }
+
+  &__item {
+    & + & {
+      margin-top: 0.25rem;
+    }
+  }
+
+  &__title {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+    white-space: nowrap;
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--neutral-100, #{$color-neutral-100});
+    border-radius: border-radius(m);
+    flex: 0 0 2rem;
+  }
+
+  &__link {
+    @include focus-outline-style() {
+      outline-offset: -2px;
+    }
+
+    text-decoration: none;
+    font-size: font-size(m);
+    font-weight: font-weight(medium);
+    color: var(--neutral-900, #{$color-neutral-900});
+    display: flex;
+    align-items: center;
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: border-radius(l);
+
+    .has-subsidebar & {
+      @include breakpoint(md) {
+        gap: 0;
+      }
+    }
+
+    @include breakpoint(lg) {
+      padding: 0.25rem;
+    }
+
+    #{$this}__icon {
+      path {
+        fill: var(--neutral-900, #{$color-neutral-900});
+      }
+    }
+
+    &:hover {
+      background-color: var(--neutral-100, #{$color-neutral-100});
+      color: var(--neutral-700, #{$color-neutral-700});
+
+      #{$this}__icon {
+        background-color: var(--white, #{$color-white});
+
+        path {
+          fill: var(--neutral-700, #{$color-neutral-700});
+        }
+      }
+    }
+
+    &.current {
+      background-color: var(--neutral-200, #{$color-neutral-200});
+
+      #{$this}__icon {
+        background-color: var(--white, #{$color-white});
+      }
+    }
+
+    .has-subsidebar & {
+      @include breakpoint(md) {
+        justify-content: center;
+      }
+    }
+  }
+}

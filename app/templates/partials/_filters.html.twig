@@ -1,0 +1,31 @@
+<div id="filters" class="filters" tabindex="-1">
+    {% if filterForm is defined and filterForm is not null %}
+        {% form_theme filterForm 'forms/_form-theme.html.twig' %}
+        {{ form_start(filterForm, {'attr': {'class': 'filters__form', 'id': 'filters-form'}}) }}
+
+        <div class="filters__header">
+            <span>{{ 'file.filter'|trans }}</span>
+            <button type="button" class="filters__close button button--small has-icon"
+                {{ stimulus_action('layout', 'toggleSubsidebar') }}>
+                {% include 'icon-x.svg' %}
+                <span class="visually-hidden">{{ 'file.closeFilter'|trans }}</span>
+            </button>
+        </div>
+
+        <div class="filters__content">
+            {% if filterForm.filetype is defined %}
+                {{ form_row(filterForm.filetype) }}
+            {% endif %}
+            {{ form_row(filterForm.tags) }}
+            {{ form_row(filterForm.uploadedby) }}
+            {{ form_row(filterForm.uploadedat) }}
+        </div>
+
+
+        <div class="filters__footer">
+            <button class="button button--small" type="submit">{{ 'base.apply'|trans }}</button>
+            <a href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) }}">{{ 'file.reset'|trans }}</a>
+        </div>
+        {{ form_end(filterForm) }}
+    {% endif %}
+</div>

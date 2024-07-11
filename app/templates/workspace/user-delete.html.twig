@@ -1,0 +1,6 @@
+{% extends 'base_settings.html.twig' %}
+
+{% block body %}
+    User {{ membership.user.username|default }} löschen?
+{{ form_start(form) }}{{ form_end(form) }}
+{% endblock %}

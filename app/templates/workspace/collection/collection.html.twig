@@ -1,0 +1,57 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    {{ component('Breadcrumb', {collection: collection}) }}
+
+    {% if files|length > 0 %}
+        <section class="file-list" {{ stimulus_controller('fileselection')|stimulus_controller('pagination') }}>
+            <div class="file-list__header">
+                <div class="file-list__header-left">
+                    <h1>{{ collection.title }} <span class="count-badge">{{ files.total }}</span></h1>
+                    <share-button class="button button--function" title="{{ 'collection.share'|trans }}"
+                                  url="{{ app.request.uri }}" shareLabel="{{ 'base.share'|trans }}"
+                                  label="{{ 'base.copy'|trans }}" pressedLabel="{{ 'base.copied'|trans }}">
+                        {{ 'base.share'|trans }}
+                    </share-button>
+                </div>
+                <div class="file-list__header-right">
+                    {{ component('FileSelectionButtons') }}
+                    {{ component('FileSortingMenu') }}
+                    <div class="context-menu" {{ stimulus_controller('dropdown') }}>
+                        <button class="context-menu__toggle button button--function has-icon"
+                                id="context-menu-toggle" aria-haspopup="menu" aria-controls="collection-nav"
+                                {{ stimulus_target('dropdown', 'toggle') }} {{ stimulus_action('dropdown', 'toggle') }}>
+                            {% include 'icon-dots.svg' %}
+                            <span class="visually-hidden">{{ 'base.contextMenu'|trans }} {{ 'file.collections'|trans }}</span>
+                        </button>
+                        <ul class="context-menu__menu" id="collection-nav"
+                            aria-labelledby="context-menu-toggle"
+                            {{ stimulus_target('dropdown', 'menu') }}>
+                            <li class="context-menu__item">
+                                <a href="{{ path('workspace_collection_config', {slug: collection.slug}) }}"
+                                   class="context-menu__link" title="{{ 'collection.config'|trans }}">
+                                    {{ 'collection.config'|trans }}
+                                    {% include 'icon-pen.svg' %}
+                                </a>
+                            </li>
+                            <li class="context-menu__item">
+                                <a href="{{ path('workspace_collection_delete', {slug: collection.slug}) }}"
+                                   class="context-menu__link" title="{{ 'collection.delete.title'|trans }}">
+                                    {{ 'collection.delete.title'|trans }}
+                                    {% include 'icon-trash.svg' %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% if view.value|default('') is same as('list') %}
+                {% include 'partials/_file-table.html.twig' with {'files': files} %}
+            {% else %}
+                {% include 'partials/_file-grid.html.twig' with {'files': files} %}
+            {% endif %}
+            {% include 'partials/_pagination.html.twig' with {'pages': files.pages, 'page': page} %}
+        </section>
+    {% endif %}
+{% endblock %}
+

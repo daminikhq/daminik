@@ -1,0 +1,27 @@
+<ul class="navigation">
+    <li class="navigation__item">
+        <a class="navigation__link" href="{{ path('workspace_index') }}">
+            <span class="navigation__icon">{% include 'icon-home.svg' %}</span> <span>{{ 'base.backToApp'|trans }}</span>
+        </a>
+    </li>
+    <li class="navigation__divider"></li>
+    <li class="navigation__item">
+        <a class="navigation__link{% if app.request.get('_route') == 'workspace_admin_index' %} current{% endif %}" href="{{ path('workspace_admin_index') }}">
+            <span class="navigation__icon">{% include 'icon-pen.svg' %}</span> <span class="navigation__title">{{ 'base.settings'|trans }}</span>
+        </a>
+    </li>
+    {% if can_edit_users() %}
+        <li class="navigation__item">
+            <a class="navigation__link{% if app.request.get('_route') == 'workspace_admin_users' %} current{% endif %}" href="{{ path('workspace_admin_users') }}">
+                <span class="navigation__icon">{% include 'icon-user.svg' %}</span> <span class="navigation__title">{{ 'base.members'|trans }}</span>
+            </a>
+        </li>
+    {% endif %}
+    {% if can_view_log() %}
+        <li class="navigation__item">
+            <a class="navigation__link{% if app.request.get('_route') == 'workspace_log_index' %} current{% endif %}" href="{{ path('workspace_log_index') }}">
+                <span class="navigation__icon">{% include 'icon-document.svg' %}</span> <span class="navigation__title">{{ 'base.log'|trans }}</span>
+            </a>
+        </li>
+    {% endif %}
+</ul>

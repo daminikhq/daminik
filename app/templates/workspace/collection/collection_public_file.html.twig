@@ -1,0 +1,25 @@
+{% extends 'base_external.html.twig' %}
+
+{% block title %}
+    {{ file.title ?? file.filename ?? 'File' }}
+{% endblock %}
+
+{% block body %}
+    {% set width = file.width|default(1) %}
+    {% set height = file.height|default(1) %}
+    <div class="m-flow">
+        <button onclick="history.back()" class="button button--grey">Zurück</button>
+        <a href="{{ file|publicUrl }}" download="true">
+            <img
+                src="{{ file|publicUrl }}"
+                width="{{ width }}" height="{{ height }}"
+                alt="{{ file.filename }}">
+        </a>
+    </div>
+    {#
+    {{ dump(workspace) }}
+    {{ dump(collection) }}
+    {{ dump(file) }}
+    #}
+{% endblock %}
+

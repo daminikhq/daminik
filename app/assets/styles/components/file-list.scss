@@ -1,0 +1,29 @@
+.file-list {
+  @include flow(space(m));
+
+  &__header {
+    display: flex;
+    gap: 1rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__header-left,
+  &__header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  &__header-center {
+    flex: 1 0 auto;
+  }
+
+  &__sorting {
+    display: flex;
+    grid-gap: space(xs);
+    gap: space(xs);
+  }
+}

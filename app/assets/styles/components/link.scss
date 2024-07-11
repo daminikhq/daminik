@@ -1,0 +1,15 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  font-weight: font-weight(medium);
+  color: var(--neutral-900, $color-neutral-900);
+  text-decoration: underline;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--neutral-800, $color-neutral-800);
+    text-decoration: none;
+  }
+}

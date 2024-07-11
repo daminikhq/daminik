@@ -1,0 +1,32 @@
+.skip-link {
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-600, #{$color-blue-600});
+  color: var(--white, #{$color-white});
+  font-weight: font-weight(medium);
+  border-bottom-right-radius: border-radius(medium);
+  border-bottom-left-radius: border-radius(medium);
+  min-height: 2.5rem;
+  bottom: 100%;
+  left: 50%;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  transform: translate(0, -50%);
+  transition: transform 0.3s ease-out, background-color 0.3s ease-out;
+  z-index: z-index(skip);
+  text-align: center;
+
+  a {
+    display: inline;
+    color: var(--white, #{$color-white});
+  }
+
+  a:hover {
+    color: var(--neutral-100, #{$color-neutral-100});
+  }
+
+  &:focus-within {
+    transform: translate(100%, -50%);
+  }
+}

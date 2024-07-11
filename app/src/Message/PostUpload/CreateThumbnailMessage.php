@@ -1,0 +1,22 @@
+<?php
+
+namespace App\Message\PostUpload;
+
+final readonly class CreateThumbnailMessage
+{
+    public function __construct(
+        private int $fileId,
+        private ?int $revisionId = null
+    ) {
+    }
+
+    public function getFileId(): int
+    {
+        return $this->fileId;
+    }
+
+    public function getRevisionId(): ?int
+    {
+        return $this->revisionId;
+    }
+}

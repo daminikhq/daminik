@@ -1,0 +1,59 @@
+.search-form {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0 1rem 0 3rem;
+  height: 2.5rem;
+  border: 1px solid var(--neutral-500, #{$color-neutral-500});
+  border-radius: border-radius(xl);
+  font-size: font-size(s);
+  color: var(--neutral-900, #{$color-neutral-900});
+  background-color: var(--white, #{$color-white});
+  font-family: $font-base;
+
+  &:focus-within {
+    @include focus-styles();
+  }
+
+  &:hover {
+    border-color: var(--neutral-700, #{$color-neutral-700});
+  }
+
+  &__label {
+    @include visually-hidden;
+  }
+
+  &__submit {
+    @include focus-outline-style();
+    @include button-reset();
+
+    position: absolute;
+    top: 50%;
+    left: 0.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: -0.75rem;
+  }
+
+  &__input {
+    -webkit-appearance: none;
+    border: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--white, #{$color-white});
+
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      height: 14px;
+      width: 14px;
+      display: block;
+      background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAn0lEQVR42u3UMQrDMBBEUZ9WfQqDmm22EaTyjRMHAlM5K+Y7lb0wnUZPIKHlnutOa+25Z4D++MRBX98MD1V/trSppLKHqj9TTBWKcoUqffbUcbBBEhTjBOV4ja4l4OIAZThEOV6jHO8ARXD+gPPvKMABinGOrnu6gTNUawrcQKNCAQ7QeTxORzle3+sDfjJpPCqhJh7GixZq4rHcc9l5A9qZ+WeBhgEuAAAAAElFTkSuQmCC);
+      background-repeat: no-repeat;
+      background-size: 14px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

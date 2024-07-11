@@ -1,0 +1,12 @@
+{% extends 'base_loggedout.html.twig' %}
+
+{% block title %}🔐 {{ 'registration.registration'|trans }}{% endblock %}
+
+{% block body %}
+    <h2>{{ 'registration.registration'|trans }}</h2>
+    <p>{{ 'registration.success'|trans }}</p>
+    {% if resendMailForm %}
+        {{ form_start(resendMailForm) }}
+        {{ form_end(resendMailForm) }}
+    {% endif %}
+{% endblock %}

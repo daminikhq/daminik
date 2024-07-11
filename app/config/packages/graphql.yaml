@@ -1,0 +1,14 @@
+overblog_graphql:
+    definitions:
+        schema:
+            query: Query
+            mutation: Mutation
+            subscription: Subscription
+            types:
+                asset: Asset
+        mappings:
+            types:
+                -
+                    type: graphql
+                    dir: "%kernel.project_dir%/config/graphql/types"
+                    suffix: null

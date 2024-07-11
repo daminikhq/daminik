@@ -1,0 +1,46 @@
+{% trans_default_domain 'email' %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        a {
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+<div style="font-family: Arial, sans-serif; text-align: center; line-height: 1.6;">
+    <header style="margin-bottom: 48px;">
+        <p>
+            <a href="{{ absolute_url(path('home_index')) }}">
+                <img title="Daminik" alt="Daminik" width="136" src="https://cdn.daminik.com/dam-2024-91b1f1b/daminik/dami/daminik-logo-email.png">
+            </a>
+        </p>
+    </header>
+
+    {% block body %}{% endblock %}
+
+    <p>
+        Cheers!
+    </p>
+
+    <footer style="font-size: 12px; color: #404040; margin-top: 48px;">
+        <p>
+            <a href="{{ path('home_index') }}">{{ 'base.domain'|trans }}</a>
+        </p>
+        <p>
+            {{ 'base.address'|trans }}
+            <br>
+            {{ 'base.phone'|trans }}
+        </p>
+        <p>
+            {{ 'base.impressum1'|trans }}
+            <br>
+            {{ 'base.impressum2'|trans }}
+        </p>
+    </footer>
+</div>
+</body>
+</html>

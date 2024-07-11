@@ -1,0 +1,7 @@
+@function line-height($key) {
+  @return map-get($line-height, $key);
+}
+
+@mixin line-height($key) {
+  line-height: line-height($key);
+}

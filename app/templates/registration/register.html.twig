@@ -1,0 +1,23 @@
+{% extends 'base_loggedout.html.twig' %}
+
+{% block title %}🔐 {{ 'registration.registration'|trans }}{% endblock %}
+
+{% block body %}
+    <h1 class="text-align-center">{{ 'registration.register'|trans }}</h1>
+    <p class="text-align-center">{{ 'registration.intro'|trans({'contact_email': contact_email})|raw }}</p>
+
+    {% if inviter and workspace %}
+        <p>
+            {{ 'registration.receivedInvitation'|trans({'inviter': inviter.email, 'workspace': workspace.name}) }}
+        </p>
+        <p><a href="{{ path('login', {'invitation': invitationCode}) }}">{{ 'registration.logintoReceivedInvitation'|trans({'workspace': workspace.name}) }}</a></p>
+    {% endif %}
+
+    {{ form_start(registrationForm, {'attr': {'class': 'form'}}) }}
+    {{ form_row(registrationForm.email) }}
+    {% if registrationForm.inviteCode is defined %}
+        {{ form_row(registrationForm.inviteCode) }}
+    {% endif %}
+    {{ form_row(registrationForm.submit, {'row_attr': {'class': 'has-button-fullwidth'}}) }}
+    {{ form_end(registrationForm) }}
+{% endblock %}

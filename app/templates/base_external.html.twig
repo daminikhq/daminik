@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ app.locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{{ 'base.pageTitle'|trans }}{% endblock %}</title>
+        <meta name="description" content="{{ 'base.pageDesc'|trans }}">
+        <meta name="view-transition" content="same-origin">
+        {% block og %}
+            <meta property="og:image" content="https://cdn.daminik.com/dam-2024-91b1f1b/daminik/og-i/og-image.png" />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:type" content="website" />
+            <meta property="og:description" content="{{ 'base.pageDesc'|trans }}" />
+            <meta property="og:locale" content="{{ app.locale == 'de' ? 'de_DE' : 'en_GB' }}" />
+        {% endblock %}
+
+        {% include 'partials/_icons.html.twig' %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+        <script defer data-domain="daminik.com" src="https://plausible.io/js/script.js"></script>
+    </head>
+    <body class="no-js
+        {% if app.session.flashbag.peekAll()|length > 0 %} has-flashes{% endif %}"
+            {{ stimulus_target('body', 'body') }}
+            {{ stimulus_controller('body')|stimulus_controller('flashes') }}>
+        <div class="skip-link">
+            <a href="#main">{{ 'base.skipToContent'|trans }}</a>
+        </div>
+        {% include 'partials/layout/_flashes.html.twig' %}
+        <div class="layout external {% block layoutClasses %}{% endblock %}">
+            <header class="external__header">
+                <a href="{{ path('home_index') }}" class="logo logo--round logo--small logo--alpha">
+                    {% include 'D-round.svg' %}
+                </a>
+                <nav class="external__meta">
+                    {% include 'partials/layout/_meta-menu.html.twig' %}
+                </nav>
+            </header>
+            <div class="container">
+                <main id="main" class="content">
+                    {% block body %}{% endblock %}
+                </main>
+            </div>
+        </div>
+    </body>
+</html>

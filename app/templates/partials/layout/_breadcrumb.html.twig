@@ -1,0 +1,21 @@
+{% if breadcrumb %}
+<ul class="breadcrumb">
+    <li class="breadcrumb__item">
+        <a href="{{ path('workspace_folder_index') }}" class="breadcrumb__link" title="{{ 'file.folders'|trans }}">
+            {{ 'file.folders'|trans }}
+        </a>
+    </li>
+    {% for item in breadcrumb %}
+        <li class="breadcrumb__item">
+            <a href="{{ path('workspace_folder_index', {slug: item.slug}) }}"
+               class="breadcrumb__link" title="{{ item.title }}">
+                {{ item.title }}
+            </a>
+        </li>
+    {% endfor %}
+    <li class="breadcrumb__item">
+        <span class="breadcrumb__current" title="{{ category.title }}">{{ category.title }}</span>
+        {#                <span class="count-badge">{{ category.assetCount|default(0) }}</span>#}
+    </li>
+</ul>
+{% endif %}

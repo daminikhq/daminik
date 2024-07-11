@@ -1,0 +1,269 @@
+.file-grid-item {
+  $this: &;
+
+  --row-height: 120px;
+
+  @include breakpoint(md) {
+    --row-height: 200px;
+  }
+
+  cursor: pointer;
+  flex-basis: calc(var(--thumbnail-aspect-ratio)*var(--row-height));
+  flex-grow: calc(var(--thumbnail-aspect-ratio)*100);
+  margin-bottom: space(sm);
+  margin-right: space(sm);
+  overflow: hidden;
+  position: relative;
+  z-index: 0;
+
+  &__figure {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: border-radius(m);
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-image: url('data:image/svg+xml,<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_356_3715)"><rect width="16" height="16" fill="white"/><rect width="8" height="8" fill="%23E5E5E5"/><rect width="8" height="8" transform="translate(8 8)" fill="%23E5E5E5"/></g><defs><clipPath id="clip0_356_3715"><rect width="16" height="16" fill="white"/></clipPath></defs></svg>');
+    background-repeat: repeat;
+  }
+
+  &__image {
+    display: block;
+    max-width: none;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+    &.is-contained {
+      object-fit: contain;
+    }
+  }
+
+  &__caption {
+    @include focus-outline-style();
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__handle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color-black, 0.64);
+    padding: 0.75rem 2.75rem 0.75rem 0.75rem;
+    color: $color-white;
+    font-weight: 500;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.2s ease-out, background-color 0.2s ease-out;
+
+    &:hover {
+      color: $color-white;
+    }
+
+    .is-selection-enabled &,
+    #{$this}__select:checked + #{$this}__caption &,
+    #{$this}__select:focus + #{$this}__caption &,
+    #{$this}__caption:hover &,
+    #{$this}__caption:focus-within & {
+      opacity: 1;
+    }
+
+    #{$this}__select:checked + #{$this}__caption & {
+      background-color: rgba($color-blue-900, 0.64);
+    }
+  }
+
+  &__title {
+    @include line-clamp();
+
+    padding: 0 0.5rem;
+
+    #{$this}__handle:focus-visible & {
+      outline-style: solid;
+      outline-width: 2px;
+      outline-color: var(--blue-700, #{$color-blue-700});
+      outline-offset: 4px;
+      border-radius: border-radius(s);
+    }
+  }
+
+  &__favorite {
+    --favorite-button-stroke-color: var(--white, #{$color-white});
+    --favorite-button-fill-color: transparent;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: calc(1rem + 18px);
+    height: calc(1rem + 18px);
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+    @include breakpoint(md) {
+      width: calc(1.5rem + 18px);
+      height: calc(1.5rem + 18px);
+    }
+
+    &:hover {
+      --favorite-button-fill-color: #{color-var(--white-50a, $color-white-50a)};
+    }
+
+    &[pressed="true"] {
+      --favorite-button-fill-color: var(--white, #{$color-white});
+      --favorite-button-stroke-color: transparent;
+
+      &:hover {
+        --favorite-button-stroke-color: var(--white, #{$color-white});
+        --favorite-button-fill-color: #{color-var(--white-75a, $color-white-75a)};
+      }
+    }
+
+    &[pressed="true"],
+    #{$this}__select:checked + #{$this}__caption &,
+    #{$this}__select:focus + #{$this}__caption &,
+    .is-selection-enabled &,
+    #{$this}__caption:hover &,
+    #{$this}__caption:focus-within & {
+      opacity: 1;
+    }
+  }
+
+  &__select {
+    @include visually-hidden;
+  }
+
+  &__checkbox {
+    pointer-events: none;
+  }
+
+  &__checkbox-circle {
+    fill: transparent;
+    transition: fill 0.2s ease-out;
+  }
+
+  &__select-label {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    cursor: pointer;
+    width: calc(1.5rem + 20px);
+    height: calc(1.5rem + 20px);
+    padding: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+    &:hover {
+      #{$this}__checkbox-circle {
+        fill: rgba(var(--white, #{$color-white}), 0.5);
+      }
+    }
+
+    #{$this}__select:focus + #{$this}__caption & {
+      outline: none;
+    }
+
+    #{$this}__select:focus-visible + #{$this}__caption & {
+      outline-offset: -2px;
+      outline-style: solid;
+      outline-width: 2px;
+      outline-color: var(--blue-700, #{$color-blue-700});
+      border-radius: border-radius(m);
+    }
+
+    #{$this}__select:checked + #{$this}__caption & {
+      #{$this}__checkbox-circle {
+        fill: var(--blue-600, #{$color-blue-600});
+      }
+
+      #{$this}__checkbox-check {
+        stroke: var(--white, #{$color-white});
+      }
+    }
+
+    #{$this}__select:checked + #{$this}__caption &:hover {
+      #{$this}__checkbox-circle {
+        fill: rgba(var(--blue-800, #{$color-blue-800}), 0.5);
+      }
+    }
+
+    #{$this}__select:checked + #{$this}__caption &,
+    #{$this}__select:focus + #{$this}__caption &,
+    #{$this}__caption:hover &,
+    #{$this}__caption:focus-within & {
+      opacity: 1;
+    }
+
+    .is-selection-enabled & {
+      opacity: 1;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__type {
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0.5rem;
+
+    @include breakpoint(md) {
+      bottom: 0.75rem;
+      left: 0.75rem;
+    }
+  }
+
+  &__view {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+    svg {
+      color: var(--white, $color-white);
+    }
+
+    #{$this}__caption:hover &,
+    #{$this}__caption:focus-within & {
+      opacity: 1;
+    }
+  }
+
+  &__download {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+
+    svg {
+      color: var(--white, $color-white);
+    }
+
+    #{$this}__caption:hover &,
+    #{$this}__caption:focus-within & {
+      opacity: 1;
+    }
+  }
+}

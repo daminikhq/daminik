@@ -1,0 +1,118 @@
+.dropdown {
+  $this: &;
+
+  position: relative;
+  display: flex;
+  color: var(--neutral-700, #{$color-neutral-700});
+  min-height: 2.5rem;
+  cursor: pointer;
+  border-radius: border-radius(m);
+
+  &--small {
+    min-height: 2rem;
+  }
+
+  &__title {
+    @include button-reset;
+    @include focus-outline-style();
+
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background-color: var(--white, #{$color-white});
+    border-radius: border-radius(m);
+    border: 1px solid var(--neutral-300, #{$color-neutral-300});
+    cursor: pointer;
+
+    #{$this}:hover &,
+    #{$this}:focus-within & {
+      border-color: var(--neutral-300, #{$color-neutral-300});
+    }
+
+    #{$this}--transparent & {
+      border: 1px solid transparent;
+      background-color: var(--white, #{$color-white});
+    }
+
+    body:not(.no-js) #{$this}--transparent:hover & {
+      border-color: var(--neutral-300, #{$color-neutral-300});
+    }
+
+    body.no-js #{$this}--transparent:focus-within &,
+    body.no-js #{$this}--transparent:hover &,
+    #{$this}--transparent.is-open & {
+      border-color: var(--neutral-300, #{$color-neutral-300});
+    }
+  }
+
+  &__menu {
+    @include list-reset;
+
+    position: absolute;
+    min-width: 100%;
+    top: 100%;
+    display: none;
+    background-color: var(--white, #{$color-white});
+    border: 1px solid var(--neutral-300, #{$color-neutral-300});
+    border-radius: border-radius(m);
+    padding: 0;
+    z-index: z-index(dropdown);
+    margin-top: 0.25rem;
+    overflow: hidden;
+
+    #{$this}.is-open &,
+    body.no-js #{$this}:hover &,
+    #{$this}:focus-within & {
+      border-color: var(--neutral-300, #{$color-neutral-300});
+    }
+
+    body.no-js #{$this}:focus-within &,
+    body.no-js #{$this}:hover &,
+    #{$this}.is-open & {
+      display: block;
+      z-index: 1;
+    }
+
+    body.no-js #{$this}--transparent:focus-within &,
+    body.no-js #{$this}--transparent:hover &,
+    #{$this}--transparent.is-open & {
+      border-color: var(--neutral-300, #{$color-neutral-300});
+    }
+  }
+
+  &__current {
+    display: flex;
+    align-items: center;
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+    text-align: left;
+  }
+
+  &__chevron {
+    svg {
+      display: block;
+      height: 1.5rem;
+    }
+  }
+
+  &__option {
+    color: currentColor;
+    text-decoration: none;
+    display: flex;
+    padding: 0.5rem 0.5rem;
+    align-items: center;
+    grid-gap: 0.5rem;
+    gap: 0.5rem;
+    text-align: left;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--neutral-100, #{$color-neutral-100});
+      }
+    }
+  }
+}

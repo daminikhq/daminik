@@ -1,0 +1,31 @@
+.form {
+  @include flow(space(m));
+
+  &--narrow {
+    max-width: 40rem;
+  }
+
+  &__label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: space(s);
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: space(xs);
+  }
+
+  &__footer {
+    margin-top: space(s);
+    font-size: font-size(s);
+  }
+
+  .is-sticky {
+    position: sticky;
+    bottom: 0;
+    background: var(--white, $color-white);
+    padding: 1rem 0 0 0;
+  }
+}

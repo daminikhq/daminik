@@ -1,0 +1,8 @@
+<ul>
+    {% for category in categories %}
+        <li>{{ category.title }}</li>
+            {% if category.children|length > 0 %}
+                    {{ include('workspace/category/admin/category-list.html.twig', {categories: category.children}) }}
+            {% endif %}
+    {% endfor %}
+</ul>

@@ -1,0 +1,13 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    <h1>{{ workspace.name }} Categories</h1>
+    {% if categories|length > 0 %}
+        {{ include('workspace/category/admin/category-list.html.twig', {categories: categories}) }}
+    {% endif %}
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.parent) }}
+    {{ form_row(form.submit, {'row_attr': {'class': 'has-buttons'}}) }}
+    {{ form_end(form) }}
+{% endblock %}

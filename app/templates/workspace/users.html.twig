@@ -1,0 +1,60 @@
+{% extends 'base_settings.html.twig' %}
+
+{% block body %}
+    {{ component('Breadcrumb', {
+        array: [
+            {url: path('workspace_admin_index'), title: 'base.settings'|trans},
+            {url: path('workspace_admin_users'), title: 'base.members'|trans}
+        ]}) }}
+
+    <div class="file-list__header">
+        <div class="file-list__header-left">
+            <h1>{{ 'base.members'|trans }} <span class="count-badge">{{ memberships.items|length }}</span></h1>
+        </div>
+        <div class="file-list__header-right">
+            {% if can_send_invite() %}
+                <a href="{{ path('workspace_admin_invitations') }}" class="button">{{ 'invites.invite'|trans }}</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if memberships.total > 0 %}
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{ 'admin.user.emailadress'|trans }}</th>
+                    <th>{{ 'admin.user.name'|trans }}</th>
+                    <th>{{ 'admin.user.username'|trans }}</th>
+                    <th>{{ 'admin.user.role'|trans }}</th>
+                    <th>{{ 'admin.user.actions'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for membership in memberships.items %}
+                    <tr>
+                        <td>{{ membership.user.email|default }}</td>
+                        <td>{{ membership.user.name|default }}</td>
+                        <td>{{ membership.user.username|default }}</td>
+                        <td>{{ membership|workspaceRole }}</td>
+                        <td>
+                            {% if can_edit_membership(membership) %}
+                                <a href="{{ path('workspace_admin_user_edit', {'userId': membership.user.id|hashid}) }}"
+                                   title="{{ 'admin.user.editShort'|trans }}">{{ 'admin.user.edit'|trans }}</a>
+                            {% endif %}
+                            {% if can_delete_membership(membership) %}
+                                <a href="{{ path('workspace_admin_user_delete', {'userId': membership.user.id|hashid}) }}"
+                                   title="{{ 'admin.user.delete'|trans }}">
+                                    {{ 'admin.user.deleteShort'|trans }}
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'partials/_pagination.html.twig' with {'pages': memberships.pages, 'page': memberships.page} %}
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="{{ app.locale }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ workspace.name }}{% endblock %}</title>
+    <meta name="view-transition" content="same-origin">
+    {% include 'partials/_icons.html.twig' %}
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body class="no-js
+    {% if app.session.flashbag.peekAll()|length > 0 %} has-flashes{% endif %}"
+        {{ stimulus_target('body', 'body') }}
+        {{ stimulus_controller('body')|stimulus_controller('flashes') }}>
+    <div class="skip-link">
+        {{ 'base.skipToSearchOrContent'|trans|raw }}
+    </div>
+    {% include 'partials/layout/_flashes.html.twig' %}
+    <div class="layout workspace {% block layoutClasses %}{% endblock %}"
+            {{ stimulus_controller('layout') }}
+            {{ stimulus_target('layout', 'layout') }}>
+        <nav class="workspace__sidebar" id="nav" {{ stimulus_controller('sidebar') }}>
+            {% include 'partials/layout/_sidebar.html.twig' with { 'menu': 'settings' } %}
+        </nav>
+        <div class="workspace__subsidebar">
+            {% include 'partials/_filters.html.twig' %}
+        </div>
+        <main id="main" class="workspace__main">
+            {% block body %}{% endblock %}
+        </main>
+        <div class="workspace__headbar">
+            <div class="headbar">
+                {% include 'partials/layout/_burger-mockup.html.twig' %}
+                {% if can_upload_asset() and (not (path('workspace_upload_index')
+                    == path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')))) %}
+                    <div class="headbar__upload">
+                        <a class="button" id="upload-trigger-nojs" href="{{ path('workspace_upload_index') }}">
+                            {{ 'file.upload'|trans }}
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<div class="logo{{ centered|default(false) ? ' logo--centered' }}{{ big|default(false) ? ' logo--big' }}">
+    <a href="{{ url|default('/') }}">
+        <!-- Make sure SVG includes class="logo__fullsize" -->
+        {% include 'Daminik.svg' %}
+        <!-- Make sure SVG includes class="logo__collapsed" -->
+        {% include 'D.svg' %}
+        <span class="visually-hidden">Daminik</span>
+    </a>
+</div>

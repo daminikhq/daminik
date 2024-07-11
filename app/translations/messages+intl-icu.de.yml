@@ -1,0 +1,296 @@
+base:
+    pageTitle: 'Daminik - Open Source Digital Asset Manager mit CDN'
+    pageDesc: 'Daminik ist ein einfacher und skalierbarer Digital Asset Manager mit integriertem Content Delivery Network. Die Single Source of Truth für alle deine Assets. Open Source, blitzschnell und DSGVO-konform.'
+    skipToContent: 'Zum Hauptinhalt springen'
+    skipToSearchOrContent: 'Zur <a href="#search">Suche</a> oder zum <a href="#main">Hauptinhalt</a> springen'
+    skipToMenu: 'Zum Menü springen'
+    domain: 'daminik.com'
+    home: 'Zurück zur Startseite'
+    backHome: 'Zurück zur Startseite'
+    landingpageCta: 'Jetzt kostenlos registrieren'
+    landingpageGithub: 'Star on Github'
+    imprint: Impressum
+    termsOfService: Nutzungsbedingungen
+    imprintAndTerms: 'Impressum & AGB'
+    terms: AGB
+    login: Login
+    back: Zurück
+    media: Medien
+    copy: Kopieren
+    copied: Kopiert
+    createWorkspace: 'Workspace anlegen'
+    search: Suche
+    toSearch: Suchen
+    switchWorkspace: 'Workspace wechseln'
+    settings: Einstellungen
+    editProfile: 'Profil bearbeiten'
+    profileMenu: Profilmenü
+    profile: Profil
+    gravatarDesc: 'Wir haben ein Gravatar-Profilbild von dir gefunden. Wenn du dieses Bild gerne bei Gravatar bearbeiten möchtest, kannst du das <a href="https://gravatar.com/" target="_blank">hier</a> tun. Wenn du das Profilbild lediglich überschreiben möchtest, dann kannst du hier einfach ein neues hochladen.'
+    resetAvatar: 'Profilbild zurücksetzen'
+    log: Log
+    logout: Abmelden
+    openMenu: 'Menü öffnen'
+    bin: Papierkorb
+    members: Mitglieder
+    closeModal: 'Modal schließen'
+    share: Teilen
+    resetLogo: 'Logo entfernen'
+    date: Datum
+    user: Benutzer
+    action: Aktion
+    object: Objekt
+    additionalData: 'Zusätzliche Daten'
+    field: Feld
+    old: Alt
+    new: Neu
+    select: Auswahl
+    selectAll: 'Alle auswählen'
+    cancelSelection: 'Auswahl abbrechen'
+    selection: Auswählen
+    contextMenu: Kontextmenü
+    edit: Bearbeiten
+    sorting: Sortierung
+    admin: Administration
+    workspaces: Workspaces
+    users: Benutzer
+    codes: Registrierungscodes
+    refreshPage: 'Bitte aktualisiere die Seite'
+    wait: 'Bitte warten'
+    previousPage: 'Vorherige Seite'
+    nextPage: 'Nächste Seite'
+    loadMore: 'Mehr laden'
+    backToApp: 'Zurück zur App'
+    cancel: Abbrechen
+    apply: Anwenden
+invites:
+    invite: Einladen
+    inviteInstruction: '(Um einen neuen Einladungslink zu generieren, kannst du einfach das Formular ohne E-Mail Adresse abschicken.)'
+    inviteLink: Einladungslink
+    inviteSentMail: 'Der Einladungslink wurde per E-Mail verschickt an {email}.'
+    inviteMailHeadline: 'Hi! Du wurdest zu einem Workspace eingeladen!'
+    inviteMailText: 'Klicke hier, um die Einladung anzunehmen:'
+    inviteMailLink: 'Einladung annehmen'
+    inviteMailSalutation: Cheers!
+    invites: Einladungen
+    invitationAccepted: 'Deine Einladung wurde angenommen!'
+    invitationAcceptedEmailBody: 'Deine Einladung wurde von {email} angenommen.'
+    nameAndEmail: 'Name (E-Mail)'
+    date: Datum
+    action: Aktion
+registration:
+    pleaseConfirm: 'Bestätige deine E-Mail Adresse'
+    registration: Registrierung
+    register: Registrieren
+    intro: 'Wir befinden uns noch in der Alpha-Version von Daminik. Wenn du dich registrieren möchtest, melde dich gerne bei uns unter <a href="mailto:{contact_email}">{contact_email}</a>, um einen Registrierungscode zu erhalten.'
+    success: 'Du hast Dich erfolgreich registiert und bekommst gleich eine E-Mail zur Verifizierung.'
+    verified: 'Deine E-Mail Addresse wurde verifiziert.'
+    passwordReset: 'Du bekommst bald eine E-Mail, um dein Passwort zurückzusetzen.'
+    passwordResetSuccess: 'Du kannst dich nun mit deinem neuen Passwort einloggen.'
+    receivedInvitation: '{ inviter } hat dich zu { workspace } eingeladen.'
+    forgotPassword: 'Passwort vergessen?'
+    logintoReceivedInvitation: 'Oder logge dich ein und trete { workspace } bei.'
+    error:
+        expiredSignature: 'Deine E-Mail Addresse konnte nicht verifiziert werden. Probiere bitte, dir hier einen neuen Link zuschicken zu lassen.'
+        userExists: 'Du hast schon einen Zugang. Hier kannst du dein Passwort zurücksetzen.'
+    noAccountYet: 'Du hast noch keinen Account? <a href="{url}">Jetzt registrieren</a>'
+file:
+    updateSuccess: 'Die Datei %s wurde erfolgreich aktualisiert.'
+    accessDenied: 'Zugriff verweigert.'
+    tryAgainCsrf: 'Bitte noch einmal versuchen. (CSRF-Token)'
+    deletedSuccess: 'Die Datei %s wurde erfolgreich gelöscht.'
+    download: Download
+    tab:
+        general: Allgemein
+        meta: Meta
+    imageinfo: Bildinformationen
+    fileinfo: Dateiinformationen
+    filetype: Dateityp
+    filesize: Dateigröße
+    resolution: Auflösung
+    tags: Tags
+    cdn: CDN
+    folder: Ordner
+    category: Kategorie
+    urlForEmbed: 'URL zum Einbetten'
+    urlForEmbedDesc: 'Wenn die Datei für das CDN freigegeben ist, kann diese URL zum Einbetten verwendet werden.'
+    revisions: Versionierung
+    versions: Versionen
+    deleteFileConfirmation: 'Datei "{filename}" wirklich löschen?'
+    selectFile: '{filename} auswählen'
+    fileFavorite: 'Datei favorisieren'
+    filenameFavorite: '{filename} favorisieren'
+    fileUnfavorite: 'Datei nicht mehr favorisieren'
+    filenameUnfavorite: '{filename} nicht mehr favorisieren'
+    gridView: Rasteransicht
+    listView: Tabellenansicht
+    orderOldestFirst: 'Älteste zuerst'
+    orderNewestFirst: 'Neueste zuerst'
+    sortBy: 'Sortieren nach'
+    title: Titel
+    fileFormat: Dateiformat
+    fileSize: Dateigröße
+    added: Hinzugefügt
+    filter: Filter
+    reset: Zurücksetzen
+    closeFilter: 'Filter schließen'
+    applyFilter: 'Filter anwenden'
+    upload: Hochladen
+    allAssets: 'Alle Assets'
+    collections: Kollektionen
+    favorites: Favoriten
+    visibility: Sichtbarkeit
+    noMetaData: 'Keine Metadaten vorhanden'
+    folders: Ordner
+    bin:
+        empty:
+            success: 'Papierkorb geleert'
+    collection: Kollektion
+    editFilename: 'Dateinamen ändern'
+    fileInformation: Dateiinformationen
+    file: Datei
+    exif:
+        CreateDate: Erstellungsdatum
+        Make: Gerätemarke
+        Model: Gerätemodell
+        Artist: Photograph
+        ISO: ISO
+        ShutterSpeed: Belichtungszeit
+        Aperture: Blende
+        FocalLength: Brennweite
+        ExposureProgram: Belichtung
+        GPSLatitude: Breitengrad
+        GPSLongitude: Längengrad
+        LensID: Objektiv
+        ColorSpace: Farbraum
+    history:
+        editedBy: 'Bearbeitet von'
+        uploadedBy: 'Hochgeladen von'
+        'on': am
+feature:
+    ai:
+        tagging: 'KI-Tags generieren'
+        initialized: 'KI-Tagging gestartet'
+        added: 'KI-Tags hinzugefügt'
+        error: 'Fehler beim KI-Tagging'
+        loading: 'KI-Tags werden ermittelt. Dies kann einige Zeit in Anspruch nehmen.'
+    revisions:
+        desc: 'Lade eine neue Version des Assets hoch, um die aktuelle Version zu ersetzen. Wenn das Asset über die CDN-Funktion eingebunden ist, beachte, dass dies ggf. Auswirkungen auf diese Einbindung hat, z.B. falls sich die Auflösung ändert.'
+        olderVersions: 'Ältere Versionen'
+        olderVersionsDesc: 'Möchtest du eine ältere Version wiederherstellen, wähle sie hier aus.'
+multiaction:
+    action: Aktion
+    delete: Löschen
+    undelete: Wiederherstellen
+    collection-add: 'Zu Kollektion hinzufügen'
+    collection-remove: 'Aus Kollektion entfernen'
+    category-add: 'In Ordner verschieben'
+    collectionAdd: 'Zu Kollektion hinzufügen'
+    collectionAddText: 'Du hast die folgenden Dateien ausgewählt um sie in eine Kollektion zu verschieben. Überprüfe deine Auswahl und wähle die Kollektion, in die du sie verschieben möchtest.'
+    deleteText: 'Du hast die folgenden Dateien zum Löschen ausgewählt. Überprüfe deine Auswahl, ehe du den Vorgang bestätigst.'
+    assetsSelected: '{number} Assets ausgewählt'
+    assetSelected: '{number} Asset ausgewählt'
+    assetsSelectedShort: 'Asset(s) ausgewählt'
+    selectAssets: 'Assets auswählen...'
+    chooseAction: 'Aktion wählen'
+    chooseCollection: 'Kollektion wählen'
+    instructionsMultiaction: 'Wähle eine Aktion für die ausgewählten Assets'
+    error:
+        noAssetsSelected: 'Keine Dateien ausgewählt'
+form:
+    emptyBin: 'Papierkorb leeren'
+    resetAvatar: 'Profilbild zurücksetzen'
+inviter:
+    invalidInvitation: 'Einladungscode abgelaufen'
+    unknownCode: 'Unbekannter Einladungscode'
+collection:
+    new: 'Neue Kollektion'
+    create: 'Kollektion erstellen'
+    config: 'Kollektion bearbeiten'
+    backToCollection: 'Zurück zur Kollektion'
+    backToCollections: 'Zurück zu allen Kollektionen'
+    share: 'Kollektion teilen'
+    delete:
+        title: 'Kollektion löschen'
+        error:
+            notPossible: 'Löschen nicht möglich'
+        success: 'Kollektion erfolgreich gelöscht'
+        message: 'Du möchtest die Kollektion "{title}" löschen. Bist du dir ganz sicher?'
+role:
+    USER: Benutzer
+    SUPER_ADMIN: Admin
+    WORKSPACE_OWNER: Besitzer
+    WORKSPACE_ADMIN: Admin
+    WORKSPACE_USER: Benutzer
+    WORKSPACE_VIEWER: Besucher
+    WORKSPACE_ROBOT: Bot
+admin:
+    user:
+        edit: 'Benutzer bearbeiten'
+        editShort: Bearbeiten
+        delete: 'Benutzer entfernen'
+        deleteShort: Entfernen
+        id: ID
+        name: Name
+        workspace: Workspace
+        status: Status
+        notice: Notiz
+        emailadress: 'E-Mail Adresse'
+        username: Benutzername
+        role: Rolle
+        actions: Aktionen
+        registeredAt: 'Registriert am'
+    message:
+        user:
+            lastOwner: 'Der Workspace braucht mindestens einen Besitzer.'
+            success:
+                edit: 'Mitarbeiter erfolgreich bearbeitet'
+                delete: 'Mitarbeiter erfolgreich gelöscht'
+        workspace:
+            success:
+                edit: 'Workspace erfolgreich bearbeitet'
+category:
+    delete:
+        error:
+            notPossible: 'Löschen nicht möglich'
+        success: 'Erfolgreich gelöscht'
+    edit:
+        error:
+            notPossible: 'Bearbeiten nicht möglich'
+folder:
+    create: 'Ordner erstellen'
+    delete: 'Ordner löschen'
+    edit: 'Ordner bearbeiten'
+    new: 'Neuer Ordner'
+    createSubdirectory: 'Unterordner erstellen'
+    deleteMessage: 'Du möchtest den Ordner "{title}" löschen. Bist du dir ganz sicher?'
+invitation:
+    accepted: 'Einladung angenommen'
+    invited: 'Du wurdest eingeladen!'
+label:
+    emailAddress: 'E-Mail Adresse'
+    apikey:
+        readonly: Readonly-API-Schlüssel
+help:
+    emailAddress: 'Die E-Mail Adresse kann nicht nachträglich geändert werden. Bei Problemen wende dich bitte an unseren Support unter <a href="mailto:{contact_email}">{contact_email}</a>.'
+logAction:
+    create_invitation: 'Einladung erstellt'
+    accept_invitation: 'Einladung angenommen'
+    upload_file: 'Datei hochgeladen'
+    edit_file: 'Datei bearbeitet'
+    delete_file: 'Datei gelöscht'
+    undelete_file: 'Datei wiederhergestellt'
+    completetly_delete_file: 'Datei komplett gelöscht'
+    change_file_category: 'Datei in Ordner verschoben'
+    add_file_to_collection: 'Datei zu Kollektion hinzugefügt'
+    remove_file_from_collection: 'Datei aus Kollektion entfernt'
+    create_collection: 'Kollektion erstellt'
+    delete_collection: 'Kollektion gelöscht'
+    update_collection_config: 'Kollektion bearbeitet'
+    update_user: 'User bearbeitet'
+    update_membership: 'Mitgliedschaft bearbeitet'
+    delete_membership: 'User aus Workspace entfernt'
+    create_category: 'Ordner angelegt'
+    delete_category: 'Ordner gelöscht'
+    edit_category: 'Ordner bearbeitet'
+    update_workspace_config: 'Workspace-Einstellungen bearbeitet'

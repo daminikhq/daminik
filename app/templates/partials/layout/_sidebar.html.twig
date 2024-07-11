@@ -1,0 +1,88 @@
+<div class="sidebar">
+    <div class="sidebar__menu" id="main-menu" {{ stimulus_target('layout', 'burgerMenu') }}>
+        <div class="sidebar__header">
+{#            <a href="/" class="sidebar__logo">#}
+{#                <svg width="30" height="33" title="Daminik - Digital Asset Manager" viewBox="0 0 30 33" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.777771 26.1359H7.58437V32.9999H12.1374C17.1044 32.9999 21.1976 31.4593 24.4169 28.3782C27.6362 25.297 29.2459 21.4989 29.2459 16.9839C29.2459 12.1944 27.6516 8.33526 24.4629 5.40662C21.3049 2.44747 17.1964 0.967896 12.1374 0.967896H0.777771V7.00884H7.58437L12.1834 7.00822C15.0655 7.00822 17.4417 7.89292 19.3119 9.6623C21.1822 11.4317 22.1174 13.8722 22.1174 16.9839C22.1174 20.0956 21.1822 21.7124 19.3119 23.4818C17.4417 25.2512 15.0655 26.1359 12.1834 26.1359H7.58437V13.8755H0.777771V26.1359Z" fill="#ffffff"/></svg>#}
+{#            </a>#}
+            {% if workspace is defined %}
+                {% include 'partials/layout/_workspace-switcher.html.twig' %}
+            {% endif %}
+        </div>
+
+        <div class="sidebar__navigation">
+            {% if menu == 'assets' %}
+                {% include 'partials/layout/_asset-menu.html.twig' %}
+            {% elseif menu == 'settings' %}
+                {% include 'partials/layout/_settings-menu.html.twig' %}
+            {% elseif menu == 'admin' %}
+                {% include 'partials/layout/_admin-menu.html.twig' %}
+            {% endif %}
+        </div>
+        {% if workspace is defined and menu != 'admin'%}
+            <div class="sidebar__profile" {{ stimulus_target('sidebar', 'profile') }}>
+{#                {% if hasAvatar() %}#}
+{#                    <a href="{{ path('workspace_profile_index') }}" class="thumbnail thumbnail--small">#}
+{#                        <img src="{{ avatarUrl() }}" class="thumbnail__image" alt="{{ app.user.name|default }}">#}
+{#                        <span class="visually-hidden">{{ 'base.editProfile'|trans }}</span>#}
+{#                    </a>#}
+{#                {% else %}#}
+{#                    <a href="{{ path('workspace_profile_index') }}"#}
+{#                       class="sidebar__profile-thumbnail thumbnail thumbnail--small thumbnail--initials">#}
+{#                        <span aria-hidden="true">{{ app.user|userInitials }}</span>#}
+{#                        <span class="visually-hidden">{{ 'base.editProfile'|trans }}</span>#}
+{#                    </a>#}
+{#                {% endif %}#}
+                <a href="{{ path('workspace_profile_index') }}" class="sidebar__profile-info">
+                    <span class="visually-hidden">{{ 'base.editProfile'|trans }}</span>
+                    <strong class="sidebar__profile-name" aria-hidden="true">{{ app.user|userName }}</strong>
+{#                    <span class="sidebar__profile-mail" aria-hidden="true">{{ app.user.email|default }}</span>#}
+                </a>
+
+                <template id="profile-menu">
+                    <div class="sidebar__profile-action profile-menu context-menu is-dropup" {{ stimulus_controller('dropdown') }}>
+                        <button class="profile-menu__toggle context-menu__toggle button button--ghost button--icon"
+                                id="profile-toggle" aria-haspopup="menu" aria-controls="profile-nav"
+                                {{ stimulus_target('dropdown', 'toggle') }} {{ stimulus_action('dropdown', 'toggle') }}>
+                            {% include 'icon-dots.svg' %}
+                            <span class="visually-hidden">{{ 'base.profileMenu'|trans }}</span>
+                        </button>
+                        <ul class="profile-menu__nav context-menu__menu" id="profile-nav"
+                            aria-labelledby="profile-toggle" {{ stimulus_target('dropdown', 'menu') }}>
+                            <li class="context-menu__item">
+                                <a class="context-menu__link" href="{{ path('workspace_profile_index') }}">
+                                    {{ 'base.profile'|trans }} {% include 'icon-user.svg' %}
+                                </a>
+                            </li>
+                            <li class="context-menu__item">
+                                <a class="context-menu__link" href="{{ path('logout') }}">
+                                    {{ 'base.logout'|trans }} {% include 'icon-sign-out.svg' %}
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+        {% endif %}
+    </div>
+    <div class="sidebar__mobile">
+        <div class="burger">
+            <button class="burger__button"
+                    {{ stimulus_target('layout', 'burgerButton') }}
+                    {{ stimulus_action('layout', 'toggleMenu') }}>
+                <span class="visually-hidden">{{ 'base.openMenu'|trans }}</span>
+                <span class="burger__bars" aria-hidden="true"></span>
+            </button>
+        </div>
+
+        {% if can_upload_asset() and not (path('workspace_upload_index')
+            == path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))) %}
+            <div class="upload" {{ stimulus_controller('uppy') }}>
+                <a class="button" id="upload-trigger-sidebar" {{ stimulus_target('uppy', 'trigger') }}
+                   data-url="{{ path('workspace_upload_xhr') }}"
+                   href="{{ path('workspace_upload_index') }}">
+                    {{ 'file.upload'|trans }}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>

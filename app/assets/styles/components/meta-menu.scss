@@ -1,0 +1,35 @@
+.meta-menu {
+  @include list-reset;
+
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  justify-content: flex-end;
+
+  @include breakpoint(md) {
+    padding: 2rem;
+  }
+
+  li {
+    .divider {
+      display: block;
+      width: 1px;
+      height: 100%;
+      background-color: var(--neutral-400);
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--neutral-500);
+
+      &:hover {
+        color: var(--neutral-600);
+        text-decoration: underline;
+      }
+
+      &.is-bold {
+        font-weight: 700;
+      }
+    }
+  }
+}

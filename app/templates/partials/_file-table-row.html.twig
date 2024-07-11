@@ -1,0 +1,49 @@
+<tr class="file-table__row">
+    <td class="file-table__col">
+        {% if can_edit_asset() %}
+        <div class="checkbox">
+            <input class="checkbox__input" id="{{ file.id }}" type="checkbox">
+            <label class="checkbox__label" for="{{ file.id }}">
+                {% include 'icon-checkbox.svg' %}
+                <span class="visually-hidden">{{ 'label.selectOption'|trans({}, 'form') }}</span>
+            </label>
+        </div>
+        {% endif %}
+    </td>
+    <td class="file-table__col">
+        <picture class="thumbnail">
+            <img class="thumbnail__image"
+                 src="{{ file|thumbnailUrl }}"
+                 alt="{{ file.filename }}">
+        </picture>
+    </td>
+    <td class="file-table__col">
+        <a href="{{ path('workspace_file_edit', {filename: file.filename}) }}">
+            {{ file.title|default(file.filename) }}
+        </a>
+    </td>
+    <td class="file-table__col">
+        <span class="type-badge">{{ file|fileTypeBadge }}</span>
+    </td>
+    <td class="file-table__col">
+        {{ file.fileSize|fileSize|default }}
+    </td>
+    <td class="file-table__col">
+        {{ file.width|default}} x {{ file.height|default}} px
+    </td>
+    <td class="file-table__col">
+        {{ file.createdAt|date('d.m.y') }}
+    </td>
+    <td class="file-table__col">
+        <button type="button" class="file-table__favorite"{% if file|fileIsFavorite %} data-favorite{% endif %}>
+            {% include 'icon-star-filled.svg' %}
+            <span class="visually-hidden">
+                {% if file|fileIsFavorite %}
+                    {{ 'file.filenameFavorite'|trans({'filename': file.title|default(file.filename)}) }}
+                {% else %}
+                    {{ 'file.filenameUnfavorite'|trans({'filename': file.title|default(file.filename)}) }}
+                {% endif %}
+            </span>
+        </button>
+    </td>
+</tr>

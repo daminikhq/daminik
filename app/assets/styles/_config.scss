@@ -1,0 +1,265 @@
+/**
+  CSS VARIABLES
+ */
+$font-base: 'Inter', Helvetica Neue, Arial, sans-serif;
+
+$font-weight: (
+        light: 300,
+        normal: 400,
+        medium: 500,
+        bold: 700,
+);
+
+$line-height: (
+        body: 1.4,
+        headline: 1.2,
+);
+
+$font-size: (
+        xs: 0.75rem,
+        s: 0.875rem,
+        m: 1rem,
+        l: 1.25rem,
+);
+
+$breakpoints: (
+        xxs: 0,
+        xs: 320px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1400px,
+        navigation: 992px
+);
+
+$z-index: (
+        flashes: 1000,
+        skip: 1010,
+        modal-backdrop: 1020,
+        modal: 1030,
+        contextmenu: 100,
+        subsidebar: 200,
+);
+
+$border-radius: (
+        s: 0.25rem,
+        m: 0.5rem,
+        ml: 1rem,
+        l: 0.75rem,
+        xl: 6.25rem,
+);
+
+$space: (
+        xs: 0.5rem,
+        xss: 0.75rem,
+        s: 1rem,
+        sm: clamp(1rem, 0.8261rem + 0.8696vw, 1.25rem),
+        m: 1.5rem,
+        ml: clamp(1.5rem, 1.3261rem + 0.8696vw, 2rem),
+        l: 2rem,
+);
+
+$headbar-height-mobile: 3.5rem;
+$desktop-sidebar-width: 16rem;
+
+/**
+  COLORS
+ */
+$color-white: rgb(255, 255, 255);
+$color-white-50a: rgba(255, 255, 255, 0.5);
+$color-white-75a: rgba(255, 255, 255, 0.75);
+$color-black: rgb(0, 0, 0);
+$color-black-50a: rgba(0, 0, 0, 0.5);
+$color-black-20a: rgba(0, 0, 0, 0.2);
+
+$color-neutral-50: rgb(250, 250, 250);
+$color-neutral-100: rgb(245, 245, 245);
+$color-neutral-150: rgb(238, 238, 238);
+$color-neutral-200: rgb(229, 229, 229);
+$color-neutral-300: rgb(212, 212, 212);
+$color-neutral-400: rgb(163, 163, 163);
+$color-neutral-500: rgb(115, 115, 115);
+$color-neutral-500-a5: rgba(115, 115, 115, 0.5);
+$color-neutral-600: rgb(82, 82, 82);
+$color-neutral-700: rgb(64, 64, 64);
+$color-neutral-800: rgb(38, 38, 38);
+$color-neutral-900: rgb(23, 23, 23);
+
+$color-blue-50: rgb(239, 246, 255);
+$color-blue-100: rgb(219, 234, 254);
+$color-blue-200: rgb(191, 219, 254);
+$color-blue-300: rgb(147, 197, 253);
+$color-blue-400: rgb(96, 165, 250);
+$color-blue-500: rgb(59, 130, 246);
+$color-blue-600: rgb(37, 99, 235);
+$color-blue-700: rgb(29, 78, 216);
+$color-blue-800: rgb(30, 64, 175);
+$color-blue-900: rgb(30, 58, 138);
+
+$color-red-50: #fef2f2;
+$color-red-100: #fee2e2;
+$color-red-200: #fecaca;
+$color-red-300: #fca5a5;
+$color-red-400: #f87171;
+$color-red-500: #ef4444;
+$color-red-600: #dc2626;
+$color-red-700: #b91c1c;
+$color-red-800: #991b1b;
+$color-red-900: #7f1d1d;
+
+$color-green-50: #f0fdf4;
+$color-green-100: #dcfce7;
+$color-green-200: #bbf7d0;
+$color-green-300: #86efac;
+$color-green-400: #4ade80;
+$color-green-500: #22c55e;
+$color-green-600: #16a34a;
+$color-green-700: #15803d;
+$color-green-800: #166534;
+$color-green-900: #14532d;
+
+$color-orange-50: #fff7ed;
+$color-orange-100: #ffedd5;
+$color-orange-200: #fed7aa;
+$color-orange-300: #fdba74;
+$color-orange-400: #fb923c;
+$color-orange-500: #f97316;
+$color-orange-600: #ea580c;
+$color-orange-700: #c2410c;
+$color-orange-800: #9a3412;
+$color-orange-900: #7c2d12;
+$color-orange-950: #431407;
+
+html {
+  --white: #{$color-white};
+  --white-50a: #{$color-white-50a};
+  --white-75a: #{$color-white-75a};
+  --black: #{$color-black};
+  --black-50a: #{$color-black-50a};
+  --black-20a: #{$color-black-20a};
+
+  --neutral-50: #{$color-neutral-50};
+  --neutral-100: #{$color-neutral-100};
+  --neutral-200: #{$color-neutral-200};
+  --neutral-300: #{$color-neutral-300};
+  --neutral-400: #{$color-neutral-400};
+  --neutral-500: #{$color-neutral-500};
+  --neutral-500-a5: #{$color-neutral-500-a5};
+  --neutral-600: #{$color-neutral-600};
+  --neutral-700: #{$color-neutral-700};
+  --neutral-800: #{$color-neutral-800};
+  --neutral-900: #{$color-neutral-900};
+
+  --blue-50: #{$color-blue-50};
+  --blue-100: #{$color-blue-100};
+  --blue-200: #{$color-blue-200};
+  --blue-300: #{$color-blue-300};
+  --blue-400: #{$color-blue-400};
+  --blue-500: #{$color-blue-500};
+  --blue-600: #{$color-blue-600};
+  --blue-700: #{$color-blue-700};
+  --blue-800: #{$color-blue-800};
+  --blue-900: #{$color-blue-900};
+
+  --red-50: #{$color-red-50};
+  --red-100: #{$color-red-100};
+  --red-200: #{$color-red-200};
+  --red-300: #{$color-red-300};
+  --red-400: #{$color-red-400};
+  --red-500: #{$color-red-500};
+  --red-600: #{$color-red-600};
+  --red-700: #{$color-red-700};
+  --red-800: #{$color-red-800};
+  --red-900: #{$color-red-900};
+
+  --green-50: #{$color-green-50};
+  --green-100: #{$color-green-100};
+  --green-200: #{$color-green-200};
+  --green-300: #{$color-green-300};
+  --green-400: #{$color-green-400};
+  --green-500: #{$color-green-500};
+  --green-600: #{$color-green-600};
+  --green-700: #{$color-green-700};
+  --green-800: #{$color-green-800};
+  --green-900: #{$color-green-900};
+
+  --orange-50: #{$color-orange-50};
+  --orange-100: #{$color-orange-100};
+  --orange-200: #{$color-orange-200};
+  --orange-300: #{$color-orange-300};
+  --orange-400: #{$color-orange-400};
+  --orange-500: #{$color-orange-500};
+  --orange-600: #{$color-orange-600};
+  --orange-700: #{$color-orange-700};
+  --orange-800: #{$color-orange-800};
+  --orange-900: #{$color-orange-900};
+  --orange-950: #{$color-orange-950};
+
+  &.dark-mode {
+    --white: #{$color-black};
+    --black: #{$color-white};
+
+    --neutral-50: #{$color-neutral-900};
+    --neutral-100: #{$color-neutral-800};
+    --neutral-200: #{$color-neutral-700};
+    --neutral-300: #{$color-neutral-600};
+    --neutral-400: #{$color-neutral-500};
+    --neutral-500: #{$color-neutral-400};
+    --neutral-600: #{$color-neutral-300};
+    --neutral-700: #{$color-neutral-200};
+    --neutral-800: #{$color-neutral-100};
+    --neutral-900: #{$color-neutral-50};
+
+    --blue-50: #{$color-blue-900};
+    --blue-100: #{$color-blue-800};
+    --blue-200: #{$color-blue-700};
+    --blue-300: #{$color-blue-600};
+    --blue-400: #{$color-blue-500};
+    --blue-500: #{$color-blue-400};
+    --blue-600: #{$color-blue-300};
+    --blue-700: #{$color-blue-200};
+    --blue-800: #{$color-blue-100};
+    --blue-900: #{$color-blue-50};
+
+    --red-50: #{$color-red-900};
+    --red-100: #{$color-red-800};
+    --red-200: #{$color-red-700};
+    --red-300: #{$color-red-600};
+    --red-400: #{$color-red-500};
+    --red-500: #{$color-red-400};
+    --red-600: #{$color-red-300};
+    --red-700: #{$color-red-200};
+    --red-800: #{$color-red-100};
+    --red-900: #{$color-red-50};
+
+    --green-50: #{$color-green-900};
+    --green-100: #{$color-green-800};
+    --green-200: #{$color-green-700};
+    --green-300: #{$color-green-600};
+    --green-400: #{$color-green-500};
+    --green-500: #{$color-green-400};
+    --green-600: #{$color-green-300};
+    --green-700: #{$color-green-200};
+    --green-800: #{$color-green-100};
+    --green-900: #{$color-green-50};
+
+    --orange-50: #{$color-orange-950};
+    --orange-100: #{$color-orange-900};
+    --orange-200: #{$color-orange-800};
+    --orange-300: #{$color-orange-700};
+    --orange-400: #{$color-orange-600};
+    --orange-500: #{$color-orange-500};
+    --orange-600: #{$color-orange-400};
+    --orange-700: #{$color-orange-300};
+    --orange-800: #{$color-orange-200};
+    --orange-900: #{$color-orange-100};
+    --orange-950: #{$color-orange-50};
+  }
+}
+
+$contextmenu-background-color: var(--neutral-800, #{$color-neutral-800});
+$contextmenu-divider-color: var(--neutral-700, #{$color-neutral-700});
+$contextmenu-item-font-color: var(--white, #{$color-white});
+$contextmenu-item-hover-color: var(--neutral-700, #{$color-neutral-700});
+$contextmenu-item-hover-font-color: var(--white, #{$color-white});

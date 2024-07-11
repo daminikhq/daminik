@@ -1,0 +1,12 @@
+.type-badge {
+  border-radius: border-radius(s);
+  background-color: rgba($color-black, 0.75);
+  color: $color-white;
+  padding: 0.125rem 0.25rem;
+  font-size: 0.625rem;
+  text-transform: uppercase;
+
+  @include breakpoint(md) {
+    font-size: font-size(xs);
+  }
+}

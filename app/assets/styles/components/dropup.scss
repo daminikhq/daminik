@@ -1,0 +1,50 @@
+.dropup {
+  $this: &;
+
+  position: relative;
+
+  &__toggle {
+    svg {
+      pointer-events: none;
+    }
+  }
+
+  &__menu {
+    @include list-reset;
+
+    display: none;
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 0.5rem);
+    width: 12.5rem;
+    flex-direction: column;
+    font-size: font-size(s);
+
+    body.no-js #{$this}:focus-within &,
+    body.no-js #{$this}:hover &,
+    #{$this}.is-open & {
+      display: flex;
+    }
+  }
+
+  &__link {
+    @include focus-outline-style() {
+      outline-offset: -2px;
+    }
+
+    text-decoration: none;
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: left;
+    color: var(--white, #{$color-white});
+    background-color: var(--neutral-800, #{$color-neutral-800});
+    border-bottom: 1px solid var(--neutral-700, #{$color-neutral-700});
+
+    &:hover {
+      background-color: var(--neutral-700, #{$color-neutral-700});
+      color: var(--white, #{$color-white});
+    }
+  }
+}

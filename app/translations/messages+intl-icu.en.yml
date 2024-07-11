@@ -1,0 +1,298 @@
+base:
+    pageTitle: 'Daminik - Open Source Digital Asset Manager with build in CDN'
+    pageDesc: 'Daminik is a simple & scalable Digital Asset Manager with a build in Content Delivery Network. The single source of truth for all your assets. Open Source, lightning-fast and GDPR-compliant.'
+    skipToContent: 'Skip to content'
+    skipToSearchOrContent: 'Skip to <a href="#search">search</a> or <a href="#main">content</a>'
+    skipToMenu: 'Skip to menu'
+    domain: 'daminik.com'
+    home: 'Back to home'
+    backHome: 'Back to home'
+    landingpageCta: 'Register now for free'
+    landingpageGithub: 'Star on GitHub'
+    imprint: Imprint
+    imprintAndTerms: 'Imprint & Terms'
+    terms: Terms
+    login: Login
+    back: Back
+    media: Media
+    copy: Copy
+    copied: Copied
+    createWorkspace: 'Create Workspace'
+    search: Search
+    toSearch: Search
+    switchWorkspace: 'Switch workspace'
+    settings: Settings
+    editProfile: 'Edit profile'
+    profileMenu: 'Profil menu'
+    profile: Profile
+    gravatarDesc: 'We have found a Gravatar profile picture of you. If you would like to edit this picture on Gravatar, you can do so <a href="https://gravatar.com/" target="_blank">here</a>. If you just want to overwrite the profile picture, you can simply upload a new one below.'
+    resetAvatar: 'Reset avatar'
+    log: Log
+    logout: Logout
+    openMenu: 'Open menu'
+    bin: Bin
+    selection: Select
+    members: Members
+    closeModal: 'Close modal'
+    share: Share
+    resetLogo: 'Remove logo'
+    date: Date
+    user: User
+    action: Action
+    object: Object
+    additionalData: 'Additional Data'
+    field: Field
+    old: Old
+    new: New
+    sorting: Sorting
+    selectAll: 'Select all'
+    cancelSelection: 'Cancel selection'
+    contextMenu: 'Context menu'
+    edit: Edit
+    admin: Administration
+    workspaces: Workspaces
+    users: Users
+    codes: 'Registration codes'
+    refreshPage: 'Please refresh the page.'
+    wait: 'Please wait'
+    previousPage: 'Previous page'
+    nextPage: 'Next page'
+    loadMore: 'Load more'
+    backToApp: 'Back to the app'
+    termsOfService: 'Terms of Service'
+    select: Select
+    cancel: Cancel
+    apply: Apply
+invites:
+    invite: Invite
+    inviteInstruction: '(Generate new invite link: submit form without email address.)'
+    inviteLink: 'Invite link'
+    inviteSentMail: 'An invite link has been sent to {email}.'
+    inviteMailHeadline: 'Hi! You are invited to a workspace!'
+    inviteMailText: 'Click here, to accept the invitation:'
+    inviteMailLink: 'Accept invitation'
+    inviteMailSalutation: Cheers!
+    invites: Invites
+    invitationAccepted: 'Your invitation has been accepted!'
+    invitationAcceptedEmailBody: 'Your invitation has been accepted by {email}.'
+    nameAndEmail: 'Name (Email)'
+    date: Date
+    action: Action
+registration:
+    pleaseConfirm: 'Please confirm your email address'
+    registration: Registration
+    register: Register
+    intro: 'We are currently in the alpha version of Daminik. If you would like to register, please contact us via <a href="mailto:{contact_email}">{contact_email}</a> to receive a registration code.'
+    success: 'Your registration has been successful. You are about to receive a confirmation mail.'
+    verified: 'Your email address has been confirmed.'
+    passwordReset: 'You will receive an email that includes a link to reset your password.'
+    passwordResetSuccess: 'You can now log in to your account with your new password.'
+    receivedInvitation: '{ inviter } had invited you to join { workspace }'
+    forgotPassword: 'Forgot your password?'
+    logintoReceivedInvitation: 'Log in to join { workspace }'
+    error:
+        expiredSignature: 'We were unable to confirm your email address. Please try to request a new link here'
+        userExists: 'You already have an account. If you need to reset your password, you can do so here'
+    noAccountYet: 'You do not have an account, yet? <a href="{url}">Why not register</a>'
+file:
+    updateSuccess: 'The file %s has been successfully updated.'
+    accessDenied: 'Access Denied.'
+    tryAgainCsrf: 'Please try again. (CSRF-Token)'
+    deletedSuccess: 'File %s successfully deleted'
+    download: Download
+    tab:
+        general: General
+        meta: Meta
+    imageinfo: 'Image information'
+    fileinfo: 'File information'
+    filetype: 'File type'
+    filesize: 'File size'
+    resolution: Resolution
+    tags: Tags
+    cdn: CDN
+    folder: Folder
+    category: Category
+    urlForEmbed: 'Embed URL'
+    urlForEmbedDesc: 'If the file is "public", a URL for embedding is provided here.'
+    revisions: Revisions
+    versions: Versions
+    deleteFileConfirmation: 'Do you want to delete the file "{filename}" permanently?'
+    selectFile: 'Select {filename}'
+    fileFavorite: 'Mark as favorite'
+    filenameFavorite: 'Mark {filename} as favorite'
+    fileUnfavorite: 'Remove as favorite'
+    filenameUnfavorite: 'Remove {filename} as favorite'
+    gridView: Grid
+    listView: List
+    orderOldestFirst: 'Oldest first'
+    orderNewestFirst: 'Newest first'
+    sortBy: 'Sort by'
+    title: Title
+    fileFormat: 'File format'
+    fileSize: 'File Size'
+    added: Added
+    filter: Filter
+    reset: Reset
+    closeFilter: 'Close filter'
+    applyFilter: 'Apply filter'
+    upload: Upload
+    allAssets: 'All Assets'
+    collections: Collections
+    favorites: Favorites
+    visibility: Visibility
+    noMetaData: 'No metadata available'
+    folders: Folders
+    bin:
+        empty:
+            success: 'Bin is now empty'
+    collection: Collection
+    editFilename: 'File name'
+    fileInformation: 'File informatiom'
+    file: File
+    exif:
+        CreateDate: 'Creation date'
+        Make: 'Device brand'
+        Model: 'Device model'
+        Artist: Photographer
+        ISO: ISO
+        ShutterSpeed: 'Exposure time'
+        Aperture: Aperture
+        FocalLength: 'Focal length'
+        ExposureProgram: 'Exposure program'
+        GPSLatitude: 'GPS latitude'
+        GPSLongitude: 'GPS longitude'
+        LensID: 'Lens ID'
+        ColorSpace: 'Color space'
+    history:
+        editedBy: 'Edited by'
+        uploadedBy: 'Uploaded by'
+        'on': 'on'
+feature:
+    ai:
+        tagging: 'AI tagging'
+        initialized: 'AI tagging initialized'
+        added: 'AI tagging added'
+        error: 'AI tagging is broken'
+        loading: 'AI tags are determined. This may take some time.'
+    revisions:
+        desc: 'Upload a new version of the asset to replace the current version. If the asset is integrated via the CDN function, please note that this may have an effect on this integration, e.g. if the resolution changes.'
+        olderVersions: 'Older versions'
+        olderVersionsDesc: 'If you want to restore an older version, select it here.'
+multiaction:
+    action: Action
+    delete: Delete
+    undelete: Restore
+    collection-add: 'Add to collection'
+    collection-remove: 'Remove from collection'
+    category-add: 'Move to folder'
+    collectionAdd: 'Add to collection'
+    collectionAddText: 'You have selected the following files to move them to a collection. Check your selection and choose the collection you want to move them to.'
+    deleteText: 'You have selected the following files for deletion. Check your selection before confirming the process.'
+    assetsSelected: '{number} Assets selected'
+    assetSelected: '{number} Asset selected'
+    assetsSelectedShort: 'Asset(s) selected'
+    selectAssets: 'Select assets...'
+    chooseAction: 'Choose action'
+    chooseCollection: 'Choose collection'
+    instructionsMultiaction: 'Pick an action for the selected assets'
+    error:
+        noAssetsSelected: 'No assets selected'
+form:
+    emptyBin: 'Empty Bin'
+    resetAvatar: 'Reset profile picture'
+inviter:
+    invalidInvitation: 'Invalid invitation'
+    unknownCode: 'Unknown code'
+collection:
+    new: 'New collection'
+    create: 'Create collection'
+    config: 'Collection config'
+    backToCollection: 'Back to collection'
+    backToCollections: 'Back to all collections'
+    share: 'Share collection'
+    delete:
+        title: 'Delete collection'
+        error:
+            notPossible: 'Deletion not possible'
+        success: 'Successfully deleted collection'
+        message: 'You want to delete the collection "{ title }". Are you sure about this?'
+role:
+    USER: User
+    SUPER_ADMIN: Admin
+    WORKSPACE_OWNER: Owner
+    WORKSPACE_ADMIN: Admin
+    WORKSPACE_USER: User
+    WORKSPACE_VIEWER: Viewer
+    WORKSPACE_ROBOT: Bot
+admin:
+    user:
+        edit: 'Edit user'
+        editShort: Edit
+        delete: 'Delete user'
+        deleteShort: Delete
+        id: ID
+        name: Name
+        workspace: Workspace
+        status: Status
+        notice: Notice
+        emailadress: 'Email address'
+        username: Username
+        role: Role
+        actions: Actions
+        registeredAt: 'Registered at'
+    message:
+        user:
+            lastOwner: 'The workspace needs at least one owner'
+            success:
+                edit: 'User has been successfully edited'
+                delete: 'User has been successfully deleted'
+        workspace:
+            success:
+                edit: 'Workspace has been successfully edited'
+category:
+    delete:
+        error:
+            notPossible: 'Could not delete'
+        success: 'Successfully deleted'
+    edit:
+        error:
+            notPossible: 'Not possible'
+folder:
+    create: 'Create folder'
+    delete: 'Delete folder'
+    edit: 'Edit folder'
+    new: 'New folder'
+    createSubdirectory: 'Create subfolder'
+    deleteMessage: 'You want to delete the "{title}" folder. Are you sure about this?'
+invitation:
+    invited: 'You are invited!'
+    accepted: 'Invitation accepted'
+label:
+    emailAddress: 'Email address'
+    apikey:
+        readonly: 'Readonly API Key'
+help:
+    emailAddress: 'The e-mail address cannot be changed after registration. If you have any problems, please contact our support team at <a href="mailto:{contact_email}">{contact_email}</a>.'
+button:
+    select: Select
+logAction:
+    create_invitation: 'Invitation created'
+    accept_invitation: 'Invitation accepted'
+    upload_file: 'File uploaded'
+    edit_file: 'File edited'
+    delete_file: 'File deleted'
+    undelete_file: 'File restored'
+    completetly_delete_file: 'File completely deleted'
+    change_file_category: 'File moved to new folder'
+    add_file_to_collection: 'File added to collectio'
+    remove_file_from_collection: 'File removed from collection'
+    create_collection: 'Collection created'
+    delete_collection: 'Collection deleted'
+    update_collection_config: 'Collection config updated'
+    update_user: 'User updated'
+    update_membership: 'Membership updated'
+    delete_membership: 'Removed user from workspace'
+    create_category: 'Folder created'
+    delete_category: 'Folder deleted'
+    edit_category: 'Folder edited'
+    update_workspace_config: 'Workspace configuration changed'

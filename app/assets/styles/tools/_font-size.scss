@@ -1,0 +1,7 @@
+@function font-size($key) {
+  @return map-get($font-size, $key);
+}
+
+@mixin font-size($key) {
+  font-size: font-size($key);
+}

@@ -1,0 +1,53 @@
+#https://raw.githubusercontent.com/symfony/symfony/5.x/.editorconfig
+
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+end_of_line = LF
+insert_final_newline = true
+trim_trailing_whitespace = true
+max_line_length = 240
+
+# Trying to mimic Coding Standards Fixer Symfony rules.
+ij_any_space_after_type_cast = true
+ij_php_line_comment_add_space = true
+ij_php_import_sorting = dont_sort
+ij_php_align_phpdoc_param_names = true
+ij_php_concat_spaces = false
+ij_php_method_parameters_new_line_after_left_paren = true
+ij_php_method_parameters_right_paren_on_new_line = true
+ij_php_method_parameters_wrap = on_every_item
+ij_php_variable_naming_style = camel_case
+ij_php_while_brace_force = always
+ij_php_keep_rparen_and_lbrace_on_one_line = true
+ij_php_lower_case_boolean_const = true
+ij_php_lower_case_null_const = true
+ij_php_for_brace_force = always
+ij_php_if_brace_force = always
+ij_php_do_while_brace_force = always
+ij_php_else_if_style = combine
+ij_php_comma_after_last_array_element = true
+ij_php_call_parameters_new_line_after_left_paren = true
+ij_php_call_parameters_right_paren_on_new_line = true
+ij_php_call_parameters_wrap = on_every_item
+ij_php_blank_lines_before_return_statement = 1
+ij_php_blank_lines_after_package = 1
+ij_php_array_initializer_new_line_after_left_brace = true
+ij_php_array_initializer_right_brace_on_new_line = true
+ij_php_array_initializer_wrap = on_every_item
+ij_php_align_multiline_parameters = false
+
+[*.md]
+max_line_length = 120
+
+[*.scss]
+indent_size = 2
+
+[*.xlf]
+max_line_length = 500
+
+[COMMIT_EDITMSG]
+max_line_length = 0

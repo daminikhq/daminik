@@ -1,0 +1,58 @@
+module.exports = {
+  root: true,
+  env: {browser: true, es6: true, node: true},
+  extends: [
+    'airbnb-base',
+    'airbnb-typescript/base',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-requiring-type-checking',
+  ],
+  rules: {
+    'no-undef': 0,
+    'no-redeclare': 1,
+    'no-useless-escape': 1,
+    'no-unused-vars': 0,
+    'no-cond-assign': 0,
+    'no-self-assign': 0,
+    'no-empty': 1,
+    'comma-dangle': ['error', 'always-multiline'],
+    'indent': ['error', 4, {'SwitchCase': 1}],
+    'max-len': ['error', {'code': 120}],
+    'object-curly-spacing': ['error', 'never'],
+    'arrow-body-style': 0,
+    'import/no-duplicates': 0,
+    'import/no-named-as-default': 0,
+    'import/no-named-as-default-member': 0,
+    'import/no-unresolved': 1,
+    'import/extensions': 0,
+    'import/prefer-default-export': 1,
+    'no-underscore-dangle': 0,
+    'lines-between-class-members': 0,
+    'no-param-reassign': 0,
+    'no-prototype-builtins': 0,
+    'class-methods-use-this': 0,
+    '@typescript-eslint/object-curly-spacing': ['error', 'never'],
+    '@typescript-eslint/indent': ['error', 4, {'SwitchCase': 1}],
+    '@typescript-eslint/restrict-template-expressions': 0,
+    '@typescript-eslint/lines-between-class-members': 0,
+    '@typescript-eslint/no-unsafe-member-access': 0,
+    '@typescript-eslint/no-unsafe-assignment': 0,
+    '@typescript-eslint/no-inferrable-types': 0,
+    '@typescript-eslint/no-unsafe-argument': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-unsafe-call': 0,
+  },
+  parserOptions: {
+    ecmaVersion: 2020,
+    project: './tsconfig.json',
+  },
+  overrides: [
+    {
+      files: ['**/*.js'],
+      rules: {
+        '@typescript-eslint/no-floating-promises': 0,
+        '@typescript-eslint/no-unsafe-return': 0,
+      },
+    }
+  ]
+};

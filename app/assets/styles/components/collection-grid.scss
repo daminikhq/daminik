@@ -1,0 +1,89 @@
+.collection-grid {
+  display: grid;
+  grid-gap: space(sm);
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 12.5rem));
+
+  &__item {
+    @include flow(space(xs));
+
+    position: relative;
+  }
+
+  &__item-public {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    background: var(--neutral-900, #{$color-neutral-900});
+    border-top-right-radius: border-radius(m);
+    border-bottom-left-radius: border-radius(m);
+    width: 1.25rem;
+    height: 1.25rem;
+
+    svg {
+      color: var(--white, $color-white);
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__thumbnail {
+    position: relative;
+    padding-bottom: 100%;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    border-radius: border-radius(m);
+  }
+
+  &__thumbnail-items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: border-radius(m);
+    display: grid;
+
+    &.has-0-items {
+      border: 1px solid var(--neutral-300, #{$color-neutral-300});
+      background-color: var(--neutral-50, #{$color-neutral-50});
+    }
+
+    &.has-2-items,
+    &.has-3-items,
+    &.has-4-items {
+      grid-template-columns: repeat(2, 2fr);
+    }
+  }
+
+  &__thumbnail-item {
+    overflow: hidden;
+    position: relative;
+
+    &:last-child:nth-last-child(odd) {
+      grid-column: auto / span 2;
+    }
+
+    &:first-child:nth-last-child(even),
+    &:first-child:nth-last-child(even) ~ & {
+      grid-column: auto / span 1;
+    }
+  }
+
+  &__thumbnail-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__collection-link {
+    @include full-size-link;
+
+    display: block;
+    font-weight: font-weight(bold);
+    text-decoration: none;
+  }
+}

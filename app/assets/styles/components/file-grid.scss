@@ -1,0 +1,79 @@
+.file-grid {
+  @include flow(space(m));
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+
+    body:not(.no-js) & {
+      position: sticky;
+      bottom: 1rem;
+
+      @include breakpoint(sm) {
+        bottom: 0;
+      }
+    }
+  }
+
+  &__wrapper {
+    --space: #{space(sm)};
+
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--space) * -1) calc(var(--space) * -1) 0;
+
+    &::after {
+      --ratio: 0.5;
+      --row-height: 200px;
+
+      content: "";
+      flex-basis: calc(var(--ratio)*var(--row-height));
+      flex-grow: 1000000;
+    }
+  }
+
+  &__fill {
+    flex-basis: 0;
+    flex-shrink: 1;
+    flex-grow: 1;
+  }
+
+  &__divider {
+    display: none;
+    width: 100%;
+    flex-basis: 100%;
+    border: 0;
+
+    @include breakpoint(md-max) {
+      &:nth-of-type(2n) {
+        display: block;
+      }
+    }
+
+    @include breakpoint(md) {
+      &:nth-of-type(3n) {
+        display: block;
+      }
+    }
+
+    @include breakpoint(lg) {
+      &:nth-of-type(3n) {
+        display: none;
+      }
+
+      &:nth-of-type(4n) {
+        display: block;
+      }
+    }
+
+    @include breakpoint(xl) {
+      &:nth-of-type(4n) {
+        display: none;
+      }
+
+      &:nth-of-type(5n) {
+        display: block;
+      }
+    }
+  }
+}

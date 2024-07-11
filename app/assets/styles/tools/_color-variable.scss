@@ -1,0 +1,3 @@
+@function color-var($css-variable, $scss-variable) {
+  @return var(#{$css-variable}, #{$scss-variable});
+}

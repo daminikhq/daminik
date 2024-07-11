@@ -1,0 +1,20 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    <div class="form-wrapper" {{ stimulus_controller('uppy') }}>
+        {{ form_start(uploadForm, {'attr': {'class': 'form'}}) }}
+        <div id="uppy" {{ stimulus_target('uppy', 'wrapper') }} data-action="{{ path('workspace_upload_xhr') }}" data-homeurl="{{ path('home_index') }}"></div>
+        <noscript>
+            <div class="s-flow">
+                <fieldset>
+                    <input type="file" name="upload[file]" id="file">
+                </fieldset>
+
+                <fieldset class="has-buttons">
+                    <button type="submit" class="button">{{ 'file.upload'|trans }}</button>
+                </fieldset>
+            </div>
+        </noscript>
+        {{ form_end(uploadForm) }}
+    </div>
+{% endblock %}

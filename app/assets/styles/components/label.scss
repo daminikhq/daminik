@@ -1,0 +1,12 @@
+.label {
+  border-radius: 6.25rem;
+  padding: 0.25rem 0.75rem;
+  color: var(--white);
+  background-color: var(--neutral-700);
+}
+
+.labels {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

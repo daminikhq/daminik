@@ -1,0 +1,12 @@
+<button class="button button--function is-js-hidden"
+    {{ stimulus_target('fileselection', 'toggleAll') }}
+    {{ stimulus_action('fileselection', 'selectAll') }}>
+    {{ 'base.selectAll'|trans }}
+</button>
+<button class="button button--function is-js-hidden"
+    {{ stimulus_target('fileselection', 'toggle') }}
+    {{ stimulus_action('fileselection', 'toggleSelection') }}
+        data-default-text="{{ 'base.select'|trans }}"
+        data-active-text="{{ 'base.cancelSelection'|trans }}">
+    {{ 'base.selection'|trans }}
+</button>

@@ -1,0 +1,14 @@
+type Asset {
+    slug: String!
+    filename: String!
+    title: String
+    description: String
+    public: Boolean
+    mime: String
+    url: String!
+    publicUrl: String
+    width: Int
+    height: Int
+    tags: [Tag]
+    category: Category
+}

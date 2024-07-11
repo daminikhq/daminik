@@ -1,0 +1,39 @@
+@function breakpoints($breakpoint) {
+  @if (map-has-key($breakpoints, $breakpoint)) {
+    @return map-get($breakpoints, $breakpoint);
+  } @else {
+    @error "Breakpoint \"#{$breakpoint}\" is undefined.";
+  }
+}
+
+@mixin breakpoint($query-input) {
+  $query: "";
+  $map: ();
+
+  @if (type-of($query-input) == "map") {
+    $map: $query-input;
+  } @else if (type-of($query-input) == "string") {
+    @if (str-index($query-input, "-max")) {
+      $breakpoint: str-slice($query-input, 0, str-index($query-input, "-max") - 1);
+      $map: (max: breakpoints($breakpoint) - 1);
+    } @else {
+      $map: (min: breakpoints($query-input));
+    }
+  }
+
+  @if map-has-key($map, min) {
+    $query: append($query, "(min-width: #{map-get($map, min)})");
+  }
+
+  @if map-has-key($map, min) and map-has-key($map, max) {
+    $query: append($query, "and");
+  }
+
+  @if map-has-key($map, max) {
+    $query: append($query, "(max-width: #{map-get($map, max)})");
+  }
+
+  @media screen and #{$query} {
+    @content;
+  }
+}

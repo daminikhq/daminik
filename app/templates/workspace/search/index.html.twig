@@ -1,0 +1,19 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    {% if files %}
+        <section class="file-list" {{ stimulus_controller('fileselection')|stimulus_controller('pagination') }}>
+            <div class="file-list__header">
+                <h1>{{ 'base.search'|trans }} <span class="count-badge">{{ files.total }}</span></h1>
+                <div class="file-list__header-right">
+                    {{ component('FileSelectionButtons') }}
+                    {{ component('FileSortingMenu') }}
+                </div>
+            </div>
+
+            {% include 'partials/_file-grid.html.twig' with {'files': files} %}
+            {% include 'partials/_pagination.html.twig' with {'pages': files.pages, 'page': page} %}
+        </section>
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,79 @@
+body {
+  max-height: 100vh;
+  font-size: font-size(s);
+  font-family: $font-base;
+  background: var(--neutral-150, #{$color-neutral-150});
+  color: var(--neutral-900, #{$color-neutral-900});
+
+  &::-webkit-scrollbar-track {
+    background: var(--neutral-200, #{$color-neutral-200});
+  }
+
+  &.scrolllock {
+    overflow: hidden;
+  }
+}
+
+a {
+  @include focus-outline-style();
+
+  color: currentColor;
+  text-decoration: none;
+
+  &:not([class]) {
+    text-decoration: underline;
+  }
+
+  &:hover {
+    color: var(--neutral-900, #{$color-neutral-900});
+    text-decoration: none;
+  }
+}
+
+svg:not([width]):not([height]) {
+  height: 1em;
+  width: auto;
+  vertical-align: middle;
+}
+
+p {
+  max-width: 640px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: var(--black);
+  color: var(--white);
+}
+
+fieldset {
+  @include flow(space(xs));
+
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  font-size: font-size(s);
+
+  &.has-button {
+    align-items: center;
+  }
+
+  &.has-button-fullwidth {
+    align-items: stretch;
+  }
+
+  &.has-buttons {
+    display: block;
+    line-height: 40px;
+  }
+
+  .hint,
+  .help-text {
+    font-size: font-size(xs);
+  }
+}

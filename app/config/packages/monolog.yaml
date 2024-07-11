@@ -1,0 +1,76 @@
+monolog:
+    channels:
+        - uppy
+        - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+        - delete
+
+when@dev:
+    monolog:
+        handlers:
+            main:
+                type: rotating_file
+                max_files: 10
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
+                channels: ["!event", "!messenger"]
+            uppy:
+                type: rotating_file
+                max_files: 10
+                path: "%kernel.logs_dir%/%kernel.environment%-uppy.log"
+                level: debug
+                channels: ["uppy"]
+            delete:
+                type: rotating_file
+                max_files: 10
+                path: "%kernel.logs_dir%/delete-%kernel.environment%.log"
+                level: debug
+                channels: ["delete"]
+            # uncomment to get logging in your browser
+            # you may have to allow bigger header sizes in your Web server configuration
+            #firephp:
+            #    type: firephp
+            #    level: info
+            #chromephp:
+            #    type: chromephp
+            #    level: info
+            console:
+                type: console
+                process_psr_3_messages: false
+                channels: ["!event", "!doctrine", "!console"]
+
+when@test:
+    monolog:
+        handlers:
+            main:
+                type: fingers_crossed
+                action_level: error
+                handler: nested
+                excluded_http_codes: [404, 405]
+                channels: ["!event"]
+            nested:
+                type: rotating_file
+                max_files: 10
+                path: "%kernel.logs_dir%/%kernel.environment%.log"
+                level: debug
+
+when@prod:
+    monolog:
+        handlers:
+            main:
+                type: fingers_crossed
+                action_level: notice
+                handler: nested
+                excluded_http_codes: [404, 405]
+                buffer_size: 50 # How many messages should be saved? Prevent memory leaks
+            nested:
+                type: stream
+                path: "%env(LOG_DIRECTORY)%/%kernel.environment%.log"
+                level: debug
+            console:
+                type: console
+                process_psr_3_messages: false
+                channels: ["!event", "!doctrine"]
+            deprecation:
+                type: stream
+                channels: [deprecation]
+                path: "%env(LOG_DIRECTORY)%/%kernel.environment%-deprecation.log"

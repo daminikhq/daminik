@@ -1,0 +1,23 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    {% if category.parent|default %}
+        <a href="{{ path('workspace_folder_index', {slug: category.parent.slug}) }}" class="button button--grey">
+            {% include 'icon-chevron-left.svg' %} {{ category.parent.title }}
+        </a>
+    {% elseif category %}
+        <a href="{{ path('workspace_folder_index') }}" class="button button--grey">
+            {% include 'icon-chevron-left.svg' %} {{ 'file.folders'|trans }}
+        </a>
+    {% endif %}
+
+    <h2>
+        {{ 'folder.delete'|trans }}
+    </h2>
+
+    <p>{{ 'folder.deleteMessage'|trans({'title': category.title|default('')}) }}</p>
+
+    {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+    {{ form_end(form) }}
+{% endblock %}
+

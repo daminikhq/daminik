@@ -1,0 +1,14 @@
+.trash-button {
+  cursor: pointer;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--white, #{$color-white});
+  background-color: var(--black, $color-black);
+  background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 5C10.4477 5 10 5.44772 10 6H7C6.44772 6 6 6.44772 6 7C6 7.55228 6.44772 8 7 8H17C17.5523 8 18 7.55228 18 7C18 6.44772 17.5523 6 17 6H14C14 5.44772 13.5523 5 13 5H11ZM7 11C7 10.0572 7 9.58579 7.29289 9.29289C7.58579 9 8.05719 9 9 9H15C15.9428 9 16.4142 9 16.7071 9.29289C17 9.58579 17 10.0572 17 11V15C17 16.8856 17 17.8284 16.4142 18.4142C15.8284 19 14.8856 19 13 19H11C9.11438 19 8.17157 19 7.58579 18.4142C7 17.8284 7 16.8856 7 15V11ZM9.5 11C9.22386 11 9 11.2239 9 11.5L9 16.5C9 16.7761 9.22386 17 9.5 17C9.77614 17 10 16.7761 10 16.5V11.5C10 11.2239 9.77614 11 9.5 11ZM11.5 11.5C11.5 11.2239 11.7239 11 12 11C12.2761 11 12.5 11.2239 12.5 11.5V16.5C12.5 16.7761 12.2761 17 12 17C11.7239 17 11.5 16.7761 11.5 16.5V11.5ZM14.5 11C14.2239 11 14 11.2239 14 11.5V16.5C14 16.7761 14.2239 17 14.5 17C14.7761 17 15 16.7761 15 16.5V11.5C15 11.2239 14.7761 11 14.5 11Z' fill='white'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 1.25rem 1.25rem;
+}

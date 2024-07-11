@@ -1,0 +1,17 @@
+{% extends 'base_workspace.html.twig' %}
+
+{% block body %}
+    <a class="button button--grey"
+       href="{{ path('workspace_collection_collection', {slug: collection.slug}) }}">
+        {{ 'collection.backToCollection'|trans }}
+    </a>
+
+    <h1>{{ 'collection.config'|trans }}</h1>
+
+    {{ form_start(form, {'attr': {'class': 'form form--narrow'}}) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.slug) }}
+    {{ form_row(form.public) }}
+    {{ form_end(form) }}
+{% endblock %}
+

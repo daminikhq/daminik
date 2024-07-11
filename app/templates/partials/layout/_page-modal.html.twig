@@ -1,0 +1,20 @@
+<dialog class="modal is-smol" tabindex="-1" id="modal"
+    {{ stimulus_controller('modal') }}
+    {{ stimulus_target('assetview', 'modal') }}>
+    <div class="modal__backdrop" {{ stimulus_target('modal', 'backdrop') }}></div>
+    <div class="modal__dialog" role="document">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h5 class="modal__title"
+                    {{ stimulus_target('assetview', 'modaltitle') }}></h5>
+                <button type="button" class="modal__close button button--small has-icon"
+                        data-dismiss="modal" {{ stimulus_action('modal', 'close') }}>
+                    {% include 'icon-x.svg' %}
+                    <span class="visually-hidden">{{ 'base.closeModal'|trans }}</span>
+                </button>
+            </div>
+            <div class="modal__body" {{ stimulus_target('assetview', 'modalbody') }}>
+            </div>
+        </div>
+    </div>
+</dialog>

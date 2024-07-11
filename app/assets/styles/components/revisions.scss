@@ -1,0 +1,27 @@
+.revisions {
+  @include list-reset;
+
+  li {
+    margin-bottom: space(xs);
+  }
+
+  .thumbnail {
+    opacity: 0.5;
+    cursor: pointer;
+  }
+
+  label {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .revision-checkbox {
+    @include visually-hidden;
+
+    &:checked + label .thumbnail {
+      opacity: 1;
+    }
+  }
+}

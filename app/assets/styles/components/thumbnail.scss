@@ -1,0 +1,46 @@
+.thumbnail {
+  --width: 3.5rem;
+  --height: 3.5rem;
+  --radius: #{border-radius(m)};
+  --bg: var(--neutral-200, #{$color-neutral-200});
+
+  &--small {
+    --width: 2rem;
+    --height: 2rem;
+    --radius: #{border-radius(s)};
+  }
+
+  &--initials {
+    --bg: var(--black, #{$color-black});
+  }
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: font-size(xs);
+  font-weight: font-weight(medium);
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--bg);
+  background-color: var(--bg);
+  color: var(--white, #{$color-white});
+  flex: 0 0 auto;
+
+  &:hover {
+    color: var(--white, #{$color-white});
+  }
+
+  &__image {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -1,0 +1,153 @@
+{%- block form_row -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+
+    {% if errors|length > 0 %}
+        {% set row_attr = row_attr|merge({'class': (row_attr.class|default('') ~ ' has-errors')|trim}) %}
+    {% endif %}
+    {% if 'is-filter-field' in form.vars.attr.class|default %}
+        {% set row_attr = row_attr|merge({'class': (row_attr.class|default('') ~ ' filters__dropdown')|trim}) %}
+        <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+            <span class="filters__headline">
+                {{- form_label(form) -}}
+{#                {% include 'icon-chevron-down.svg' %}#}
+            </span>
+            {{- form_errors(form) -}}
+            {{- form_widget(form, widget_attr) -}}
+            {{- form_help(form) -}}
+{#            <button class="button button--small button--ghost button--white" type="submit">Anwenden</button>#}
+        </div>
+    {% else %}
+        <fieldset{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+            {{- form_label(form) -}}
+            {{- form_errors(form) -}}
+            {% if 'has-daminik-domain' in form.vars.attr.class|default %}
+                <div class="daminik-domain-wrapper"{% if attribute(form.vars.attr, 'data-domain') is defined %} data-domain="{{ attribute(form.vars.attr, 'data-domain') }}"{% endif %}>
+                    {{- form_widget(form) -}}
+                </div>
+            {% else %}
+                {{- form_widget(form, widget_attr) -}}
+            {% endif %}
+            {{- form_help(form) -}}
+        </fieldset>
+    {% endif %}
+{%- endblock form_row -%}
+
+{%- block form_label -%}
+    {% if label is not same as(false) -%}
+        {% if id -%}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {%- endif -%}
+        {% if required -%}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {%- endif -%}
+        <{{ element|default('label') }}{% if label_attr %}{% with { attr: label_attr } %}{{ block('attributes') }}{% endwith %}{% endif %}>
+        {{- block('form_label_content') -}}
+        </{{ element|default('label') }}>
+    {%- endif -%}
+{%- endblock form_label -%}
+
+{%- block button_row -%}
+    <fieldset{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {{- form_widget(form) -}}
+    </fieldset>
+{%- endblock button_row -%}
+
+{%- block checkbox_row -%}
+    <fieldset{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        {{- form_widget(form) -}}
+    </fieldset>
+{%- endblock checkbox_row -%}
+
+{%- block checkbox_widget -%}
+    {% if attr.class|default and 'switch' in attr.class %}
+        <div class="switch">
+            <input class="switch__input" type="checkbox" {{ block('widget_attributes') }}{% if value is defined %}
+                value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}>
+            <label class="switch__label" for="{{ id }}">
+                {{- block('form_label_content') -}}
+            </label>
+        </div>
+    {% elseif attr.class|default and 'filtertag' in attr.class %}
+        <input class="filters__tag-checkbox" type="checkbox" {{ block('widget_attributes') }}{% if value is defined %}
+            value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}>
+        <label class="filters__tag" for="{{ id }}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M11.197 3.21967C11.4899 3.51256 11.4899 3.98744 11.197 4.28033L5.69702 9.78033C5.40412 10.0732 4.92925 10.0732 4.63636 9.78033L2.13636 7.28033C1.84346 6.98744 1.84346 6.51256 2.13636 6.21967C2.42925 5.92678 2.90412 5.92678 3.19702 6.21967L5.16669 8.18934L10.1364 3.21967C10.4292 2.92678 10.9041 2.92678 11.197 3.21967Z" fill="white"/>
+            </svg>
+            {{- block('form_label_content') -}}
+        </label>
+    {% elseif attr.class|default and 'tag' in attr.class %}
+        <div class="tag">
+            <input class="tag__input" type="checkbox" {{ block('widget_attributes') }}{% if value is defined %}
+                value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}>
+            <label class="tag__label" for="{{ id }}">
+                {{- block('form_label_content') -}}
+            </label>
+        </div>
+    {% else %}
+        <div class="checkbox">
+            <input class="checkbox__input" type="checkbox" {{ block('widget_attributes') }}{% if value is defined %}
+                value="{{ value }}"{% endif %}{% if checked %} checked="checked"{% endif %}>
+            <label class="checkbox__label" for="{{ id }}">
+                <span class="checkbox__wrapper">
+                    <svg class="checkbox__icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="20" height="20" fill="#FFFFFF" class="checkbox__rect"/>
+                        <path d="M14 7L8.5 12.5L6 10" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </span>
+
+                {{- block('form_label_content') -}}
+            </label>
+        </div>
+    {% endif %}
+{%- endblock checkbox_widget -%}
+
+{%- block choice_widget -%}
+    {% if expanded %}
+        {{- block('choice_widget_expanded') -}}
+    {% else %}
+        {{- block('choice_widget_collapsed') -}}
+    {% endif %}
+{%- endblock choice_widget -%}
+
+{%- block choice_widget_expanded -%}
+    <div {{ block('widget_container_attributes') }}>
+        {% set vars = {} %}
+        {% if attr.class|default and 'form__tags' in attr.class %}
+            {% set vars = { 'attr': { 'class': 'tag' }} %}
+        {% endif %}
+        {% if attr.class|default and 'filters__tag-group' in attr.class %}
+            {% set vars = { 'attr': { 'class': 'filtertag' }} %}
+        {% endif %}
+        {%- for child in form %}
+            {{- form_widget(child, vars) -}}
+        {% endfor -%}
+    </div>
+{%- endblock choice_widget_expanded -%}
+
+{%- block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <ul class="form-errors">
+            {%- for error in errors -%}
+                <li>{{ error.message }}</li>
+            {%- endfor -%}
+        </ul>
+    {%- endif -%}
+{%- endblock form_errors -%}
+
+{%- block search_widget -%}
+    <label for="s" class="search-form__label">{{ 'base.search'|trans }}</label>
+    <input id="s" type="search" name="s" class="search-form__input" value="{{ value|default }}"
+        {{ block('attributes') }}
+    >
+    <button type="submit" class="search-form__submit button button--small button--ghost">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15.7138 6.8382C18.1647 9.28913 18.1647 13.2629 15.7138 15.7138C13.2629 18.1647 9.28913 18.1647 6.8382 15.7138C4.38727 13.2629 4.38727 9.28913 6.8382 6.8382C9.28913 4.38727 13.2629 4.38727 15.7138 6.8382" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M19 19L15.71 15.71" stroke="#737373" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="visually-hidden">{{ 'base.toSearch'|trans }}</span>
+    </button>
+{%- endblock search_widget -%}

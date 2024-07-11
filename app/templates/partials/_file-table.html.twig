@@ -1,0 +1,45 @@
+<form class="file-table">
+    <table class="file-table__table">
+        <thead>
+        <tr>
+            <th class="file-table__head-col">
+                {% if can_edit_asset() %}
+                <div class="checkbox">
+                    <input class="checkbox__input" id="file-list-check-all" type="checkbox">
+                    <label class="checkbox__label" for="file-list-check-all">
+                        {% include 'icon-checkbox.svg' %}
+                        <span class="visually-hidden">{{ 'label.selectOption'|trans({}, 'form') }}</span>
+                    </label>
+                    {% endif %}
+                </div>
+            </th>
+            <th class="file-table__head-col">
+                {# Placeholder for Thumbnail #}
+            </th>
+            <th class="file-table__head-col">
+                {{ 'file.title'|trans }}
+            </th>
+            <th class="file-table__head-col">
+                {{ 'file.fileFormat'|trans }}
+            </th>
+            <th class="file-table__head-col">
+                {{ 'file.fileSize'|trans }}
+            </th>
+            <th class="file-table__head-col">
+                {{ 'file.resolution'|trans }}
+            </th>
+            <th class="file-table__head-col">
+                {{ 'file.added'|trans }}
+            </th>
+            <th class="file-table__head-col">
+                {# Placeholder for Actions #}
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for file in files.items %}
+            {% include 'partials/_file-table-row.html.twig' with {'file': file} %}
+        {% endfor %}
+        </tbody>
+    </table>
+</form>

@@ -1,0 +1,13 @@
+.headbar {
+  background-color: var(--white, #{$color-white});
+  padding: 0.5rem space(sm);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include breakpoint(lg) {
+    padding: 2rem space(sm);
+    display: block;
+  }
+}

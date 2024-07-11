@@ -1,0 +1,17 @@
+<ul class="navigation">
+    <li class="navigation__item">
+        <a class="navigation__link" href="{{ path('admin_index') }}">
+            {% include 'icon-home.svg' %} <span>{{ 'base.workspaces'|trans }}</span>
+        </a>
+    </li>
+    <li class="navigation__item">
+        <a class="navigation__link" href="{{ path('admin_users') }}">
+            {% include 'icon-user.svg' %} <span>{{ 'base.users'|trans }}</span>
+        </a>
+    </li>
+    <li class="navigation__item">
+        <a class="navigation__link" href="{{ path('admin_registrationcode_index') }}">
+            {% include 'icon-settings.svg' %} <span>{{ 'base.codes'|trans }}</span>
+        </a>
+    </li>
+</ul>
