@@ -351,9 +351,6 @@
             "config/routes/ux_autocomplete.yaml"
         ]
     },
-    "symfony/ux-swup": {
-        "version": "v2.10.0"
-    },
     "symfony/ux-twig-component": {
         "version": "2.15",
         "recipe": {
