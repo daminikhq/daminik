@@ -2,7 +2,7 @@
 
 # Daminik
 
-Daminik is a simple & scalable Digital Asset Manager with a build in Content Delivery Network. The single source of truth for all your assets.
+Daminik is a simple & scalable Digital Asset Manager with a built-in Content Delivery Network. The single source of truth for all your assets.
 
 ## Requirements
 
