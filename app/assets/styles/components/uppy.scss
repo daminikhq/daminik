@@ -15,11 +15,10 @@
   }
 
   .uppy-Dashboard-browse {
-    @include focus-outline-style();
-
     color: color-var(--neutral-900, #{$color-neutral-900});
     text-decoration: underline;
     border-bottom: 0;
+    @include focus-outline-style();
 
     &:hover {
       text-decoration: none;
@@ -30,11 +29,11 @@
   .uppy-StatusBar-actionBtn,
   .uppy-DashboardContent-back,
   .uppy-DashboardContent-addMore {
+    color: color-var(--neutral-900, #{$color-neutral-900});
+
     @include focus-outline-style() {
       background-color: transparent;
     }
-
-    color: color-var(--neutral-900, #{$color-neutral-900});
 
     &:hover {
       color: color-var(--neutral-700, #{$color-neutral-700});

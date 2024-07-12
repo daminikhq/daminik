@@ -3,10 +3,6 @@
 
   --row-height: 120px;
 
-  @include breakpoint(md) {
-    --row-height: 200px;
-  }
-
   cursor: pointer;
   flex-basis: calc(var(--thumbnail-aspect-ratio)*var(--row-height));
   flex-grow: calc(var(--thumbnail-aspect-ratio)*100);
@@ -15,6 +11,10 @@
   overflow: hidden;
   position: relative;
   z-index: 0;
+
+  @include breakpoint(md) {
+    --row-height: 200px;
+  }
 
   &__figure {
     display: block;
@@ -41,13 +41,12 @@
   }
 
   &__caption {
-    @include focus-outline-style();
-
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    @include focus-outline-style();
   }
 
   &__handle {

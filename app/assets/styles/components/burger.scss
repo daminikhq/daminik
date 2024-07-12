@@ -22,13 +22,12 @@
 
   &__link,
   &__button {
-    @include focus-outline-style();
-
     display: block;
     width: $size;
     height: $size;
     background: transparent;
     border: none;
+    @include focus-outline-style();
   }
 
   &__link {

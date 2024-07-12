@@ -4,16 +4,6 @@
   --radius: #{border-radius(m)};
   --bg: var(--neutral-200, #{$color-neutral-200});
 
-  &--small {
-    --width: 2rem;
-    --height: 2rem;
-    --radius: #{border-radius(s)};
-  }
-
-  &--initials {
-    --bg: var(--black, #{$color-black});
-  }
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -28,6 +18,16 @@
   background-color: var(--bg);
   color: var(--white, #{$color-white});
   flex: 0 0 auto;
+
+  &--small {
+    --width: 2rem;
+    --height: 2rem;
+    --radius: #{border-radius(s)};
+  }
+
+  &--initials {
+    --bg: var(--black, #{$color-black});
+  }
 
   &:hover {
     color: var(--white, #{$color-white});

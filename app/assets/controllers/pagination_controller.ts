@@ -14,11 +14,15 @@ export default class extends Controller {
     }
 
     connect() {
-        if (this.classicPaginationTarget) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        if (this.hasClassicPaginationTarget) {
             this.classicPaginationTarget.remove();
         }
 
-        if (this.loadMoreButtonTarget) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        if (this.hasLoadMoreButtonTarget) {
             paginationObserver = new IntersectionObserver(
                 (entries) => this.observeLoadMoreButton(entries),
                 {

@@ -174,8 +174,8 @@
   }
 
   &__info-body {
-    @include flow(space(s));
     padding: space(ml);
+    @include flow(space(s));
   }
 
   &__info-table {
@@ -194,8 +194,6 @@
   }
 
   &__history {
-    @include flow(math.div(space(xs), 2));
-
     margin: space(ml) 0;
     padding: space(xs) space(s);
     border-radius: border-radius(m);
@@ -203,5 +201,6 @@
     color: var(--neutral-700, $color-neutral-700);
     border: 1px solid var(--neutral-300, $color-neutral-300);
     background: var(--neutral-100, $color-neutral-100);
+    @include flow(math.div(space(xs), 2));
   }
 }

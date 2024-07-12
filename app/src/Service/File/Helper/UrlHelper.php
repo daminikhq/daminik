@@ -77,6 +77,8 @@ readonly class UrlHelper implements UrlHelperInterface
         $storageUrl->setTimeout($timeout)
             ->setUrl($this->getSignedUrl($revision->getFile(), $width, $height, $revision->getCounter(), $expires));
 
+        $this->entityManager->flush();
+
         return $storageUrl;
     }
 
@@ -139,7 +141,8 @@ readonly class UrlHelper implements UrlHelperInterface
 
         if (null === $filepath) {
             if (null === $width && null === $height) {
-                $filepath = FilePathHelper::getFilePath($file->getFilename(), $file->getFilenameSlug(), $revision?->getCounter());
+                $filename = implode('.', array_filter([$file->getFilenameSlug(), $file->getExtension()]));
+                $filepath = FilePathHelper::getFilePath($filename, $file->getFilenameSlug(), $revision?->getCounter());
             } else {
                 $filepath = FilePathHelper::getFilePathWithSize($file->getFilenameSlug(), $width, $height, $revision?->getCounter());
             }

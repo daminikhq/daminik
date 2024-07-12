@@ -1,9 +1,12 @@
 .folder-grid {
   &__list {
     @include list-reset();
-    display: grid;
-    grid-gap: space(sm);
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+
+    & {
+      display: grid;
+      grid-gap: space(sm);
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
   }
 
   &__item {
