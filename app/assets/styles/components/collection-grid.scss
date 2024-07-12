@@ -4,9 +4,8 @@
   grid-template-columns: repeat(auto-fit, minmax(10rem, 12.5rem));
 
   &__item {
-    @include flow(space(xs));
-
     position: relative;
+    @include flow(space(xs));
   }
 
   &__item-public {
@@ -80,10 +79,9 @@
   }
 
   &__collection-link {
-    @include full-size-link;
-
     display: block;
     font-weight: font-weight(bold);
     text-decoration: none;
+    @include full-size-link;
   }
 }

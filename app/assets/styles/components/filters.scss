@@ -32,10 +32,6 @@
     font-size: font-size(m);
   }
 
-  &__content {
-
-  }
-
   &__footer {
     display: flex;
     justify-content: space-between;
@@ -73,12 +69,6 @@
     //padding: 1rem;
     min-width: 16rem;
 
-    &::after {
-      content: '';
-      display: block;
-      clear: both;
-    }
-
     // TODO: Use when switching back to Details Element
     //&[open] {
       padding: 1rem 1rem 0.5rem 1rem;
@@ -88,6 +78,12 @@
         border-bottom: 1px solid color-var(--neutral-200, $color-neutral-200);
       }
     //}
+
+    &::after {
+      content: '';
+      display: block;
+      clear: both;
+    }
 
     .button {
       margin-top: 1rem;

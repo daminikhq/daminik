@@ -24,15 +24,14 @@
   }
 
   &__submit {
-    @include focus-outline-style();
-    @include button-reset();
-
     position: absolute;
     top: 50%;
     left: 0.75rem;
     width: 1.5rem;
     height: 1.5rem;
     margin-top: -0.75rem;
+    @include focus-outline-style();
+    @include button-reset();
   }
 
   &__input {

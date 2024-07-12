@@ -11,18 +11,19 @@
 
   &__menu {
     @include list-reset;
-
-    display: none;
-    position: absolute;
-    right: -0.5rem;
-    top: calc(100% + 0.5rem);
-    width: 12.5rem;
-    flex-direction: column;
-    font-size: font-size(s);
-    padding: space(xs);
-    border-radius: border-radius(l);
-    background-color: var(--neutral-800, #{$color-neutral-800});
-    z-index: z-index(contextmenu);
+    & {
+      display: none;
+      position: absolute;
+      right: -0.5rem;
+      top: calc(100% + 0.5rem);
+      width: 12.5rem;
+      flex-direction: column;
+      font-size: font-size(s);
+      padding: space(xs);
+      border-radius: border-radius(l);
+      background-color: var(--neutral-800, #{$color-neutral-800});
+      z-index: z-index(contextmenu);
+    }
 
     .is-dropup > & {
       top: auto;
@@ -37,34 +38,6 @@
   }
 
   &__link {
-    @include button-reset();
-    @include focus-outline-style() {
-      outline-offset: -2px;
-    }
-
-    text-decoration: none;
-    display: flex;
-    cursor: pointer;
-    width: 100%;
-    padding: 0.5rem 0.5rem 0.5rem 0.75rem;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    text-align: left;
-    color: var(--white, #{$color-white});
-    background-color: var(--neutral-800, #{$color-neutral-800});
-    border-radius: border-radius(m);
-    line-height: 1.1;
-
-    &:hover {
-      background-color: var(--neutral-700, #{$color-neutral-700});
-      color: var(--white, #{$color-white});
-    }
-
-    svg {
-      flex: 0 0 auto;
-    }
-
     --share-button-text-color: white;
     --share-button-font-weight: 400;
     --share-button-font-size: 0.875rem;
@@ -75,5 +48,36 @@
     --share-button-icon-width: 14px;
     --share-button-icon-height: 14px;
     --share-button-icon-margin: 0 5px;
+
+    @include button-reset();
+
+    @include focus-outline-style() {
+      outline-offset: -2px;
+    }
+
+    & {
+      text-decoration: none;
+      display: flex;
+      cursor: pointer;
+      width: 100%;
+      padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      text-align: left;
+      color: var(--white, #{$color-white});
+      background-color: var(--neutral-800, #{$color-neutral-800});
+      border-radius: border-radius(m);
+      line-height: 1.1;
+    }
+
+    &:hover {
+      background-color: var(--neutral-700, #{$color-neutral-700});
+      color: var(--white, #{$color-white});
+    }
+
+    svg {
+      flex: 0 0 auto;
+    }
   }
 }

@@ -15,10 +15,10 @@ body {
 }
 
 a {
-  @include focus-outline-style();
-
   color: currentColor;
   text-decoration: none;
+
+  @include focus-outline-style();
 
   &:not([class]) {
     text-decoration: underline;
@@ -51,13 +51,13 @@ img {
 }
 
 fieldset {
-  @include flow(space(xs));
-
   border: 0;
   display: flex;
   flex-direction: column;
   position: relative;
   font-size: font-size(s);
+
+  @include flow(space(xs));
 
   &.has-button {
     align-items: center;

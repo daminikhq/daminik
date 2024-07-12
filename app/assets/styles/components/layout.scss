@@ -187,10 +187,9 @@
   }
 
   &__main {
-    @include flow(space(m));
-
     grid-area: content;
     padding: space(sm);
+    @include flow(space(m));
 
     @include breakpoint(navigation) {
       padding: 1.5rem 2rem;

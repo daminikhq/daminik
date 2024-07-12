@@ -1,7 +1,10 @@
 .breadcrumb {
   @include list-reset;
-  display: flex;
-  align-items: center;
+
+  & {
+    display: flex;
+    align-items: center;
+  }
 
   &__item {
     display: flex;

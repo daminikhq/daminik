@@ -4,10 +4,12 @@
   &__nav {
     @include list-reset();
 
-    display: flex;
-    padding: 0 space(sm);
-    background-color: var(--white, $color-white);
-    border-bottom: 1px solid var(--neutral-300, $color-neutral-300);
+    & {
+      display: flex;
+      padding: 0 space(sm);
+      background-color: var(--white, $color-white);
+      border-bottom: 1px solid var(--neutral-300, $color-neutral-300);
+    }
   }
 
   &__nav-link {
@@ -35,9 +37,8 @@
   }
 
   &__content {
-    @include flow(space(s));
-
     padding: space(s) 0;
+    @include flow(space(s));
 
     body:not(.no-js) &.is-hidden {
       display: none;
