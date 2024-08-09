@@ -2,11 +2,14 @@
 
 namespace App\Controller\Admin;
 
+use App\Dto\Utility\DefaultRequestValues;
 use App\Entity\RegistrationCode;
 use App\Entity\User;
 use App\Enum\UserRole;
 use App\Form\Admin\RegistrationCodeType;
 use App\Repository\RegistrationCodeRepository;
+use App\Service\User\UserHandlerInterface;
+use App\Util\RequestArgumentHelper;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,10 +54,23 @@ class RegistrationCodeController extends AbstractAdminController
     }
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(RegistrationCode $registrationCode): Response
-    {
+    public function show(
+        RegistrationCode $registrationCode,
+        UserHandlerInterface $userHandler,
+        Request $request
+    ): Response {
+        $arguments = RequestArgumentHelper::extractArguments(
+            request: $request,
+            defaultValues: new DefaultRequestValues(limit: 100)
+        );
+        $users = $userHandler->filterAndPaginateUsers(
+            $arguments,
+            $registrationCode
+        );
+
         return $this->render('admin/registration_code/show.html.twig', [
             'registration_code' => $registrationCode,
+            'users' => $users,
         ]);
     }
 

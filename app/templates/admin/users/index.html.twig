@@ -14,6 +14,7 @@
                 <th>{{ 'admin.user.registeredAt'|trans }}</th>
                 <th>{{ 'admin.user.status'|trans }}</th>
                 <th>{{ 'admin.user.notice'|trans }}</th>
+                <th>{{ 'admin.user.registrationCode'|trans }}</th>
             </tr>
             </thead>
             <tbody>
@@ -22,20 +23,37 @@
                     <td>{{ user.id }}</td>
                     <td><a href="{{ path('admin_user_index', {'userToEdit': user.id}) }}">{{ user.name }} ({{ user.username }} / {{ user.email }})</a></td>
                     <td>
-                        {% if user.lastUsedWorkspace %}
-                            <a href="{{ path('admin_workspace_index', {'workspace': user.lastUsedWorkspace.id}) }}">
-                                {{ user.lastUsedWorkspace.slug }} / {{ user.lastUsedWorkspace.name }}
-                            </a>
+                        {% if user.memberships.count|default(0) > 0 %}
+                            <ul>
+                                {% for membership in user.memberships %}
+                                    {% if membership.workspace %}
+                                        <li>
+                                            <a href="{{ path('admin_workspace_index', {'workspace': membership.workspace.id}) }}">
+                                                {{ membership.workspace.slug }} / {{ membership.workspace.name }}
+                                            </a>
+                                            ({{ membership|workspaceRole }})
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
                         {% endif %}
                     </td>
                     <td>{{ user|daminikRole }}</td>
                     <td>{{ user.createdAt|format_datetime('short', 'none') }}</td>
                     <td>{{ user.status }}</td>
                     <td>{{ user.adminNotice }}</td>
+                    <td>
+                        {% if user.registrationCode %}
+                            <a href="{{ path('admin_registrationcode_show', {id: user.registrationCode.id}) }}">
+                                {{ user.registrationCode.code }}
+                            </a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
+        {% include 'partials/_pagination.html.twig' with {'pages': users.pages, 'page': users.page, 'classicPagination': true} %}
     </div>
 {% endblock %}
 

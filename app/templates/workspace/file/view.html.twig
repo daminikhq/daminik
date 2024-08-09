@@ -131,7 +131,7 @@
                                     {{ form_help(form.category) }}
                                 </fieldset>
 
-                                {% if form.assetCollections  is defined %}
+{#                                {% if form.assetCollections is defined %}#}
                                     <fieldset>
                                         <div class="form__label-wrapper">
                                             {{ form_label(form.assetCollections) }}
@@ -143,7 +143,7 @@
                                         {{ form_widget(form.assetCollections, {'attr': {'class': 'multiselect', 'data-assetview-target': 'collectionSelect'}}) }}
                                         {{ form_help(form.assetCollections) }}
                                     </fieldset>
-                                {% endif %}
+{#                                {% endif %}#}
 
                                 {% include 'partials/_file-dates-table.html.twig' %}
 

@@ -39,4 +39,45 @@
     <a href="{{ path('admin_registrationcode_edit', {'id': registration_code.id}) }}">edit</a>
 
     {{ include('admin/registration_code/_delete_form.html.twig') }}
+
+    {% if users.total > 0 %}
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{ 'admin.user.emailadress'|trans }}</th>
+                    <th>{{ 'admin.user.name'|trans }}</th>
+                    <th>{{ 'admin.user.username'|trans }}</th>
+                    <th>{{ 'admin.user.workspace'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users.items %}
+                    <tr>
+                        <td><a href="{{ path('admin_user_index', {'userToEdit': user.id}) }}">{{ user.email|default }}</a></td>
+                        <td>{{ user.name|default }}</td>
+                        <td>{{ user.username|default }}</td>
+                        <td>
+                            {% if user.memberships.count|default(0) > 0 %}
+                                <ul>
+                                    {% for membership in user.memberships %}
+                                        {% if membership.workspace %}
+                                            <li>
+                                                <a href="{{ path('admin_workspace_index', {'workspace': membership.workspace.id}) }}">
+                                                    {{ membership.workspace.slug }} / {{ membership.workspace.name }}
+                                                </a>
+                                                ({{ membership|workspaceRole }})
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% include 'partials/_pagination.html.twig' with {'pages': users.pages, 'page': users.page, 'classicPagination': true} %}
+    {% endif %}
 {% endblock %}

@@ -63,6 +63,7 @@ base:
     backToApp: 'Zurück zur App'
     cancel: Abbrechen
     apply: Anwenden
+    clearInput: 'Feld leeren'
 invites:
     invite: Einladen
     inviteInstruction: '(Um einen neuen Einladungslink zu generieren, kannst du einfach das Formular ohne E-Mail Adresse abschicken.)'
@@ -96,6 +97,8 @@ registration:
     noAccountYet: 'Du hast noch keinen Account? <a href="{url}">Jetzt registrieren</a>'
 file:
     updateSuccess: 'Die Datei %s wurde erfolgreich aktualisiert.'
+    addFolderSuccess: 'Die Datei %s wurde erfolgreich verschoben.'
+    newCollectionSuccess: 'Die Datei %s wurde erfolgreich der Kollektion zugewiesen.'
     accessDenied: 'Zugriff verweigert.'
     tryAgainCsrf: 'Bitte noch einmal versuchen. (CSRF-Token)'
     deletedSuccess: 'Die Datei %s wurde erfolgreich gelöscht.'
@@ -240,6 +243,7 @@ admin:
         role: Rolle
         actions: Aktionen
         registeredAt: 'Registriert am'
+        registrationCode: 'Registrierungscode'
     message:
         user:
             lastOwner: 'Der Workspace braucht mindestens einen Besitzer.'

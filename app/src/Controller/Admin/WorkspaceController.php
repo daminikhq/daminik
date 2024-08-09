@@ -6,11 +6,17 @@ namespace App\Controller\Admin;
 
 use App\Dto\Admin\Form\WorkspaceEdit;
 use App\Dto\Utility\DefaultRequestValues;
+use App\Dto\Utility\SortFilterPaginateArguments;
 use App\Entity\Workspace;
+use App\Enum\FileType;
 use App\Enum\FlashType;
 use App\Enum\UserRole;
 use App\Enum\WorkspaceStatus;
+use App\Exception\FileHandlerException;
 use App\Form\Admin\WorkspaceEditType;
+use App\Service\File\FilePaginationHandlerInterface;
+use App\Service\File\Filter\ChoiceFilter;
+use App\Service\File\Filter\FileTypeFilter;
 use App\Service\User\MembershipHandlerInterface;
 use App\Service\Workspace\WorkspaceHandlerInterface;
 use App\Util\Paginator\PaginatorException;
@@ -27,6 +33,7 @@ class WorkspaceController extends AbstractAdminController
 {
     /**
      * @throws PaginatorException
+     * @throws FileHandlerException
      */
     #[Route('/{workspace}', name: 'index')]
     public function index(
@@ -34,7 +41,8 @@ class WorkspaceController extends AbstractAdminController
         Request $request,
         WorkspaceHandlerInterface $workspaceHandler,
         TranslatorInterface $translator,
-        MembershipHandlerInterface $membershipHandler
+        MembershipHandlerInterface $membershipHandler,
+        FilePaginationHandlerInterface $filePaginationHandler,
     ): Response {
         $edit = (new WorkspaceEdit())
             ->setStatus(
@@ -60,9 +68,19 @@ class WorkspaceController extends AbstractAdminController
             sortFilterPaginateArguments: $arguments,
         );
 
+        $files = $filePaginationHandler->filterAndPaginateFiles(
+            $workspace,
+            new SortFilterPaginateArguments(page: 1, limit: 5),
+            [
+                new ChoiceFilter(['deletedAt', 'isNull']),
+                new FileTypeFilter(FileType::ASSET),
+            ]
+        );
+
         return $this->render('admin/workspace.html.twig', [
             'workspace' => $workspace,
             'memberships' => $memberships,
+            'files' => $files,
             'form' => $form->createView(),
         ]);
     }

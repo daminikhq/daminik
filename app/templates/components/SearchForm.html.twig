@@ -10,8 +10,16 @@
         {% endif %}
         {{ form_end(searchForm) }}
     {% else %}
-        <div class="search-form">
-        {{ form_widget(searchForm.s, {'attr': {'form': 'filters-form'}}) }}
+        <div class="search-form" {{ stimulus_controller('clear-input-button') }}>
+            {{ form_widget(searchForm.s, {'attr': {'form': 'filters-form', 'data-clear-input-button-target': 'input'}}) }}
+            <template id="clear-input-button">
+                <button
+                    {{ stimulus_target('clear-input-button', 'button') }}
+                    class="search-form__clear"
+                    aria-label="{{ 'base.clearInput'|trans }}"
+                    title="{{ 'base.clearInput'|trans }}"
+                ><span class="visually-hidden">{{ 'base.clearInput'|trans }}</span></button>
+            </template>
         </div>
     {% endif %}
 </div>

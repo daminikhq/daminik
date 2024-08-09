@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\RegistrationCode;
 use App\Entity\User;
 use App\Entity\Workspace;
 use App\Enum\SortParam;
@@ -92,10 +93,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $result;
     }
 
-    public function getUserQuery(SortParam $sortParam): Query
+    public function getUserQuery(SortParam $sortParam, ?RegistrationCode $registrationCode = null): Query
     {
         $qb = $this->createQueryBuilder('u')
             ->orderBy($this->getOrderBy($sortParam));
+
+        if ($registrationCode instanceof RegistrationCode) {
+            $qb->andWhere('u.registrationCode = :registrationCode')
+                ->setParameter('registrationCode', $registrationCode);
+        }
 
         return $qb->getQuery();
     }

@@ -102,44 +102,43 @@ class EditType extends AbstractType
                     'disabled' => !$canEdit,
                 ],
             ]);
-        if ([] !== $collectionChoices) {
-            $builder
-                ->add('assetCollections', ChoiceType::class, [
-                    'label' => 'label.collections',
-                    'placeholder' => 'label.select',
-                    'choices' => $collectionChoices,
-                    'required' => false,
-                    'multiple' => true,
-                    'attr' => [
-                        'readonly' => !$canEdit,
-                    ],
-                    'autocomplete' => true,
-                ]);
-            $builder->get('assetCollections')
-                ->addModelTransformer(
-                    new CallbackTransformer(
-                        function ($assetCollections) {
-                            $pickedCollections = [];
-                            /** @var AssetCollection $collection */
-                            foreach ($assetCollections as $collection) {
-                                $pickedCollections[] = $collection->getId();
-                            }
-
-                            return $pickedCollections;
-                        },
-                        function (array $selection) use ($collections): array {
-                            $pickedCollections = [];
-                            foreach ($collections as $collection) {
-                                if (in_array($collection->getId(), $selection, true)) {
-                                    $pickedCollections[] = $collection;
-                                }
-                            }
-
-                            return $pickedCollections;
+        $builder
+            ->add('assetCollections', ChoiceType::class, [
+                'label' => 'label.collections',
+                'placeholder' => 'label.select',
+                'choices' => $collectionChoices,
+                'required' => false,
+                'multiple' => true,
+                'attr' => [
+                    'readonly' => !$canEdit,
+                    'data-controller' => 'assetview-collection-autocomplete',
+                ],
+                'autocomplete' => true,
+            ]);
+        $builder->get('assetCollections')
+            ->addModelTransformer(
+                new CallbackTransformer(
+                    function ($assetCollections) {
+                        $pickedCollections = [];
+                        /** @var AssetCollection $collection */
+                        foreach ($assetCollections as $collection) {
+                            $pickedCollections[] = $collection->getId();
                         }
-                    )
-                );
-        }
+
+                        return $pickedCollections;
+                    },
+                    function (array $selection) use ($collections): array {
+                        $pickedCollections = [];
+                        foreach ($collections as $collection) {
+                            if (in_array($collection->getId(), $selection, true)) {
+                                $pickedCollections[] = $collection;
+                            }
+                        }
+
+                        return $pickedCollections;
+                    }
+                )
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

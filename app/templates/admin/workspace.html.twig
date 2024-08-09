@@ -27,8 +27,36 @@
                 </tbody>
             </table>
         </div>
-        {% include 'partials/_pagination.html.twig' with {'pages': memberships.pages, 'page': memberships.page} %}
+        {% include 'partials/_pagination.html.twig' with {'pages': memberships.pages, 'page': memberships.page, 'classicPagination': true} %}
     {% endif %}
+    {% if files.total > 0 %}
+        <div class="table-wrapper">
+            <table class="table">
+                <tbody>
+                {% for file in files.items %}
+                    <tr>
+                        <td>
+                            <img
+                                src="{{ file|thumbnailUrl }}"
+                                alt="{{ file.filename }}">
+                        </td>
+                        <td>
+                            {{ file.filename }}
+                        </td>
+                        <td>
+                            <a href="{{ path('admin_user_index', {'userToEdit': file.uploader.id}) }}">
+                                {{ file.uploader.name }}
+                                ({{ file.uploader.username }})
+                            </a>
+                        </td>
+                        <td>
+                            {{ file.createdAt|format_datetime }}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>    {% endif %}
 
 {% endblock %}
 

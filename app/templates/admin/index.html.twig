@@ -25,6 +25,7 @@
             {% endfor %}
             </tbody>
         </table>
+        {% include 'partials/_pagination.html.twig' with {'pages': workspaces.pages, 'page': workspaces.page, 'classicPagination': true} %}
     </div>
 {% endblock %}
 
