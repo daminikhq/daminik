@@ -63,6 +63,7 @@ base:
     select: Select
     cancel: Cancel
     apply: Apply
+    clearInput: 'Clear input'
 invites:
     invite: Invite
     inviteInstruction: '(Generate new invite link: submit form without email address.)'
@@ -96,6 +97,8 @@ registration:
     noAccountYet: 'You do not have an account, yet? <a href="{url}">Why not register</a>'
 file:
     updateSuccess: 'The file %s has been successfully updated.'
+    addFolderSuccess: 'The file %s has been moved to the folder.'
+    newCollectionSuccess: 'The file %s has been added to the collection.'
     accessDenied: 'Access Denied.'
     tryAgainCsrf: 'Please try again. (CSRF-Token)'
     deletedSuccess: 'File %s successfully deleted'
@@ -240,6 +243,7 @@ admin:
         role: Role
         actions: Actions
         registeredAt: 'Registered at'
+        registrationCode: 'Registration Code'
     message:
         user:
             lastOwner: 'The workspace needs at least one owner'

@@ -76,7 +76,9 @@ readonly class FilePaginationHandler implements FilePaginationHandlerInterface
         $files = $this->fileRepository->filterFiles($scope, $filters);
         $query = $this->fileRepository->sortFiles($files, $orderBy);
 
-        return $this->paginator->paginate(
+        $paginator = clone $this->paginator;
+
+        return $paginator->paginate(
             query: $query,
             page: $sortFilterPaginateArguments->getPage(),
             limit: $sortFilterPaginateArguments->getLimit()

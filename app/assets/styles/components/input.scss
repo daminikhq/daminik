@@ -209,6 +209,10 @@ input[type="file"]::file-selector-button {
     border-radius: border-radius(m);
   }
 
+  .ts-wrapper.multi & {
+    padding: 0.5rem 1rem;
+  }
+
   .ts-wrapper.multi.has-items & {
     padding: 0.5rem;
   }

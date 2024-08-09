@@ -16,10 +16,10 @@ readonly class SortFilterPaginateArguments
      * @param string[]        $uploadedBy
      */
     public function __construct(
-        private SortParam $sort,
+        private SortParam $sort = SortParam::UPLOADED_DESC,
         private int $page = 1,
         private int $limit = 30,
-        private ?ViewParam $view = null,
+        private ?ViewParam $view = ViewParam::VIEW_GRID,
         private ?string $search = null,
         private array $mimeTypes = [],
         private array $tags = [],

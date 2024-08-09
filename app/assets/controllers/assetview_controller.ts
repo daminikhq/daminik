@@ -25,6 +25,9 @@ export default class extends Controller {
         'collectionSelect',
     ];
 
+    private hasCategoryFormTarget: boolean;
+    private hasCollectionFormTarget: boolean;
+
     connect() {
         hotkeys('esc', (event) => this.close(event));
         hotkeys('right,arrowright', () => this.navigateNext());
@@ -78,16 +81,19 @@ export default class extends Controller {
                     if (response.data.body) {
                         const option = new Option(response.data.body.title, response.data.body.slug);
 
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
                         if (this.hasCategoryFormTarget && currentForm === this.categoryFormTarget) {
                             this.categorySelectTarget.append(option);
                             this.categorySelectTarget.value = response.data.body.slug;
-                        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                        // @ts-ignore
                         } else if (this.hasCollectionFormTarget && currentForm === this.collectionFormTarget) {
-                            option.selected = true;
-                            this.collectionSelectTarget.insertBefore(option, this.collectionSelectTarget.firstChild);
+                            // option.selected = true;
+                            // this.collectionSelectTarget.insertBefore(option, this.collectionSelectTarget.firstChild);
+
+                            this.collectionSelectTarget.dispatchEvent(
+                                new CustomEvent(
+                                    'assetviewAddCollection',
+                                    {detail: {title: response.data.body.title, slug: response.data.body.slug, option}},
+                                ),
+                            );
                         }
 
                         if (response.data.message) {
