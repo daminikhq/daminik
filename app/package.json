@@ -39,7 +39,7 @@
         "@uppy/drag-drop": "^4.0.0",
         "@uppy/locales": "^4.0.0",
         "@uppy/xhr-upload": "^4.0.0",
-        "axios": "^1.7.2",
+        "axios": "^1.7.4",
         "eslint": "8.57.0",
         "hotkeys-js": "^3.13.7",
         "photoeditorsdk": "^5.19.0",
