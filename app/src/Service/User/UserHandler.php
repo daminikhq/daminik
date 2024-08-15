@@ -9,6 +9,7 @@ use App\Dto\User\Interface\LocaleRequestChangeInterface;
 use App\Dto\User\Interface\NameRequestInterface;
 use App\Dto\User\Interface\UsernameRequestInterface;
 use App\Dto\Utility\SortFilterPaginateArguments;
+use App\Entity\RegistrationCode;
 use App\Entity\User;
 use App\Entity\Workspace;
 use App\Enum\UserAction;
@@ -124,10 +125,12 @@ readonly class UserHandler implements UserHandlerInterface
     /**
      * @throws PaginatorException
      */
-    public function filterAndPaginateUsers(SortFilterPaginateArguments $sortFilterPaginateArguments): Paginator
-    {
+    public function filterAndPaginateUsers(
+        SortFilterPaginateArguments $sortFilterPaginateArguments,
+        ?RegistrationCode $registrationCode = null
+    ): Paginator {
         return $this->paginator->paginate(
-            query: $this->userRepository->getUserQuery($sortFilterPaginateArguments->getSort()),
+            query: $this->userRepository->getUserQuery($sortFilterPaginateArguments->getSort(), $registrationCode),
             page: $sortFilterPaginateArguments->getPage(),
             limit: $sortFilterPaginateArguments->getLimit()
         );

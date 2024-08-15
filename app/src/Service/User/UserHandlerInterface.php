@@ -9,6 +9,7 @@ use App\Dto\User\Interface\LocaleRequestChangeInterface;
 use App\Dto\User\Interface\NameRequestInterface;
 use App\Dto\User\Interface\UsernameRequestInterface;
 use App\Dto\Utility\SortFilterPaginateArguments;
+use App\Entity\RegistrationCode;
 use App\Entity\User;
 use App\Entity\Workspace;
 use App\Exception\UserHandlerException;
@@ -31,7 +32,10 @@ interface UserHandlerInterface extends AutoCompleteQueriable
 
     public function changeLocale(LocaleRequestChangeInterface $action): void;
 
-    public function filterAndPaginateUsers(SortFilterPaginateArguments $sortFilterPaginateArguments): Paginator;
+    public function filterAndPaginateUsers(
+        SortFilterPaginateArguments $sortFilterPaginateArguments,
+        ?RegistrationCode $registrationCode = null
+    ): Paginator;
 
     public function adminUpdateUser(User $userToEdit, UserEdit $edit, User $user): void;
 

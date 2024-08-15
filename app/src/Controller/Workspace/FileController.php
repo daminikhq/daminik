@@ -215,7 +215,7 @@ class FileController extends AbstractWorkspaceController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $categoryHandler->createCategory($create, $workspace, $user, $file);
-            $message = sprintf($this->translator->trans('file.updateSuccess'), $file->getFilename());
+            $message = sprintf($this->translator->trans('file.addFolderSuccess'), $file->getFilename());
 
             if ($request->isXmlHttpRequest()) {
                 return $this->json(
@@ -267,7 +267,7 @@ class FileController extends AbstractWorkspaceController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $collection = $collectionHandler->createCollection($create, $workspace, $user, $file);
-            $message = sprintf($this->translator->trans('file.updateSuccess'), $file->getFilename());
+            $message = sprintf($this->translator->trans('file.newCollectionSuccess'), $file->getFilename());
 
             if ($request->isXmlHttpRequest()) {
                 return $this->json(

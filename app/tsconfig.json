@@ -25,7 +25,8 @@
     "noUnusedParameters": true,
     "incremental": true,
     "noFallthroughCasesInSwitch": true,
-    "noImplicitThis": false
+    "noImplicitThis": false,
+    "strictPropertyInitialization": false
   },
   "include": [
     "assets/**/*"
