@@ -1,22 +1,19 @@
 /* TEAM */                       
 	Product: Alexander Kaiser
 	Site: https://alexander.kaiser.fm
-	Contact: alex@pooliestudios.com
+	Contact: alexander@kaiser.fm
 	Location: Cologne, Germany
 	
 	Frontend: Kristina Kliwer
-	Contact: kristina.kliwer@pooliestudios.com
 	Location: Cologne, Germany
 	
 	Backend: Dominik Schwind
 	Site: https://dominikschwind.com
-	Contact: dominik.schwind@pooliestudios.com
+	Contact: dschwind@lostfocus.de
 	Location: Cologne, Germany
 	
 	Design: Chris Struwe
-	Contact: chris@pooliestudios.com
 	Location: Hattingen, Germany
 	
 	Projectmanagement: Nina Schwan
-	Contact: janina.schwan@pooliestudios.com
 	Location: Cologne, Germany
