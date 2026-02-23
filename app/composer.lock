@@ -9798,22 +9798,22 @@
         },
         {
             "name": "phpstan/extension-installer",
-            "version": "1.4.1",
+            "version": "1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/extension-installer.git",
-                "reference": "f6b87faf9fc7978eab2f7919a8760bc9f58f9203"
+                "reference": "85e90b3942d06b2326fba0403ec24fe912372936"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/f6b87faf9fc7978eab2f7919a8760bc9f58f9203",
-                "reference": "f6b87faf9fc7978eab2f7919a8760bc9f58f9203",
+                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/85e90b3942d06b2326fba0403ec24fe912372936",
+                "reference": "85e90b3942d06b2326fba0403ec24fe912372936",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^2.0",
                 "php": "^7.2 || ^8.0",
-                "phpstan/phpstan": "^1.9.0"
+                "phpstan/phpstan": "^1.9.0 || ^2.0"
             },
             "require-dev": {
                 "composer/composer": "^2.0",
@@ -9834,24 +9834,28 @@
                 "MIT"
             ],
             "description": "Composer plugin for automatic installation of PHPStan extensions",
+            "keywords": [
+                "dev",
+                "static analysis"
+            ],
             "support": {
                 "issues": "https://github.com/phpstan/extension-installer/issues",
-                "source": "https://github.com/phpstan/extension-installer/tree/1.4.1"
+                "source": "https://github.com/phpstan/extension-installer/tree/1.4.3"
             },
-            "time": "2024-06-10T08:20:49+00:00"
+            "time": "2024-09-04T20:21:43+00:00"
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.8",
+            "version": "1.12.25",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f6a60a4d66142b8156c9da923f1972657bc4748c"
+                "reference": "e310849a19e02b8bfcbb63147f495d8f872dd96f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f6a60a4d66142b8156c9da923f1972657bc4748c",
-                "reference": "f6a60a4d66142b8156c9da923f1972657bc4748c",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e310849a19e02b8bfcbb63147f495d8f872dd96f",
+                "reference": "e310849a19e02b8bfcbb63147f495d8f872dd96f",
                 "shasum": ""
             },
             "require": {
@@ -9896,7 +9900,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-06T19:06:49+00:00"
+            "time": "2025-04-27T12:20:45+00:00"
         },
         {
             "name": "phpstan/phpstan-doctrine",
