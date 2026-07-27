@@ -13,7 +13,9 @@
 	Location: Cologne, Germany
 	
 	Design: Chris Struwe
-	Location: Hattingen, Germany
+    Site: https://chrsss.com
+    Contact: chrsss@duck.com
+	Location: Dortmund, Germany
 	
 	Projectmanagement: Nina Schwan
 	Location: Cologne, Germany
